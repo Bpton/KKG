@@ -1,0 +1,309 @@
+﻿
+@{
+    ViewBag.Title = "AutomailTemplate";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>AutomailTemplate</h2>
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet">
+<link href="~/Content/chosen.css" rel="stylesheet">
+
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+
+<script src="~/Scripts/Duplicate.js"></script>@*Prevent Duplicate Tab*@
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+@*<script src="~/Scripts/jquery.fixme.min.js"></script>*@
+
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<!--the JQuery to grab the value and change the textbox-->
+
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<link href="~/Content/Loader.css" rel="stylesheet" />
+<script src="~/Scripts/udjs/automailTemplate.js?10250124"></script>
+
+<style type="text/css">
+
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+
+
+    table.dataTable thead tr {
+        background-color: cadetblue;
+        /*background-color: lightblue;*/
+    }
+
+    table thead tr {
+        background-color: powderblue;
+        /*background-color: lightblue;*/
+    }
+
+    table tbody:hover > tr td {
+        opacity: 0.5;
+    }
+
+    table tbody:hover > tr:hover td {
+        color: #2d2d2d;
+        opacity: 1.0;
+    }
+
+    table.dataTable tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    table tbody:nth-child(odd) > tr:nth-child(odd) {
+        background: #eee !important;
+    }
+
+    .buttons-excel {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_paginate a {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .col-xs-12 {
+        background-color: whitesmoke;
+        /*//font-family: "Lucida Console", Courier, monospace;*/
+        font: italic small-caps bold 16px/2 cursive;
+    }
+
+    .panel-heading {
+        background-color: whitesmoke;
+    }
+
+    .panel-body {
+        background-color: aquamarine;
+    }
+
+    .panel panel-default {
+        background-color: aqua;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #2196F3;
+        color: white !important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: #2196F3;
+        color: white !important; /*below block of css for change style when active*/
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+   
+    .modal-body {
+        backface-visibility:unset;
+        background-color:aqua;
+        position: center;
+        border-bottom-color: darkblue;
+        border-bottom-style: solid;
+        border-top-color: darkblue;
+        border-top-style: solid;
+    }
+    .modal-header {
+        background-color: mediumturquoise;
+    }
+   .modal-footer{
+       background-color:deepskyblue;
+   }
+</style>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        /*width: 1100px;*/
+        height: 150px;
+        overflow: auto;
+    }
+</style>
+
+<div class="panel panel-heading">
+
+    <div style="margin-top:10px;"></div>
+    <div class="panel-info">
+        <div id="pnlDisplaydistributor">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h6>Automail</h6>
+                    </div>
+                </div>
+                <input type="hidden" id="templateid" />
+                <button id="page-button" type="button" data-toggle="modal"  data-target="#myModal">Add New Report</button>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+
+                    <div class="col-xs-1">
+                        Report Name:
+                    </div>
+                    <div class="col-xs-3">
+                        <select id="ddlReportname" class="form-control chosen" style="width:100%"></select>
+
+                    </div>
+
+                    <div class="col-xs-2">
+                        Subscriber Email:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlSubscriberEmail" class="form-control chosen" style="width:100%"></select>
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Users:
+                    </div>
+                    <div class="col-xs-3">
+                        <select id="ddlUsers" class="multiselect" multiple="multiple" selectmode="multiple" style="width: 100px;height:20px;"></select>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Send Type
+                    </div>
+                    <div class="col-xs-2">
+                        <select id='firstList' class="form-control chosen" style="width: 100%" name='firstList' onClick="getemailItem()"></select>
+                    </div>
+
+                    @*<div class="col-md-4">
+                        <form></form>
+                    </div>
+
+                    <div id="hello"></div>*@
+
+                    <div class="col-xs-6">
+                        <input type="submit" id="btnsavedetails" value="Save" class="btn btn-success" />
+                        <input type="hidden" id="hdnpageurl" />
+                    </div>
+
+
+                </div>
+
+                <div class="row col-xs-12">
+
+
+
+
+
+                    <div class="container" style="width:100%">
+
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">New Report</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- The Modal text box-->
+                                        <div>
+                                            Reportname:
+                                        </div>
+                                        <div>
+                                            <input id="txtReportname" type="text" />
+                                        </div>
+
+                                        <div >
+                                            ReportCode:
+                                        </div>
+                                        <div>
+                                            <input id="txtReportcode" type="text" />
+                                        </div>
+                                        </div>
+                                    <div class="modal-body">
+                                        <div>
+                                           StoreProce:
+                                        </div>
+                                        <div>
+                                            <input id="txtStoreproc" type="text" style="width:100%" />
+                                        </div>
+                                        <div>
+                                            Parametars:
+                                        </div>
+                                        <div>
+                                            <input id="txtParameters" type="text" />
+                                        </div>
+                                    </div>
+                                        <div class="modal-footer">
+                                            <button id="close-button" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            <button id="submit-button1" type="button" class="btn btn-success" data-dismiss="modal">save</button>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    @*<div class="row col-xs-12">
+                <div style="margin-top:10px;"></div>
+                <div class="col-lg-12" style="height:auto">
+                    <div class="panel-heading">
+
+                        <table class="table table-striped table-bordered dt-responsive" style="width:100%" id="grdAutomialGrid"></table>
+
+                    </div>
+                </div>
+            </div>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

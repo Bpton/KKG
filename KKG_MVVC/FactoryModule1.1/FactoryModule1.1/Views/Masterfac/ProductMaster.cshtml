@@ -1,0 +1,466 @@
+﻿@model FactoryModel.ProductMasterModel
+@{
+    ViewBag.Title = "ProductMaster";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2>ProductMaster</h2>
+
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet">
+<link href="~/Content/chosen.css" rel="stylesheet">
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">@*For Popup*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+@*<script type="text/javascript" language="javascript" src="//cdn.datatables.net/fixedcolumns/3.2.1/js/dataTables.fixedColumns.min.js"></script>*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/udjs/Product.js?dt=06052020"></script>
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+
+<style type="text/css">
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+    table.dataTable thead tr {
+        background-color: lightblue;
+    }
+
+    table thead tr {
+        background-color: lightblue;
+    }
+
+    table tbody:hover > tr td {
+        opacity: 0.5;
+    }
+
+    table tbody:hover > tr:hover td {
+        color: #2d2d2d;
+        opacity: 1.0;
+    }
+
+    table.dataTable tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    table tbody:nth-child(odd) > tr:nth-child(odd) {
+        background: #eee !important;
+    }
+
+    .buttons-excel {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_paginate a {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #2196F3;
+        color: white !important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: #2196F3;
+        color: white !important; /*below block of css for change style when active*/
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        height: 300px;
+        overflow: auto;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <b>Product Master</b>
+    </div>
+    <div style="margin-top:10px;"></div>
+    <div class="panel-body">
+
+        <div id="dvDisplay">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Product List</b>
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-2">
+                        &nbsp;
+                    </div>
+                    <div class="col-xs-2">
+                        &nbsp;
+                    </div>
+                    <div class="col-sm-2">
+                        &nbsp;
+                    </div>
+                    <div class="col-xs-2">
+                        &nbsp;
+                    </div>
+                    <div class="col-xs-4" id="divnewentry" align="right">
+                        <input type="submit" id="btnsearch" value="Search" class="btn btn-primary" />
+                        <input type="submit" id="btnAddnew" value="Add New Record" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-12">
+
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-lg-12">
+                        <table id="MaterialGrid" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="dvAdd">
+
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>PRODUCT DETAILS</b>
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        PRODUCT&nbsp;NAME<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        SHORT NAME<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.ProductShortName, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        Code<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(model => model.ProductCode, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        BRAND<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.DropDownListFor(m => m.BrandId, new SelectList(string.Empty, "BrandId", "BrandName"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.BrandName)
+
+                        &nbsp;@*<input type='image' class='PrimaryitemRefresh' id='btnRefreshPrimaryItem' src="../Images/ico_Refresh_1.png" width="14" height="14" title="Refresh" />*@
+                    </div>
+                    <div class="col-xs-1">
+                        CATEGORY<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.DropDownListFor(m => m.CATID, new SelectList(string.Empty, "CATID", "CATNAME"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.CATNAME)
+                        &nbsp;@*<input type='image' class='SubitemRefresh' id='btnRefreshSubItem' src="../Images/ico_Refresh_1.png" width="14" height="14" title="Refresh" />*@
+                    </div>
+                    <div class="col-xs-1">
+                        NATURE<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.DropDownListFor(m => m.NOPID, new SelectList(string.Empty, "NOPID", "NOPNAME"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.NOPID)
+                        &nbsp;@*<input type='image' class='UomRefresh' id='btnRefreshUOM' src="../Images/ico_Refresh_1.png" width="14" height="14" title="Refresh" />*@
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        UOM<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.DropDownListFor(m => m.UOMID, new SelectList(string.Empty, "UOMID", "UOMNAME"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.UOMNAME)
+                    </div>
+                    <div class="col-xs-1">
+                        UNIT&nbsp;CAPACITY<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(model => model.UNITCAPACITY, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        FRAGRANCE&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.DropDownListFor(m => m.FRGID, new SelectList(string.Empty, "FRGID", "FRGNAME"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.FRGID)
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        ITEM TYPE<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.DropDownListFor(m => m.ITID, new SelectList(string.Empty, "ITID", "ITNAME"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.ITID)
+                    </div>
+                    <div class="col-xs-2">
+                        BEST&nbsp;BEFORE&nbsp;USE&nbsp;(Days)<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.BESTBEUSE, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        INR (RS.)&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(model => model.INRRS, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        SINGAPORE&nbsp;DOLLAR(RS.)<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.SINGAPOREDOLLAR, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        NEPALESE&nbsp;RUPEE(RS.)<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.NEPALESERUPEE, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        BANGLADESHI&nbsp;TAKA(RS.)&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.BANGLADESHITAKA, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        BRAND&nbsp;CATEGORY&nbsp;NAME<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.BRANDCATNAME, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        PRIMARY&nbsp;PRODUCT&nbsp;NAME<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.PRIMARYPRODUCT, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        ASSESSABLE&nbsp;%<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.ASSESSABLE, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        MIN&nbsp;STOCK&nbsp;LEVEL&nbsp;(Pcs)<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.MINSTOCKLEVEL, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        CSD&nbsp;INDEX&nbsp;NO&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.CSDINDEXNO, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        INCS&nbsp;INDEX&nbsp;NO<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.INCSINDEXNO, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        CSD&nbsp;PRINT&nbsp;NAME&nbsp;.<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.CSDPRINT, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        CPC&nbsp;PRINT&nbsp;NAME&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.CPCPRINT, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        INCS&nbsp;PRINT&nbsp;NAME<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.INCSPRINT, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        EXPARA&nbsp;MILITARY&nbsp;PRINTNAME.<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.EXPARAPRINT, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        GT&nbsp;PRINT&nbsp;NAME&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        @Html.TextBoxFor(model => model.GTPRINT, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        MT&nbsp;PRINT&nbsp;NAME<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.MTPRINT, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        EXPORT&nbsp;PRINT&nbsp;NAME&nbsp;.<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.EXPORTPRINT, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                </div>
+
+                @*<div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Factory&nbsp;Map<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.FactoryID, new SelectList(string.Empty, "BRID", "BRNAME"), new { @class = "form-control chosen", style = "width: 200px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        Customer&nbsp;Map&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        <select id="ddlCustomer" class="form-control chosen" multiple="multiple" style="width:200px"></select>
+                    </div>
+                    <div class="col-xs-1">
+                        Vendor&nbsp;Map&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+                        <select id="ddlVendor" class="form-control chosen" multiple="multiple" style="width:200px"></select>
+                    </div>
+                </div>*@
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        BARCODE<span style="color:red"><b></b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.BARCODE, new { @class = "form-control", @onkeypress = "return true;", style = "height: 30px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        BILLING&nbsp;DEPOT(GT)<span style="color:red"><b></b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.BRID, new SelectList(string.Empty, "BRID", "BRNAME"), new { @class = "form-control chosen" })
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        POWER SKU
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="checkbox" id="chkrpowersku" name="return" value="1">
+                    </div>
+                    <div class="col-xs-1">
+                        RETURNABLE :
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="checkbox" id="chkreturn" name="return" value="1">
+                    </div>
+                    <div class="col-xs-1">
+                        ACTIVE :
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="checkbox" id="chkactive" name="active" value="1" checked>
+                        @Html.Hidden("hdnMaterialID", "")
+                    </div>
+
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="submit" id="btnsave" value="Save" class="btn btn-primary" />
+                        <input type="submit" id="btnclose" value="Close" class="btn btn-danger" />
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+

@@ -1,0 +1,16 @@
+E:\APPLICATION CODE\KKG1.1\KKGSOL\Utility\bin\Debug\Utility.dll
+E:\APPLICATION CODE\KKG1.1\KKGSOL\Utility\bin\Debug\Utility.pdb
+E:\APPLICATION CODE\KKG1.1\KKGSOL\Utility\bin\Debug\DAL.dll
+E:\APPLICATION CODE\KKG1.1\KKGSOL\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+E:\APPLICATION CODE\KKG1.1\KKGSOL\Utility\obj\Debug\Utility.csproj.CopyComplete
+E:\APPLICATION CODE\KKG1.1\KKGSOL\Utility\obj\Debug\Utility.dll
+E:\APPLICATION CODE\KKG1.1\KKGSOL\Utility\obj\Debug\Utility.pdb
+E:\APPLICATION CODE\KKG1.1\KKGSOL\Utility\obj\Debug\Utility.csprojAssemblyReference.cache
+F:\Previous Work\KKG\KKG\Utility\bin\Debug\Utility.dll
+F:\Previous Work\KKG\KKG\Utility\bin\Debug\Utility.pdb
+F:\Previous Work\KKG\KKG\Utility\bin\Debug\DAL.dll
+F:\Previous Work\KKG\KKG\Utility\obj\Debug\Utility.csproj.CoreCompileInputs.cache
+F:\Previous Work\KKG\KKG\Utility\obj\Debug\Utility.csproj.CopyComplete
+F:\Previous Work\KKG\KKG\Utility\obj\Debug\Utility.dll
+F:\Previous Work\KKG\KKG\Utility\obj\Debug\Utility.pdb
+F:\Previous Work\KKG\KKG\Utility\obj\Debug\Utility.csproj.AssemblyReference.cache

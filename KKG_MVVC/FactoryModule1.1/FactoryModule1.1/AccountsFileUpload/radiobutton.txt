@@ -1,0 +1,110 @@
+<input type="radio" name="radio1" id="radio1" value="2" class="radio1">
+
+ $("#radio1").click(function () {
+           
+            $("#radio2").prop("checked", false);
+            $("#radio3").prop("checked", false);
+            });
+            $("#radio2").click(function () {
+
+                $("#radio3").prop("checked", false);
+                $("#radio1").prop("checked", false);
+            });
+            $("#radio3").click(function () {
+
+                $("#radio2").prop("checked", false);
+                $("#radio1").prop("checked", false);
+            });
+       
+
+var radio2 = $("input[name='radio2']:checked").val();
+            if (radio2) {
+                interval = radio2;
+            }
+            var radio3 = $("input[name='radio3']:checked").val();
+            if (radio3) {
+                interval = radio3;
+            }
+STKINV
+STKTRN
+DPTRCVD
+STKDES
+
+
+txtsumtdsdeuctablevalue
+txttdsdeductablevalue
+txtBillvalue
+
+txttdspercentage
+TDS
+
+grvdtldel
+
+TDS_Reason
+GST_Reason
+
+
+$("#btnvouchersearch").click(function () {
+        bindvoucherhdr();
+    });
+
+
+BindTransporterbillall
+
+
+var STKINV = $("input[name='STKINV']:checked").val();
+    var STKTRN = $("input[name='STKTRN']:checked").val();
+    var DPTRCVD = $("input[name='DPTRCVD']:checked").val();
+    var STKDES = $("input[name='STKDES']:checked").val();
+
+
+
+ $("#ddldepot").chosen({
+        search_contains: true
+    });
+
+
+
+    $("#ddldepot").trigger("chosen:updated");
+
+
+
+public JsonResult addgrid(
+  DataTable dtvoucher = new DataTable();
+            dtvoucher = (DataTable)HttpContext.Session["ACC_VOUCHERDETAILS"];
+
+
+foreach (DataRow row in dttransporterbill.Rows)
+
+                invoicedtl.Add(new addtransporterdtl
+                {
+                    GUID = row["GUID"].ToString(),
+                    BILLDATE = row["BILLDATE"].ToString(),
+                    TRANSPORTERNAME = row["TRANSPORTERNAME"].ToString(),
+                    LRGRNO = row["LRGRNO"].ToString(),
+                    INVNO = row["INVNO"].ToString(),
+                    BILLNO = row["BILLNO"].ToString(),
+                    BILLAMOUNT = row["BILLAMOUNT"].ToString(),
+                    CGSTPERCENTAGE = row["CGSTPERCENTAGE"].ToString(),
+
+                    CGSTAX = row["CGSTAX"].ToString(),
+                    SGSTPERCENTAGE = row["SGSTPERCENTAGE"].ToString(),
+                    SGSTAX = row["SGSTAX"].ToString(),
+                    IGSTPERCENTAGE = row["IGSTPERCENTAGE"].ToString(),
+                    IGSTAX = row["IGSTAX"].ToString(),
+                    GROSSWEIGHT = row["GROSSWEIGHT"].ToString(),
+                    NETAMOUNT = row["NETAMOUNT"].ToString(),
+                    _sumgrossweight = Convert.ToString(sumgrossweight),
+                    _sumtds1 = Convert.ToString(sumtds1),
+                    _sumcgst = Convert.ToString(sumcgst),
+                    _sumsgst = Convert.ToString(sumsgst),
+
+                    _sumigst = Convert.ToString(sumigst),
+                    _sumugst = Convert.ToString(sumugst),
+                    _sumbillamount = Convert.ToString(sumbillamount),
+                    _sumtdsdeductableamount = Convert.ToString(sumtdsdeductableamount),
+                    _sumnetamount = Convert.ToString(sumnetamount),
+
+                });
+
+ List<addtransporterdtl> invoicedtl = new List<addtransporterdtl>();

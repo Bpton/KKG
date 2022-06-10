@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KKGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KKGEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="USP_BIND_PROCTUCTIONORDER">
+      <Parameter Name="P_DEPOTID" Mode="In" Type="String" />
+      <Parameter Name="P_FINYEAR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_BIND_VENDOR_AND_CURRENCY" ReturnType="Collection(KKGModel.USP_BIND_VENDOR_AND_CURRENCY_Result)" />
+    <FunctionImport Name="USP_BIND_PACKSIZE_MRP_AND_RATE" ReturnType="Collection(KKGModel.USP_BIND_PACKSIZE_MRP_AND_RATE_Result)">
+      <Parameter Name="P_PRODUCTID" Mode="In" Type="String" />
+      <Parameter Name="P_TPUID" Mode="In" Type="String" />
+      <Parameter Name="P_FROMDATE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_BIND_TODEPOT" ReturnType="Collection(KKGModel.USP_BIND_TODEPOT_Result)">
+      <Parameter Name="P_DEPOID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_FETCH_RECENT_TXN_TRANSPORTER_FAC" ReturnType="Collection(KKGModel.USP_FETCH_RECENT_TXN_TRANSPORTER_FAC_Result)">
+      <Parameter Name="P_FROMDEPOT" Mode="In" Type="String" />
+      <Parameter Name="P_TODEPOT" Mode="In" Type="String" />
+      <Parameter Name="P_FINYEAR" Mode="In" Type="String" />
+      <Parameter Name="P_MODULEID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_GET_TRANSPORTER_BASED_ON_DEPOT" ReturnType="Collection(KKGModel.USP_GET_TRANSPORTER_BASED_ON_DEPOT_Result)">
+      <Parameter Name="P_DEPOTID" Mode="In" Type="String" />
+      <Parameter Name="P_TXNID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="USP_BIND_VENDOR_AND_CURRENCY_Result">
+    <Property Type="String" Name="VENDORID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="VENDORNAME" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="USP_BIND_PACKSIZE_MRP_AND_RATE_Result">
+    <Property Type="String" Name="PACKSIZEID_FROM" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PACKSIZENAME_FROM" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="USP_BIND_TODEPOT_Result">
+    <Property Type="String" Name="BRID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BRNAME" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="USP_FETCH_RECENT_TXN_TRANSPORTER_FAC_Result">
+    <Property Type="String" Name="ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NAME" Nullable="true" MaxLength="250" />
+    <Property Type="String" Name="SHIPPINGADDRESS" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="USP_GET_TRANSPORTER_BASED_ON_DEPOT_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="true" MaxLength="255" />
+  </ComplexType>
+</Schema>

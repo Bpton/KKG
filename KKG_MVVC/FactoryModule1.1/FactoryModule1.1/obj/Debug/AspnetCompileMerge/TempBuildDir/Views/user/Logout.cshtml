@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Logout";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+
+}
+
+<head>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        function GotoDashboard() {
+          //  var finyr = $("#ddlfinyr").val();
+            var finyr = $("#ddlfinyr option:selected").text()
+
+            $.ajax({
+                type: "POST",
+                url: "/User/Getfinyr",
+                data: { finyr: finyr },
+                dataType: "json",
+                success: function (response) {
+                    //alert(response.d);
+                    window.location.href = "/Masterfac/Dashboard";
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+
+        }
+    </script>
+</head>
+
+
+
+    <div class="login-panel">
+
+
+    
+
+            
+               
+                <div class="form-group">
+                    <div class="col-md-12 col-xs-12">
+                        <h3>logout</h3>
+                    </div>
+                </div>
+              
+
+                <div class="form-group">
+
+                    <div class="col-md-12 col-xs-12">
+                       
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-md-12 col-xs-12">
+                       The Current session has expired.Please log in  from the ERP n.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-0 col-md-10">
+                        @*<button type="submit" id="Login" class="btn btn-primary" value="Sign in To Account" style="width:150px;height:40px">Log out</button>*@
+                    </div>
+                </div>
+
+            
+        
+      
+                
+
+                <div class="form-group">
+
+                    <div class="col-md-12 col-xs-12">
+                    </div>
+                </div>
+              
+          
+     
+    </div>
+
+
+
+

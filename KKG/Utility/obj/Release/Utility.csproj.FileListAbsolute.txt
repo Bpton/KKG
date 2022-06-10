@@ -1,0 +1,8 @@
+F:\Previous Work\KKG\KKG\Utility\bin\Release\Utility.dll
+F:\Previous Work\KKG\KKG\Utility\bin\Release\Utility.pdb
+F:\Previous Work\KKG\KKG\Utility\bin\Release\DAL.dll
+F:\Previous Work\KKG\KKG\Utility\obj\Release\Utility.csproj.AssemblyReference.cache
+F:\Previous Work\KKG\KKG\Utility\obj\Release\Utility.csproj.CoreCompileInputs.cache
+F:\Previous Work\KKG\KKG\Utility\obj\Release\Utility.csproj.CopyComplete
+F:\Previous Work\KKG\KKG\Utility\obj\Release\Utility.dll
+F:\Previous Work\KKG\KKG\Utility\obj\Release\Utility.pdb

@@ -1,0 +1,1665 @@
+﻿@model FactoryModel.Accountsmodel
+@{
+
+
+    ViewBag.Title = "Accvoucher";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<link href="~/Content/chosen.css" rel="stylesheet">
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Duplicate.js"></script>@*Prevent Duplicate Tab*@
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+@*<script src="~/Scripts/jquery.fixme.min.js"></script>*@
+
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/udjs/Advaccounts.js"></script>
+<style type="text/css">
+    .web_dialog_overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: #000000;
+        opacity: .15;
+        filter: alpha(opacity=15);
+        -moz-opacity: .15;
+        z-index: 101;
+        display: none;
+    }
+
+    .web_dialog {
+        display: none;
+        /*position: fixed;*/
+        /*width: 814px;*/
+        /*height: 400px;*/
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        /*top: 20%;
+            left: 30%;
+            margin:0 auto;*/
+        /*vertical-align:central;
+            position:center;
+            margin-left: -300px;
+            margin-top: -100px;
+            border: 2px solid #336699;*/
+        padding: 0;
+        background-color: #ffffff;
+        z-index: 102;
+        font-family: arial;
+    }
+
+    /*.web_dialog table {
+                 width: 514px;
+             }*/
+
+    .web_dialog_title {
+        border-bottom: solid 2px #336699;
+        background-color: #336699;
+        padding: 1.5em;
+        color: White;
+        font-weight: bold;
+        width: 100%;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+
+        .web_dialog_title h4 {
+            display: inline-block
+        }
+
+        .web_dialog_title a {
+            color: #fff;
+            text-decoration: none;
+            text-align: right;
+        }
+
+    .align_right {
+        text-align: center
+    }
+</style>
+<style type="text/css">
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+@*<style type="text/css">
+        .table-fixme-fixed {
+            top:0;
+            position:fixed;
+            width:auto;
+            display:none;
+            border:none;
+
+        }
+    </style>*@
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+    table.dataTable thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table tbody:hover > tr td {
+        opacity: 0.5;
+    }
+
+    table tbody:hover > tr:hover td {
+        color: #2d2d2d;
+        opacity: 1.0;
+    }
+
+    table.dataTable tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    table tbody:nth-child(odd) > tr:nth-child(odd) {
+        background: #eee !important;
+    }
+
+    .buttons-excel {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_paginate a {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #2196F3;
+        color: white !important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: #2196F3;
+        color: white !important; /*below block of css for change style when active*/
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        /*width: 1100px;*/
+        height: 300px;
+        overflow: auto;
+    }
+</style>
+<style>
+    div.scroll1 {
+        margin: 5px;
+        padding: 5px;
+        /*width: 1100px;*/
+        height: 140px;
+        overflow: auto;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <b>VOUCHER DETAILS</b>
+    </div>
+    <div style="margin-top:10px;"></div>
+    <div class="panel-body">
+        @*to display*@
+        <div id="pnlDisplay">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Voucher List</b>
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-1">
+                        Region:
+                    </div>
+
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.BRID, new SelectList(string.Empty, "BRID", "BRNAME"), new { @class = "form-control chosen" })
+                    </div>
+                    <div class="col-xs-1">
+                        From Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtsearchfromdate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-xs-1">
+                        To Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtsearchtodate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+
+                    <div class="col-xs-3" id="divnewentry">
+
+                        <input type="submit" id="btnvouchersearch" value="Search" class="btn btn-primary" />
+                        <input type="submit" id="Btnadd" value="Add New Voucher" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-12">
+
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-lg-12" id="DivHeaderRow">
+                        @*<table id="dispatchGridFG" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"></table>*@
+                    </div>
+                </div>
+                <div>
+
+                    <input type="hidden" id="hdnvoucherid" />
+                    <input type="hidden" id="hdnCHECKER" />
+                    <input type="hidden" id="hdnAUTOOPEN" />
+                    <input type="hidden" id="hdnAUTOVOUCHERID" />
+                    <input type="hidden" id="hdnAUTOVOUCHERDATE" />
+                    <input type="hidden" id="hdn_Amount_Dr" />
+                    <input type="hidden" id="hdn_Account_Dr" />
+                    <input type="hidden" id="hdn_AccountName_Dr" />
+                    <input type="hidden" id="hdn_accounttype" />
+                    <input type="hidden" id="hdn_drcr" />
+                    <input type="hidden" id="hdn_costcenterapplicable" />
+                    <input type="hidden" id="hdnOnlyBillTagFromPage" />
+                    <input type="hidden" id="hdndrcrtds" />
+                    <input type="hidden" id="hdn_accid" />
+                    <input type="hidden" id="hdn_ledgercostcenter" />
+                    <input type="hidden" id="hdn_ledgercostcentername" />
+                    <input type="hidden" id="hdn_Department" />
+                    <input type="hidden" id="hdndepoid" />
+
+                    <input type="hidden" id="hdn_approved" />
+                    <input type="hidden" id="hdn_Party" />
+                    <input type="hidden" id="TPU" />
+                    <input type="hidden" id="isgstpaid" />
+                     <input type="hidden" id="costcenterval" />
+
+                </div>
+            </div>
+        </div>
+        <div id="pnlAdd">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="row col-xs-12" id="trvoucherno">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Voucher No
+                    </div>
+                    <div class="col-xs-">
+
+                        <input type="text" id="txtvoucherno" />
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2" id="trparty">
+                        <div class="col-xs-2">
+                            Payment Type
+                        </div>
+                        <div class="col-xs-1">
+                            <select id="ddlPaymentType" class="form-control chosen" style="width:80px">
+
+                                <option value="NormalVoucher">Normal</option>
+                                <option value="PartyVoucher">Party</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-1">
+                        Voucher
+                    </div>
+                    <div class="col-xs-1">
+                        <select id="ddlvouchertype" class="form-control chosen" style="width:100px"></select>
+                    </div>
+                    <div class="col-xs-1">
+                        Voucher Type
+                    </div>
+                    <div class="col-xs-1">
+                        <select id="ddlGSTVoucherType" class="form-control chosen" style="width:100px"></select>
+                    </div>
+                    <div class="col-xs-1" id="trpaymentmode">
+                        <div class="col-xs-1">
+                            Mode
+                        </div>
+                        <div class="col-xs-1">
+                            <select id="ddlMode" class="form-control chosen" style="width:80px">
+
+                                <option value="B">Bank</option>
+                                <option value="C">Cash</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    @*<div class="col-xs-1">
+
+            </div>*@
+                    <div class="col-xs-1">
+                        Region<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlregion" class="form-control chosen"></select>
+                    </div>
+                    <div class="col-xs-1">
+                        Voucher Date<span style="color:red"><b>*</b></span>&nbsp;;
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="text" id="txtvoucherdate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                </div>
+                <div class="row col-xs-12" id="trpaymentparty">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Payment Party
+                    </div>
+                    <div class="col-xs-3">
+                        <select id="ddlPaymentParty" class="form-control chosen"></select>
+                    </div>
+                    <div class="col-xs-7">
+
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="row col-xs-12">
+                        <div style="margin-top:10px;"></div>
+                        <div class="col-xs-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <b>Debit</b>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12">
+                                <div class="col-xs-2">
+                                    Account<span style="color:red"><b>*</b></span>&nbsp;;
+                                </div>
+                                <div class="col-xs-6">
+                                    <select id="ddlAccTypeDr" style="width:260px" class="form-control chosen"></select>
+                                </div>
+                                <div class="col-xs-2">
+                                    Amount<span style="color:red"><b>*</b></span>&nbsp;;
+                                </div>
+                                <div class="col-xs-2">
+                                    <input type="text" id="txtAmtDr" class="form-control" style="width:80px" maxlength="14" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12" id="trDeptDr">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-2">
+                                    Department
+                                </div>
+                                <div class="col-xs-6">
+                                    <select id="ddlDepartmentDr" style="width:260px" class="form-control chosen"></select>
+                                </div>
+                                <div class="col-xs-2">
+                                    B.Segment
+                                </div>
+                                <div class="col-xs-2">
+                                    <select id="ddlBusinessSegDr" style="width:150px" class="form-control chosen"></select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" id="trdebitchequeno">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-4">
+                                    <select id="rdbdebitpaymenttype" style="width:150px" class="form-control chosen"></select>
+                                </div>
+                                <div class="col-xs-1" id="chequeno">
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="text" id="txtdebitchequeno" class="form-control" style="width:100px" />
+                                </div>
+                                <div class="col-xs-1">
+                                    Date
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="text" id="txtdebitchequedate" style="width:80px" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-7">
+                                    <textarea id="txtdebitremarks" style="width:300px;height:80px" rows="10" class="form-control"></textarea>
+                                </div>
+                                <div class="col-xs-3">
+                                    <label id="lbldebitoutstanding">0.00</label>
+                                </div>
+                                <div class="col-xs-2">
+                                    <input type="submit" id="btndebitadd" value="Add" class="btn btn-primary" />
+
+                                </div>
+
+                            </div>
+                            <div class="row col-xs-12">
+                                <div style="margin-top:10px;"></div>
+
+                                <div class="col-lg-12">
+                                    <div class="scroll1">
+                                        <table id="debitadd" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="display:none">
+
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        Account
+                                                    </th>
+                                                    <th style="display:none">
+
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        Dept.
+                                                    </th>
+                                                    <th style="display:none">
+
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        B.Seg.
+                                                    </th>
+                                                    <th style="width:30%">
+                                                        Amount
+                                                    </th>
+                                                    <th style="width:10%">
+                                                        Type
+                                                    </th>
+                                                    <th style="width:10%">
+                                                        No
+                                                    </th>
+                                                    <th style="width:10%">
+                                                        Date
+                                                    </th>
+                                                    <th style="display:none">
+
+                                                    </th>
+                                                    <th style="width:10%">
+
+                                                    </th>
+                                                    <th style="width:10%">
+
+                                                    </th>
+                                                    <th style="width:10%">
+                                                        Invoice
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size:20px"></tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-xs-12">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-10" style="text-align:right">
+                                    Total Debit
+                                </div>
+                                <div class="col-xs-2" style="text-align:right">
+                                    <input type="text" id="txtdebittotalamount" value="0" style="width:50px" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <b>Credit</b>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-2">
+                                    Account<span style="color:red"><b>*</b></span>&nbsp;;
+                                </div>
+                                <div class="col-xs-6">
+                                    <select id="ddlAcctypeCr" style="width:260px" class="form-control chosen"></select>
+                                </div>
+                                <div class="col-xs-2">
+                                    Amount<span style="color:red"><b>*</b></span>&nbsp;;
+                                </div>
+                                <div class="col-xs-2">
+                                    <input type="text" id="txtAmntCr" class="form-control" style="width:80px" maxlength="14" />
+                                </div>
+                            </div>
+                            <div class="col-xs-12" id="trDeptCr">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-2">
+                                    Department
+                                </div>
+                                <div class="col-xs-6">
+                                    <select id="ddlDepartmentCr" style="width:260px" class="form-control chosen"></select>
+                                </div>
+                                <div class="col-xs-2">
+                                    B.Segment
+                                </div>
+                                <div class="col-xs-2">
+                                    <select id="ddlBusinessSegCr" style="width:180px" class="form-control chosen"></select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" id="trcreditchequeno">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-4">
+                                    <select id="rdbcreditpaymenttype" style="width:150px" class="form-control chosen"></select>
+
+                                </div>
+                                <div class="col-xs-1" id="chequenocr">
+                                </div>
+                                <div class="col-xs-3">
+                                    @*<input type="text" id="txtcreditchequeno" class="form-control" style="width:100px" />*@
+                                    <select id="txtcreditchequeno" style="width:100px" class="form-control chosen"></select>
+                                </div>
+                                <div class="col-xs-1">
+                                    Date
+                                </div>
+                                <div class="col-xs-3">
+                                    <input type="text" id="txtcreditchequedate" style="width:80px" />
+                                </div>
+                                @*<div class="col-xs-1">
+                            Bank
+                        </div>
+                        <div class="col-xs-2">
+                            <select id="ddlcreditbankname" style="width:150px" class="form-control chosen"></select>
+                        </div>*@
+                            </div>
+                            <div class="col-xs-12">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-7">
+                                    <textarea id="txtcreditremarks" style="width:300px;height:80px" rows="10" class="form-control"></textarea>
+                                </div>
+                                <div class="col-xs-3">
+                                    <label id="lblcreditoutstanding">0.00</label>
+                                </div>
+                                <div class="col-xs-2">
+                                    <input type="submit" id="btncreditadd" value="Add" class="btn btn-primary" />
+
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-12">
+                                    <div class="scroll1">
+                                        <table id="creditadd" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%;">
+                                            <thead>
+                                                <tr>
+                                                    <th style="display:none">
+
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        Account
+                                                    </th>
+                                                    <th style="display:none">
+
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        Dept.
+                                                    </th>
+                                                    <th style="display:none">
+
+                                                    </th>
+                                                    <th style="width:60%">
+                                                        B.Seg.
+                                                    </th>
+                                                    <th style="width:30%">
+                                                        Amount
+                                                    </th>
+                                                    <th style="width:10%">
+
+                                                        Type
+                                                    </th>
+                                                    <th style="width:10%">
+                                                        No
+                                                    </th>
+                                                    <th style="width:10%">
+                                                        Date
+                                                    </th>
+                                                    <th style="display:none">
+
+                                                    </th>
+                                                    <th style="width:10%">
+
+                                                    </th>
+                                                    <th style="width:10%">
+
+                                                    </th>
+                                                    <th style="width:10%">
+                                                        Invoice
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size:20px"></tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div style="margin-top:10px;"></div>
+                                <div class="col-xs-10" style="text-align:right">
+                                    Total Credit
+                                </div>
+                                <div class="col-xs-2" style="text-align:right">
+                                    <input type="text" id="txtcredittotalamount" value="0" style="width:50px" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-xs-12" id="trinvoicedetails">
+                    <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="claimhdr">
+                                <b>Claim Date Invoice</b>
+                            </div>
+                        </div>
+                        <div class="row col-xs-12">
+                            <div style="margin-top:10px;"></div>
+                            <div class="col-lg-12">
+                                <div class="scroll" id="InvoiceDetails" style="width:100%">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row col-xs-12">
+                            <div style="margin-top:10px;"></div>
+                            <div class="col-lg-12">
+
+
+                            </div>
+                        </div>
+                        <div class="row col-xs-12">
+                            <div style="margin-top:10px;"></div>
+                            <div class="col-xs-12">
+                                <div class="col-xs-4">
+                                </div>
+                                <div class="col-xs-5">
+                                    <input type="submit" id="btnpaidamountclear" value="Clear Adjust" class="btn btn-primary" />
+                                    <input type="submit" id="btnpaidamt" value="Bill Adjust" class="btn btn-primary" />
+
+
+                                </div>
+                                <div class="col-xs-1">
+                                    <input type="text" id="txtpaidamount" value="0" style="width:150px;text-align:right" disabled="disabled" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="panel-body">
+
+                        <div class="row col-xs-12">
+                            <div style="margin-top:10px;"></div>
+                            <div class="col-xs-1">
+                                Narration<span style="color:red"><b>*</b></span>&nbsp;;
+                            </div>
+                            <div class="col-xs-4">
+                                <textarea id="txtNarration" rows="10" style="width:400px; height: 70px"></textarea>
+                            </div>
+                            <div class="col-xs-7">
+                                <input type="checkbox" id="chkfileupload" name="vehicle1" value="" style="display:none">
+                                <input type="submit" id="btnshow" value="Documents" class="btn btn-primary" />
+                                <input type="submit" id="btnotherdetails" value="Other Details" class="btn btn-primary" />
+
+                                <input type="submit" id="btnVendorDetails" value="GST Details" class="btn btn-primary" />
+
+                                <input type="submit" id="btnSave" value="Save" class="btn btn-primary" />
+                                <input type="submit" id="btnSavewithPrint" value="Save  with Print" class="btn btn-primary" />
+                                <input type="submit" id="btnClose" value="Close" class="btn btn-primary" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dialog" style="display: none">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="2" align="center">
+                <img id="imgLoader" alt="" src="../Images/ajax-loader.gif" style="visibility: hidden" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="overlay" class="web_dialog_overlay"></div>
+@*for gst new*@
+<div id="PanelDCJ_Invoicenew" class="web_dialog" style="width:85%;margin-left:50px; margin-top:30px">
+    <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b>GST Details</b>
+                <h4 style="float:right"><a href="#" id="btngstclosegstnew">Close</a></h4>
+            </div>
+        </div>
+        <div class="row col-xs-12">
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-12" id="gstval">
+            </div>
+
+        </div>
+        <div class="row col-xs-12">
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-1">
+                Place Of Supply
+            </div>
+            <div class="col-xs-2">
+                <select ID="ddlStateNamenew" style="width:100px"></select><span style="color:red"><b>*</b></span>
+            </div>
+            <div class="col-xs-1">
+                Group Name
+            </div>
+            <div class="col-xs-2">
+                <select ID="ddlDCJ_GroupName" style="width:100px"></select>
+            </div>
+            <div class="col-xs-1">
+                Party Name
+            </div>
+            <div class="col-xs-2">
+                <select ID="ddlDCJ_Partynew" style="width:180px"></select><span style="color:red"><b>*</b></span>
+            </div>
+            <div class="col-xs-1">
+                Party GST No.
+            </div>
+            <div class="col-xs-2">
+                <select ID="ddlDCJ_GstNonew" style="width:180px"></select><span style="color:red"><b>*</b></span>
+            </div>
+        </div>
+        <div class="row col-xs-12">
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-1">
+                Invoice No.
+            </div>
+            <div class="col-xs-2">
+                <input type="text" id="txtDCJ_InvoiceNonew" Style='text-transform: uppercase; width:140px' onchange='CHKInvoiceNo();' onkeypress="return isLetterNumberKeyWithSlash(event);" /><span style="color:red"><b>*</b></span>
+            </div>
+            <div class="col-xs-1">
+                Invoice Date.
+            </div>
+            <div class="col-xs-2">
+                <input type="text" id="txtDCJ_InvoiceDatenew" style="width:80px" /><span style="color:red"><b>*</b></span>
+            </div>
+            <div class="col-xs-1">
+                Party trade.
+            </div>
+            <div class="col-xs-2">
+                <input type="text" id="txtDCJ_PartyTradenew" style="width:150px" /><span style="color:red"><b>*</b></span>
+            </div>
+            <div class="col-xs-1">
+                Non Taxable Amount.
+            </div>
+            <div class="col-xs-2">
+                <input type="text" id="txtDCJ_NonTaxableAmount" style="width:150px" onkeypress="return isNumberKeyWithDot(event);" /><span style="color:red"><b>*</b></span>
+            </div>
+        </div>
+        <div class="row col-xs-12">
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>   Multiple Time Entry</b>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row col-xs-12">
+                <div style="margin-top:10px;"></div>
+
+                <div class="col-xs-1">
+                    HSn Code.
+                </div>
+                <div class="col-xs-1">
+                    <input type="text" id="txtDCJ_HSNCodenew" style="width:70px" Style='text-transform: uppercase' MaxLength="8" onkeypress="return isNumberKey(event);" /><span style="color:red"><b>*</b></span>
+                </div>
+                <div class="col-xs-1">
+                    Tax Type1.
+                </div>
+                <div class="col-xs-1">
+                    <select id="ddlDCJ_TaxType" style="width:90px"></select>
+                </div>
+
+                <div class="col-xs-1">
+                    Tax %.
+                </div>
+                <div class="col-xs-1">
+                    <select id="txtDCJ_Taxablenew" style="width:75px"></select><span style="color:red"><b>*</b></span>
+                </div>
+
+                <div class="col-xs-1">
+                    Taxable Value.
+                </div>
+                <div class="col-xs-1">
+                    <input type="text" id="txtDCJ_TaxableValuenew" style="width:60px" onkeypress="return isNumberKeyWithDot(event);" /><span style="color:red"><b>*</b></span>
+                </div>
+                <div class="col-xs-1">
+                    Round Off.
+                </div>
+                <div class="col-xs-1">
+                    <input type="text" id="txtRoundOff" style="width:60px" onkeypress="return isNumberKeyWithDot(event);" />
+                </div>
+
+                <div class="col-xs-1">
+                    <input type="hidden" ID="txtDCJ_ISIGST" />
+                </div>
+
+                <div class="col-xs-1">
+                    <input type="button" id="btnGstAdd" value="Add" class="btn_link" />
+                </div>
+            </div>
+
+            <div class="row col-xs-12">
+                <div style="margin-top:10px;"></div>
+                <div class="col-xs-1">
+                    <input type="hidden" ID="lblTaxTypeid" />
+                </div>
+                <div class="col-xs-1">
+                    Tax Type2.
+                </div>
+                <div class="col-xs-1">
+                    <input type="text" ID="txtDCJ_TaxType1" disabled="disabled" style="width:90px" />
+                </div>
+                <div class="col-xs-1">
+                    Tax %.
+                </div>
+                <div class="col-xs-1">
+                    <input type="text" ID="txtDCJ_Taxable1" disabled="disabled" style="width:40px" maxlength="6" />
+                </div>
+                <div class="col-xs-1">
+                    Taxable Value.
+                </div>
+                <div class="col-xs-1">
+                    <input type="text" ID="txtDCJ_TaxableValue1" disabled="disabled" style="width:40px" maxlength="6" />
+                </div>
+
+                <div class="col-xs-1">
+                    Tax Amount.
+                </div>
+                <div class="col-xs-1">
+                    <input type="text" ID="txtDCJ_TaxAmount" disabled="disabled" style="width:70px" maxlength="10" />
+                </div>
+                <div class="col-xs-1">
+                    Net Amount.
+                </div>
+                <div class="col-xs-2">
+                    <input type="text" ID="txtDCJ_NetAmount" disabled="disabled" style="width:70px" maxlength="10" />
+                </div>
+            </div>
+            <div class="row col-xs-12">
+                <div style="margin-top:10px;"></div>
+                <div class="col-xs-12">
+                    <div class="" style="overflow: auto; width:100%; height: 100px;" id="GridView_DCJ_GST">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row col-xs-12">
+                <div style="margin-top:10px;"></div>
+                <div class="col-xs-6">
+                    Total Amount
+
+                </div>
+                <div class="col-xs-2">
+                    <input type="text" ID="txtGSTTotal" disabled="disabled" style="width:80px" />
+                </div>
+                <div class="col-xs-4">
+                    <input type="button" id="btngstclosenew" value="Save" class="btn_link" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@*<div id="PanelDCJ_Invoicenew" class="web_dialog" style="width:960px;height:640px;margin-left:50px">
+
+    <table style="width: 100%;" cellpadding="1" cellspacing="0">
+
+        <tr>
+            <td class="web_dialog_title">
+                <h4>GST Details</h4>
+
+                <h4 style="float:right"><a href="#" id="btngstclosegstnew">Close</a></h4>
+            </td>
+
+        </tr>
+        <tr>
+            <td class="field_input" style="padding-left: 8px;">
+                <fieldset>
+                    <legend id="gstval"></legend>
+                </fieldset>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table style="width:100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="field_title">
+                            <span style="color:red"><b>*</b></span>&nbsp;:
+                            Place Of Supply
+                        </td>
+                        <td class="field_input">
+
+                            <select ID="ddlStateNamenew" style="width:100px"></select>
+
+                        </td>
+                        <td class="field_title">
+                            <span style="color:red"><b>*</b></span>&nbsp;:
+                            Group Name
+
+                        </td>
+                        <td class="field_input">
+
+                            <select ID="ddlDCJ_GroupName" style="width:100px"></select>
+
+                        </td>
+                        <td class="field_title">
+                            <span style="color:red"><b>*</b></span>&nbsp;:
+                            Party Name
+                        </td>
+                        <td class="field_input">
+
+                            <select ID="ddlDCJ_Partynew" style="width:100px"></select>
+
+                        </td>
+                        <td class="field_title">
+                            <span style="color:red"><b>*</b></span>&nbsp;:
+                            Party GST No.
+
+                        </td>
+                        <td class="field_input">
+
+                            <select ID="ddlDCJ_GstNonew" style="width:100px"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field_title">
+                            <span style="color:red"><b>*</b></span>&nbsp;:
+                            Invoice No.
+
+                        </td>
+                        <td width="200">
+
+                            <input type="text" id="txtDCJ_InvoiceNonew" Style='text-transform: uppercase; width:140px' onchange='CHKInvoiceNo();' onkeypress="return isLetterNumberKeyWithSlash(event);" />
+                        </td>
+                        <td class="field_title">
+                            <span style="color:red"><b>*</b></span>&nbsp;:
+                            Invoice Date
+
+                        </td>
+                        <td class="field_input">
+
+
+                            <input type="text" id="txtDCJ_InvoiceDatenew" style="width:80px" />
+                        </td>
+
+                        <td class="field_title">
+                            <span style="color:red"><b>*</b></span>&nbsp;:
+                            Party Trade
+                        </td>
+                        <td class="field_input">
+
+                            <input type="text" id="txtDCJ_PartyTradenew" style="width:150px" />
+
+                        </td>
+                        <td class="field_title">
+                            NON TAXABLE AMOUN
+                        </td>
+                        <td class="field_input">
+
+
+                            <input type="text" id="txtDCJ_NonTaxableAmount" style="width:150px" onkeypress="return isNumberKeyWithDot(event);" />
+                        </td>
+
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table style="width:100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="field_input" style="padding-left: 8px; padding-right: 20px;">
+                            <fieldset>
+                                <legend style="color:blue">
+                                    Multiple Time Entry
+                                    <table style="width:100%" cellpadding="0" cellspacing="0" border="0">
+                                        <tr>
+                                            <td class="field_title" width="70">
+                                                <span style="color:red"><b>*</b></span>&nbsp;:
+                                                HSN Coe
+                                            </td>
+                                            <td class="field_input" width="80">
+
+
+                                                <input type="text" id="txtDCJ_HSNCodenew" style="width:100px" Style='text-transform: uppercase' MaxLength="8" onkeypress="return isNumberKey(event);" />
+
+                                            <td class="field_title" width="65">
+                                                <span style="color:red"><b>*</b></span>&nbsp;:
+                                                Tax Type 1
+
+                                            </td>
+                                            <td class="field_input" width="120">
+
+                                                <select id="ddlDCJ_TaxType" style="width:120px"></select>
+
+                                            </td>
+                                            <td class="field_title" width="80">
+                                                <span style="color:red"><b>*</b></span>&nbsp;:
+                                                Taxable (%)
+
+                                            </td>
+                                            <td class="field_input" width="30">
+
+
+                                                <select id="txtDCJ_Taxablenew" style="width:120px"></select>
+
+                                            </td>
+                                            <td class="field_title" width="90">
+                                                <span style="color:red"><b>*</b></span>&nbsp;:
+                                                Taxable Value
+
+                                            </td>
+                                            <td class="field_input" width="60">
+
+                                                <input type="text" id="txtDCJ_TaxableValuenew" style="width:60px" onkeypress="return isNumberKeyWithDot(event);" />
+
+
+                                            </td>
+                                            <td class="field_title" width="70">
+                                                ROUND OF
+                                            </td>
+                                            <td width="70">
+                                                <input type="text" id="txtRoundOff" style="width:60px" onkeypress="return isNumberKeyWithDot(event);" />
+                                            </td>
+                                            <td class="field_title" width="80">
+
+
+                                                <input type="hidden" ID="txtDCJ_ISIGST" />
+                                            </td>
+
+                                            <td align="left" class="field_title">
+
+                                                <input type="button" id="btnGstAdd" value="Add" class="btn_link" />
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="field_title" width="80"></td>
+                                            <td width="70">
+
+                                                <input type="hidden" ID="lblTaxTypeid" />
+                                            </td>
+
+                                            <td class="field_title" width="80">
+                                                Tax Type 2
+                                            </td>
+                                            <td width="70">
+
+                                                <input type="text" ID="txtDCJ_TaxType1" disabled="disabled" style="width:100px" />
+                                            </td>
+                                            <td class="field_title" width="80">
+                                                Taxable (%)
+
+                                            </td>
+                                            <td class="field_input" width="30">
+
+                                                <input type="text" ID="txtDCJ_Taxable1" disabled="disabled" style="width:40px" maxlength="6" />
+                                            </td>
+                                            <td class="field_title" width="60">
+                                                Taxable Value
+
+                                            </td>
+                                            <td class="field_input" width="90">
+
+                                                <input type="text" ID="txtDCJ_TaxableValue1" disabled="disabled" style="width:40px" maxlength="6" />
+                                            </td>
+
+
+
+
+
+                                            <td class="field_title" width="70">
+                                                Tax Amount
+                                            </td>
+                                            <td width="70">
+
+                                                <input type="text" ID="txtDCJ_TaxAmount" disabled="disabled" style="width:70px" maxlength="10" />
+                                            </td>
+                                            <td class="field_title" width="80">
+                                                Net Amount
+                                            </td>
+                                            <td width="70">
+
+                                                <input type="text" ID="txtDCJ_NetAmount" disabled="disabled" style="width:70px" maxlength="10" />
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+
+                                    <div class="" style="overflow: auto; height: 100px;" id="GridView_DCJ_GST">
+
+                                    </div>
+
+                            </fieldset>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table id="table2" style="width:100%" border="0" cellspacing="0" cellpadding="0"
+                       class="form_container_td">
+                    <tr id="tr5" runat="server">
+                        <td width="870"></td>
+                        <td width="80">
+                            Total Amount
+                        </td>
+                        <td width="80">
+
+                            <input type="text" ID="txtGSTTotal" disabled="disabled" style="width:80px" />
+                        </td>
+                        <td align="right" class="field_title" style="padding-right: 45px;">
+
+
+
+
+                            <input type="button" id="btngstclosenew" value="Save" class="btn_link" />
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+    </table>
+</div>*@
+@*TDS*@
+<div id="dialogtds" class="web_dialog" style="width:900px">
+    <table style="width: 100%; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr>
+            <td class="web_dialog_title">TDS Details</td>
+
+            <td class="web_dialog_title align_right"><a href="#" id="btntdsclose">Close</a></td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div style="width:100%" id="addtds">
+
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <div class="btn_24_blue" id="divtds2" runat="server">
+
+
+                    <input type="button" class="btn btn-primary" id="btntdsadd" value="Add" />
+                </div>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+@*file upload*@
+<div id="dialogfile" class="web_dialog" style="width:514px">
+    <table cellpadding="1" cellspacing="0" style="width:100%">
+        <tr>
+
+            <td class="web_dialog_title" colspan="2">
+                <h4>FILE UPLOAD</h4>
+
+
+            </td>
+            <td class="web_dialog_title align_right"><a href="#" id="btnfileclose">Close</a></td>
+
+        </tr>
+        <tr>
+        <tr>
+
+            <td class="field_title" width="70" id="dept1">
+                Upload File<span class="req">*</span>
+            </td>
+            <td class="field_input">
+                <input type="file" name="docUpload" id="txtquotupload" size="20" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <div class="btn_24_blue">
+
+
+                    <input type="button" class="btn btn-primary" id="btnupload" value="Upload" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="" style="overflow: auto; height: 100px;" id="grdfileupload">
+
+
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+@*budget*@
+<div id="dialogbud" class="web_dialog" style="width:514px">
+    <table cellpadding="1" cellspacing="0" style="width:100%">
+        <tr>
+
+            <td class="web_dialog_title" colspan="2">
+                <h4>SET DEPARTMENT</h4>
+
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td class="field_title" width="70" id="dept1">
+                Department<span class="req">*</span>
+            </td>
+
+
+            <td class="field_input" id="dept2">
+                <select id="ddldepartmentBud" style="width:200px"></select>
+
+                <div class="btn_24_blue" id="divbudgetadd">
+
+
+                    <input type="button" class="btn btn-primary" id="btnBudget" value="Add" />
+                </div>
+                <div class="btn_24_blue" id="div_BudgetSave" runat="server">
+
+                    <input type="button" class="btn btn-primary" id="btnBudgetclose" value="Save" />
+
+
+                </div>
+
+
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2" align="right">
+                <div class="btn_24_blue" id="btnbudgetcncl">
+                    <input type="button" class="btn btn-primary" id="btnbudgetcnc2" value="Close" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div style="width:100%">
+                    <table id="addbudget" class="table table-striped table-bordered dt-responsive nowrap"></table>
+                </div>
+
+
+            </td>
+        </tr>
+
+    </table>
+</div>
+@*Other details*@
+
+<div id="otherdetails" class="web_dialog" style="width:700px;margin-top:100px">
+    <table style="width: 100%; background-color:#fff; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr>
+            <td class="web_dialog_title">Other Details</td>
+
+            <td class="web_dialog_title align_right"><a href="#" id="btnotherclose">Close</a></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+        </tr>
+        <tr>
+            <td colspan="3">
+                <table style="width:100%">
+                    <tr>
+                        <td class="field_title" width="80">
+                            Bill No.
+                        </td>
+                        <td class="field_input">
+
+                            <input type="text" id="txtbillno" class="form-control" MaxLength="25" style="width:200px" placeholder="Bill No" />
+                        </td>
+                        <td class="field_title" width="80">
+                            Bill date
+                        </td>
+                        <td class="field_input">
+
+                            <input type="text" id="txtbilldate" MaxLength="25" style="width:70px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field_title">
+                            GR No.
+                        </td>
+                        <td class="field_input">
+
+                            <input type="text" id="txtgrno" class="form-control" MaxLength="25" style="width:70px" placeholder="GR No" "    />
+
+                        </td>
+                        <td class="field_title" width="70">
+                            GR Date
+                        </td>
+                        <td class="field_input">
+
+                            <input type="text" id="txtgrdate" MaxLength="25" style="width:70px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field_title">
+                            Vehicle No.
+                        </td>
+                        <td class="field_input" colspan="3">
+
+                            <input type="text" id="txtvehicleno" class="form-control" MaxLength="25" style="width:200px" placeholder="Vehicle No" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field_title">
+                            Tranport
+                        </td>
+                        <td class="field_input" colspan="3">
+
+                            <input type="text" id="txttransport" class="form-control" MaxLength="25" style="width:400px" placeholder="Transport" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="field_title">
+                            Way Bill No.
+                        </td>
+                        <td class="field_input">
+
+                            <input type="text" id="txtwaybillno" class="form-control" MaxLength="25" style="width:225px" placeholder="WayBill No" />
+                        </td>
+                        <td class="field_title">
+                            Way Bill Date
+                        </td>
+                        <td class="field_input">
+
+                            <input type="text" id="txtwaybilldate" class="form-control" MaxLength="25" style="width:70px" />
+                        </td>
+                    </tr>
+
+                </table>
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="right">
+
+
+
+
+                <input type="button" class="btn btn-primary" id="btnotherdetailsave" value="Save" />
+
+            </td>
+        </tr>
+    </table>
+</div>
+@*Cost Center*@
+
+<div id="trcostcenterdetails" class="web_dialog" style="width:90%; margin-left:20px">
+
+    <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b>Cost Center Details</b>
+
+                @*<h4 style="float:right"><a href="#" id="btncostclose">Close</a></h4>*@
+            </div>
+        </div>
+        <div class="row col-xs-12">
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-12" id="costdetail">
+
+            </div>
+
+        </div>
+        <div class="row col-xs-12">
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-1">
+                Segment
+            </div>
+            <div class="col-xs-2">
+                <select id="ddlcatagory" style="width:190px"></select><span style="color:red"><b>*</b></span>
+            </div>
+            <div class="col-xs-1">
+                Brand
+            </div>
+            <div class="col-xs-2">
+                <select id="ddlbrand" style="width:160px"></select>
+            </div>
+            <div class="col-xs-1">
+                Producr
+            </div>
+            <div class="col-xs-2">
+                <select id="ddlproduct" style="width:160px"></select>
+                <input type="button" class="btn_link" id="btnaddproduct" value="Load" />
+            </div>
+            <div class="col-xs-1">
+                Department
+            </div>
+            <div class="col-xs-2">
+                <select id="ddldepartment" style="width:160px"></select><span style="color:red"><b>*</b></span>
+            </div>
+
+        </div>
+        <div class="row col-xs-12">
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-1">
+                Date Range
+            </div>
+            <div class="col-xs-1">
+                <input type="text" id="txtcostcenterfromdate" style="width:67px" />
+
+            </div>
+            <div class="col-xs-1">
+                <input type="text" id="txtcostcentertodate" style="width:67px" />
+            </div>
+            <div class="col-xs-1">
+                Branch
+            </div>
+            <div class="col-xs-2">
+                <select id="ddlbranch" style="width:160px"></select><span style="color:red"><b>*</b></span>
+
+            </div>
+            <div class="col-xs-1">
+                Cost Center
+            </div>
+            <div class="col-xs-2">
+                <select id="ddlcentername" style="width:160px"></select>
+
+            </div>
+            <div class="col-xs-1">
+                Amount
+            </div>
+            <div class="col-xs-1">
+                <input type="text" id="txtamount" style="width: 80px" maxlength= ="20" />
+
+            </div>
+            <div class="col-xs-1">
+                <input type="button" class="btn btn-primary" id="btncostcenteradd" value="Add" />
+
+            </div>
+        </div>
+        <div class="row col-xs-12">
+
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-12">
+                <div class="gridcontent-inner" id="grdcostcenter" style="width:100%; overflow:auto;">
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row col-xs-12">
+
+            <div style="margin-top:10px;"></div>
+            <div class="col-xs-12" style="float:right">
+                <input type="button" id="btncostcentersave" value="save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@*<div id="trcostcenterdetails" class="web_dialog" style="width:900px; margin-left:20px">
+    <table style="width: 80%; background-color:#FFF; border: 0px;" cellpadding="3" cellspacing="0">
+        <tr>
+            <td class="web_dialog_title">
+                <h4>Cost Center Details</h4>
+
+                <h4 style="float:right">
+                    <a href="#" id="btncostclose" class="align_right">Close</a>
+                </h4>
+            </td>
+
+
+
+        </tr>
+        <tr>
+            <td>
+                <table style="width:80%; background-color:#FFF;" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td class="field_input" style="padding-left: 8px;">
+                            <fieldset>
+                                <legend id="costdetail">
+
+
+                                </legend>
+                                <table style="width:80%; background-color:#FFF;" cellpadding="0" cellspacing="0" border="0" class="form_container_td">
+                                    <tr>
+                                        <td class="field_title" width="70">
+                                            Segment&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                                        </td>
+                                        <td class="field_input" width="200">
+
+                                            <select id="ddlcatagory" style="width:190px"></select>
+
+                                        </td>
+                                        <td class="field_title" width="70">
+                                            Brand
+                                        </td>
+                                        <td class="field_input" width="170">
+                                            <select id="ddlbrand" style="width:160px"></select>
+
+                                        </td>
+                                        <td class="field_title" width="70">
+                                            Product
+                                        </td>
+                                        <td class="field_input">
+                                            <select id="ddlproduct" style="width:230px"></select>
+                                            <input type="button" class="btn_link" id="btnaddproduct" value="Load" />
+                                        </td>
+                                        <td class="field_title" width="70">
+                                            Department&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                                        </td>
+                                        <td class="field_input" colspan="2">
+                                            <select id="ddldepartment" style="width:170px"></select>
+
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="field_title" width="90">
+                                            Date Range
+                                        </td>
+                                        <td width="150">
+                                            <input type="text" id="txtcostcenterfromdate" style="width67px" />
+                                            <input type="text" id="txtcostcentertodate" style="width67px" />
+
+                                        </td>
+                                        <td class="field_title">
+                                            Branch&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                                        </td>
+                                        <td class="field_input">
+                                            <select id="ddlbranch" style="width:160px"></select>
+
+                                        </td>
+                                        <td class="field_title">
+                                            Cost Center
+                                        </td>
+                                        <td class="field_input">
+                                            <select id="ddlcentername" style="width:235px"></select>
+
+                                        </td>
+                                        <td class="field_title">
+                                            Amount&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                                        </td>
+                                        <td class="field_input">
+                                            <input type="text" id="txtamount" style="width: 80px" maxlength= ="20   />
+
+                                        </td>
+                                        <td align="left" class="field_title">
+
+
+
+
+
+                                            <input type="button" class="btn btn-primary" id="btncostcenteradd" value="Add" />
+
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:100%">
+                <table style="width:100%; background-color:#FFF" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td>
+                            <div class="gridcontent-inner" id="grdcostcenter" style="width:100%; overflow:auto;">
+
+
+
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table style="width:80%; background-color:#FFF">
+
+                    <tr>
+                        <td>
+                            <input type="button" id="btncostcentersave" value="save" class="btn btn-primary" />
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+    </table>
+</div>*@

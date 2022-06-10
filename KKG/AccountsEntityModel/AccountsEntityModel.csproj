@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC41BDD8-A3FE-4C86-80AB-2CD307DD1D4B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AccountsEntityModel</RootNamespace>
+    <AssemblyName>AccountsEntityModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\Kkg\Bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\Kkg\Bin\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountsEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountsEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SP_CATEWGORY_SHOW_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_DIVISION_SHOW_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_FILL_SUBCOMPONENT_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GET_BUDGET_GROUP_BALANCE_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_Get_Department_Component_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GET_TAXTYPE_NAME_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_ACCOUNTGROUPTYPEGET_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_ACCOUNTGROUPTYPE_GET_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_COSTCWENTRE_GET_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_PAYMENT_TYPE_GET_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_TAXAPPLICALE_TDS_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_THIRDPARTYVENDOR_GET_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_VOUCHERTYPEACC_GET_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_ACC_VOUCHERTYPES_GET_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_DEPARTMENT_SHOW_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_GET_BUSINESSSEGMENT_LIST_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_GET_GSTNO_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_GET_TAXTYPE_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_PRODUCTMADSTER_SHOW_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_REGION_SHOW_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_STATE_SHOW_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_VOUCHER_HEADERDETAILS_Result.cs">
+      <DependentUpon>AccountsEntities.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="AccountsEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AccountsEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AccountsEntities.edmx.diagram">
+      <DependentUpon>AccountsEntities.edmx</DependentUpon>
+    </None>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccountsEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AccountsEntities.edmx</DependentUpon>
+      <LastGenOutput>AccountsEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AccountsEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AccountsEntities.edmx</DependentUpon>
+      <LastGenOutput>AccountsEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

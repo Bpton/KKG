@@ -1,0 +1,65 @@
+html, body {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  height: 100%;  
+  background-color:#2E363F;  
+    /*background: url('../images/cream-paper.png') repeat #167587; 
+    background: url('../images/cream-paper.png') repeat, -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #259ca4), color-stop(90%, #167587));
+    background: url('../images/cream-paper.png') repeat, -webkit-linear-gradient(#259ca4 20%, #167587 90%);
+    background: url('../images/cream-paper.png') repeat, -moz-linear-gradient(#259ca4 20%, #167587 90%);
+    background: url('../images/cream-paper.png') repeat, -o-linear-gradient(#259ca4 20%, #167587 90%);
+    background: url('../images/cream-paper.png') repeat, linear-gradient(#259ca4 20%, #167587 90%);  */
+	font-family: Arial, sans-serif;
+	color:#9d9e9e;
+}
+
+div.form {
+  background: white;
+  width: 100%;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+  font-family: Arial, sans-serif;
+  position: relative;
+  display:block;
+  color: #333;
+  border-radius: 10px;
+  padding-bottom:30px;
+}
+div.form header {
+  background: #FF3838;
+  padding: 15px 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 25px;
+}
+div.form p {
+  margin-left: 20px;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 25px;
+  position: relative;
+}
+div.form label span {
+  color: #FF3838;
+  font-size: 2em;
+  position: absolute;
+  left: 2.3em;
+  top: -10px;
+}
+
+div.form .help {
+  margin-left: 20px;
+  font-size: 0.8em;
+  color: #777;
+}

@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewBag.Title = "MachineSpare";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+
+
+<script src="~/Scripts/toastr.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+
+<script src="~/Scripts/udjs/MachineSpare.js?57332"></script>
+
+
+
+
+
+<div class="panel panel-heading">
+    <div class="panel-heading">
+        <b>Machine Spare Master info</b>
+    </div>
+    <div style="margin-top:10px;"></div>
+    <div class="panel-info">
+        <div id="pnlDisplaydistributor">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Machine Spare Details</b>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+
+
+                    <div class="col-xs-1">
+                        Item Code  :
+                    </div>
+
+
+
+                    <div class="col-xs-1">
+                        Item Name:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtItemName" class="form-control chosen-choices" disabled="disabled" style="width:120px">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Item Description:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtItemDescription" class="form-control chosen-choices" disabled="disabled" style="width:120px">
+
+                    </div>
+
+
+
+                </div>
+
+
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+
+
+                    <div class="col-xs-1">
+                        Primary Item :
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlPrimaryItem" class="form-control chosen" style="width:180px"></select>
+                    </div>
+
+
+                    <div class="col-xs-1">
+                        Sub Item:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlSubItem" class="form-control chosen" style="width:180px"></select>
+                    </div>
+
+                    <div class="col-xs-1">
+                        Machine (Code & Name):
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlMachineCodeName" class="form-control chosen" style="width:180px"></select>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+
+
+                    <div class="col-xs-1">
+                        UOM ID :
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlUOMID" class="form-control chosen" style="width:180px"></select>
+                    </div>
+
+
+                    <div class="col-xs-1">
+                        UOM NAME:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlUOMNAME" class="form-control chosen" style="width:180px"></select>
+                    </div>
+
+                    <div class="col-xs-1">
+                        Material Type:
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("MaterialType", new List<SelectListItem>
+                            {
+                                new SelectListItem{ Text="-Select-", Value = "0" },
+                                new SelectListItem{ Text="E", Value = "E" },
+                                new SelectListItem{ Text="M", Value = "M" },
+                                new SelectListItem{ Text="P", Value = "P" },
+                            }, new { @class = "form-control", style = "width: 140px;" })
+
+                    </div>
+
+                </div>
+
+
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+
+
+                    <div class="col-xs-1">
+                        Ref Qty :
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtRefQty" class="form-control chosen-choices" disabled="disabled" style="width:120px">
+
+                    </div>
+
+
+                    <div class="col-xs-1">
+                        DRG Available:
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("DRGAvailable", new List<SelectListItem>
+                            {
+                                new SelectListItem{ Text="-Select-", Value = "0" },
+                                new SelectListItem{ Text="Y", Value = "Y" },
+                                new SelectListItem{ Text="N", Value = "N" },
+                            }, new { @class = "form-control", style = "width: 140px;" })
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Documents Upload :
+                    </div>
+                    <div class="col-xs-2" id="divnewentry">
+
+
+                        <input type="submit" id="btnupload" value="upload" class="btn btn-primary" />
+                    </div>
+
+
+
+                </div>
+
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+
+
+                    <div class="col-xs-1">
+                        Vendor Selection:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlVendorSelection" class="form-control chosen" style="width:180px"></select>
+                    </div>
+
+
+                    <div class="col-xs-1">
+                        Remarks:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtRemarks" class="form-control chosen-choices" disabled="disabled" style="width:120px">
+
+                    </div>
+
+                    <div class="col-md-1">
+                        ACTIVE :
+                    </div>
+                    <div class="col-md-2">
+                        <input type="checkbox" id="chkactive" name="active" value="1" checked>
+                        @Html.Hidden("hdnPrimaryID", "")
+                    </div>
+
+
+
+
+                </div>
+
+
+               
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+
+                    <div id="pnlsave" class="col-xs-12">
+                        <input type="submit" id="btnsavedetails" value="save" class="btn btn-success" />
+                        <input type="submit" id="btnCanceldetails" value="CANCEL" class="btn btn-danger" />
+                    </div>
+                   
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="pnlDisplay">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>User Document Details</b>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px;"></div>
+                
+
+
+                <div class="row col-xs-5">
+                    <div style="margin-top:10px;"></div>
+
+
+                    <div class="col-xs-4" id="divnewentry">
+                        
+
+                        <input type="submit" id="btnaddnew" value="Add New Records" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-12">
+
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-lg-12" id="DivHeaderRow">
+                        <table id="dispatchGridFG" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"></table>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+                <input type="hidden" id="hdnCHECKER" />
+                <input type="hidden" id="hdnClaimID" />
+                <input type="hidden" id="hdnsumtotal" />
+                <input type="hidden" id="hdnClaimtype" />
+                @*<input type="hidden" id="hdnUserID" />*@
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loader" style="display: none;">
+
+</div>
+

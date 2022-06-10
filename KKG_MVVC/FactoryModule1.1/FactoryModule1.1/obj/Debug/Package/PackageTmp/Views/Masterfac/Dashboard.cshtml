@@ -1,0 +1,649 @@
+﻿
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<h4 class="page-header">Dashboard</h4>
+<div class="row">
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-clock-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">NCC Form</div>*@
+                    </div>
+                </div>
+            </div>
+            @*<a href="/Accountstran/Accvoucher?VOUCHERID=2&CHECKER=FALSE&AUTOOPEN=FALSE&AUTOVOUCHERID=0&AUTOVOUCHERDATE=0&MTCLAIM=N&USERID=9073&USERTYPE=91806649-573A-4DFE-90D7-00E499C17631&UTNAME=Factory Accounts&TPU=FA-001&IUserID=9073&FINYEAR=2019-2020&DEPOTID=9073">*@
+                <a href="/Accountstran/Accvoucher?VOUCHERID=2&CHECKER=FALSE&AUTOOPEN=FALSE&AUTOVOUCHERID=0&AUTOVOUCHERDATE=0&MTCLAIM=N&USERID=3823&USERTYPE=77B00065-0E54-40A4-A9D6-E2E9F3F40893&UTNAME=Somnath Laha&TPU=ACC-2&IUserID=3823&FINYEAR=2019-2020&DEPOTID=3823">
+                    <div class="panel-footer">
+                        <span class="pull-left">Journal</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+</div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-clock-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">NCC Form</div>*@
+                    </div>
+                </div>
+            </div>
+            <a href="/Accountstran/Accvoucher?VOUCHERID=2&CHECKER=FALSE&AUTOOPEN=FALSE&AUTOVOUCHERID=0&AUTOVOUCHERDATE=0&MTCLAIM=Y&USERID=27518&USERTYPE=B4BA9E16-7C68-42B4-B2F5-AE2DB8AABC86&UTNAME=Factory Accounts&TPU=FA-001&IUserID=27518&FINYEAR=2020-2021&DEPOTID=27518">
+                <div class="panel-footer">
+                    <span class="pull-left">MT GST Claim Registration</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-clock-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">NCC Form</div>*@
+                    </div>
+                </div>
+            </div>
+            <a href="/Accountstran/Accvoucher?VOUCHERID=2&CHECKER=TRUE&AUTOOPEN=FALSE&AUTOVOUCHERID=0&AUTOVOUCHERDATE=0&MTCLAIM=Y&USERID=27518&USERTYPE=B4BA9E16-7C68-42B4-B2F5-AE2DB8AABC86&UTNAME=Factory Accounts&TPU=FA-001&IUserID=27518&FINYEAR=2020-2021&DEPOTID=27518">
+                <div class="panel-footer">
+                    <span class="pull-left">MT GST Claim Approval</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Account</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/TranDepotStock/DepotStocktransfer?MENUID=46&CHECKER=FALSE&DEPOTID=0EEDDA49-C3AB-416A-8A44-0B9DFECD6670">
+                    <div class="panel-footer">
+                        <span class="pull-left">Stock Transfer (Depot)</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+ 
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-clock-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">Account</div>*@
+                    </div>
+                </div>
+            </div>
+            <a href="/Accountstran/Accadvancevoucher?VOUCHERID=15&CHECKER=FALSE">
+                <div class="panel-footer">
+                    <span class="pull-left">Advance Payment</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-clock-o fa-5x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        @*<div class="huge">Account</div>*@
+                    </div>
+                </div>
+            </div>
+            <a href="/TranDepotStock/depostktransferBOS?MENUID=46&CHECKER=FALSE&DEPOTID=0EEDDA49-C3AB-416A-8A44-0B9DFECD6670&USERID=85&FINYEAR=2020-2021">
+                <div class="panel-footer">
+                    <span class="pull-left">Stock Transfer (BOS)  (Depot)</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+
+    @*for depot accounts*@
+    <div class="row">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">NCC Form</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/Accountstran/Accadvancevoucherdepot?VOUCHERID=16&CHECKER=FALSE&AUTOOPEN=FALSE&AUTOVOUCHERID=0&AUTOVOUCHERDATE=0&MTCLAIM=N&USERID=162&USERTYPE=8977E291-5CEE-40A5-91D1-55A179EB6DCE&UTNAME=Somnath Laha&TPU=D&IUserID=162&FINYEAR=2019-2020&DEPOTID=AA824C54-028D-4340-9ED5-9B0CDBE5C408">
+                    <div class="panel-footer">
+                        <span class="pull-left">Advance Receipt (Depot)</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Account</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/Accountstran/Accadvancevoucherdepot?VOUCHERID=15&CHECKER=FALSE&AUTOOPEN=FALSE&AUTOVOUCHERID=0&AUTOVOUCHERDATE=0&MTCLAIM=N&USERID=3823&USERTYPE=77B00065-0E54-40A4-A9D6-E2E9F3F40893&UTNAME=Somnath Laha&TPU=ACC-2&IUserID=3823&FINYEAR=2019-2020&DEPOTID=3823">
+                    <div class="panel-footer">
+                        <span class="pull-left">Advance Payment (Depot)</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Documents</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/Transporter/Transporterbilldepot?CHECKER=FALSE&MENUID=86&VISIBLE=Y&TPU=D&USERID=162&FINYEAR=2020-2021&DEPOTID=AA824C54-028D-4340-9ED5-9B0CDBE5C408">
+                    @*<a target="_blank" href='@Url.Action("noclaimcertificate","Distributor",new { MasterClaimID=4269})'>*@
+                    @*<a target="_blank" href="/Distributor/noclaimcertificate?MasterClaimID=4269"></a>*@
+                    <div class="panel-footer">
+                        <span class="pull-left">Transporter Bill (Depot)</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">NCC Form</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/Accountstran/Accadvancevoucher?VOUCHERID=14&CHECKER=FALSE" ">
+                    <div class="panel-footer">
+                        <span class="pull-left">Debit Note</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Documents</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/Accountstran/Accadvancevoucher?VOUCHERID=13&CHECKER=FALSE">
+                    @*<a target="_blank" href='@Url.Action("noclaimcertificate","Distributor",new { MasterClaimID=4269})'>*@
+                    @*<a target="_blank" href="/Distributor/noclaimcertificate?MasterClaimID=4269"></a>*@
+                    <div class="panel-footer">
+                        <span class="pull-left">Credit Note</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Claims</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/Transporter/Transporterbillv2?CHECKER=FALSE&MENUID=2860&VISIBLE=Y">
+                    <div class="panel-footer">
+                        <span class="pull-left">Transporter Bill</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Claims</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/Transporter/Transporterbillv2?CHECKER=FALSE&MENUID=2860&VISIBLE=Y">
+                    <div class="panel-footer">
+                        <span class="pull-left">Transporter Bill</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Closing Stock</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/claims/qpsvps?CTYPE=2&MNID=106">
+                    <div class="panel-footer">
+                        <span class="pull-left">QPS / VPS</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/mmpo/factorypurchaseorder?INDENT=N&MENUID=29&CHECKER=FALSE">
+                    <div class="panel-footer">
+                        <span class="pull-left">PUrchase Order Factory 1.1</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/mmpo/factorypurchaseorder?INDENT=N&MENUID=29&CHECKER=TRUE">
+                    <div class="panel-footer">
+                        <span class="pull-left">Purchase Order Approve</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/mmpo/factorygrnmm?MENUID=1474&CHECKER=FALSE&FG=FALSE&OP=MAKER">
+                    <div class="panel-footer">
+                        <span class="pull-left">GRN MM(GST)</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/mmpo/factorygrnmm?MENUID=1635&CHECKER=FALSE&FG=FALSE&OP=QC">
+                    <div class="panel-footer">
+                        <span class="pull-left">GRN MM STOCK IN</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/claims/Damageclaim?CTYPE=3&MNID=107">
+                    <div class="panel-footer">
+                        <span class="pull-left">Damage Claim</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/claims/DisplayClaim?CTYPE=1&MNID=105">
+                    <div class="panel-footer">
+                        <span class="pull-left">Display Claim</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/claims/giftClaim?CTYPE=13&MNID=1303">
+                    <div class="panel-footer">
+                        <span class="pull-left">Gift Claim</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/saleorder/distributorsaleorder?BSID=0AA9353F-D350-4380-BC84-6ED5D0031E24&MENUID=70">
+                    <div class="panel-footer">
+                        <span class="pull-left">Sale Order MT(Depot)</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/FGCosting/FGRateSheet?CHECKER=FALSE&ISREPORT=N">
+                    <div class="panel-footer">
+                        <span class="pull-left">FG RateSheet(Maker)</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/FGCosting/FGRateSheet?CHECKER=TRUE&ISREPORT=N">
+                    <div class="panel-footer">
+                        <span class="pull-left">FG RateSheet(Checker)</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/FGCosting/FGRateSheet?CHECKER=FALSE&ISREPORT=Y">
+                    <div class="panel-footer">
+                        <span class="pull-left">FG RateSheet List</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/FGCosting/FGCostingMasterReport">
+                    <div class="panel-footer">
+                        <span class="pull-left">FG Costing Report</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/Reports/itemLedger_ERP">
+                    <div class="panel-footer">
+                        <span class="pull-left">Erp Item Ledger</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-briefcase fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            @*<div class="huge">Payment</div>*@
+                        </div>
+                    </div>
+                </div>
+                <a href="/PrimaryItem/PrimaryItem">
+                    <div class="panel-footer">
+                        <span class="pull-left">PrimaryItem</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>

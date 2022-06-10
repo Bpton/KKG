@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KKGModelStoreContainer" CdmEntityContainer="KKGEntities">
+    <FunctionImportMapping FunctionImportName="USP_BIND_PROCTUCTIONORDER" FunctionName="KKGModel.Store.USP_BIND_PROCTUCTIONORDER" />
+    <FunctionImportMapping FunctionImportName="USP_BIND_VENDOR_AND_CURRENCY" FunctionName="KKGModel.Store.USP_BIND_VENDOR_AND_CURRENCY">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KKGModel.USP_BIND_VENDOR_AND_CURRENCY_Result">
+          <ScalarProperty Name="VENDORID" ColumnName="VENDORID" />
+          <ScalarProperty Name="VENDORNAME" ColumnName="VENDORNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_BIND_PACKSIZE_MRP_AND_RATE" FunctionName="KKGModel.Store.USP_BIND_PACKSIZE_MRP_AND_RATE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KKGModel.USP_BIND_PACKSIZE_MRP_AND_RATE_Result">
+          <ScalarProperty Name="PACKSIZEID_FROM" ColumnName="PACKSIZEID_FROM" />
+          <ScalarProperty Name="PACKSIZENAME_FROM" ColumnName="PACKSIZENAME_FROM" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_BIND_TODEPOT" FunctionName="KKGModel.Store.USP_BIND_TODEPOT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KKGModel.USP_BIND_TODEPOT_Result">
+          <ScalarProperty Name="BRID" ColumnName="BRID" />
+          <ScalarProperty Name="BRNAME" ColumnName="BRNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_FETCH_RECENT_TXN_TRANSPORTER_FAC" FunctionName="KKGModel.Store.USP_FETCH_RECENT_TXN_TRANSPORTER_FAC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KKGModel.USP_FETCH_RECENT_TXN_TRANSPORTER_FAC_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SHIPPINGADDRESS" ColumnName="SHIPPINGADDRESS" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GET_TRANSPORTER_BASED_ON_DEPOT" FunctionName="KKGModel.Store.USP_GET_TRANSPORTER_BASED_ON_DEPOT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KKGModel.USP_GET_TRANSPORTER_BASED_ON_DEPOT_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

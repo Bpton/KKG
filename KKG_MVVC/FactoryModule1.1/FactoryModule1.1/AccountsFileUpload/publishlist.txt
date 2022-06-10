@@ -1,0 +1,124 @@
+paymenttypeid
+payment name
+deductableamount
+
+departmentid
+
+  voucherapproived = row.find('td:eq(8)').html();
+   $("#hdn_approved").val(voucherapproived);
+
+soumetra
+frmpocapitalgood---2
+frmRptInvoicePrint.c dll
+bll.dll
+frmPOCapitalgoodFileUpload-2
+app_code
+
+FACTORY
+frmpocapitalgood_Fac dl dll
+frmPOCapitalgoodFileUpload_Fac-2
+
+frmRptInvoicePrint_Fac
+ppbll.dll
+POCapitalGood.rdlc
+
+
+
+rajeev
+
+
+
+
+dhananjoy
+
+accounts.dll
+frmRptBudgetWithExpenses both
+
+
+
+ $('#trpaymentparty').css("display", "none");
+            $("#ddlPaymentParty").val('0');
+   $("#ddlPaymentParty").chosen({
+            search_contains: true
+        });
+
+
+        $("#ddlPaymentParty").trigger("chosen:updated");
+
+rdbdebitpaymenttype
+   $("#chequeno").html("Cheque");
+
+
+
+
+Debitadd
+
+
+1390
+PAYMENTTYPEID, PAYMENTTYPENAME, ChequeNo, ChequeDate
+
+
+IsPaymentType
+chequenocr
+rdbcreditpaymenttype
+txtcreditchequeno
+txtcreditchequedate
+ddlcreditbankname
+  txtcreditchequeno.empty().append('<option selected="selected" value="0">Select chequeno</option>');
+
+  msg.Add(new messageresponse
+            {
+                response = popup
+           
+
+
+            });
+
+
+
+frmtranporterbillv2  dll
+frmRptTargetVsSaleStock
+
+TargetVsSaleStock_rdlcreport_json
+frmmmpurchaseorder
+
+
+
+
+
+FFC65354-AB46-4983-A67F-111486EC3D39
+
+FFC65354-AB46-4983-A67F-111486EC3D39
+
+
+$("input[name='STKINV']:checked").val()
+
+frmTransporterBillV2_FAC.aspx?CHECKER=FALSE&MENUID=2860&VISIBLE=Y
+
+
+tdmodule
+tdlblexportdepot
+tdddlexportdepot
+
+td_chktdslabel
+td_chktdsinput
+
+
+
+
+
+
+ transporterbillno = transporterbill.SaveTransporterbillV2(this.hdntrnsID.Value.ToString(), Mode, ddltransporter.SelectedValue.ToString().Trim(),
+                        ddltransporter.SelectedItem.ToString().Trim(), txtbillDate.Text.Trim(), rdbtag.Trim(), txtremarks.Text.Replace("'", "").Trim(),
+                        HttpContext.Current.Session["UserID"].ToString(), HttpContext.Current.Session["FINYEAR"].ToString(), xml, menuID,
+                        Convert.ToDecimal(txtsumnetamt.Text.Trim()), Convert.ToDecimal(txtsumtds.Text.Trim()),
+                        Convert.ToDecimal(txtsumgrossweight.Text.Trim()), depotid.Trim(), depotname.Trim(), istransfertoho,
+                        Convert.ToDecimal(txtsumbillvalue.Text.Trim()), Convert.ToDecimal(txtsumtdsdeuctablevalue.Text.Trim()), Convert.ToDecimal(this.txtsumcgst.Text.Trim()),
+                        Convert.ToDecimal(this.txtsumsgst.Text.Trim()), Convert.ToDecimal(this.txtsumigst.Text.Trim()), Convert.ToDecimal(this.txtsumugst.Text.Trim()),
+                        this.ddlfromstate.SelectedValue.Trim(), Reversecharge, txtGNGNO.Text.Trim(), tdsapplicable1.Trim(),
+                         Convert.ToDecimal(this.txtTDSpercentage1.Text.Replace("%", "").Trim()), hdn_tdsis.Value.Trim(), VIRTUALdepotid.Trim(), EXPORTTAG, TDS_Reason, GST_Reason);
+
+
+\
+frmMMpurchaseorderr
+

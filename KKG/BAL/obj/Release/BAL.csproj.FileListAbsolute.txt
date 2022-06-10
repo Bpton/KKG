@@ -1,0 +1,13 @@
+F:\Previous Work\KKG\KKG\BAL\bin\Release\BAL.dll
+F:\Previous Work\KKG\KKG\BAL\bin\Release\BAL.pdb
+F:\Previous Work\KKG\KKG\BAL\bin\Release\DAL.dll
+F:\Previous Work\KKG\KKG\BAL\bin\Release\EntityFramework.dll
+F:\Previous Work\KKG\KKG\BAL\bin\Release\EntityFramework.SqlServer.dll
+F:\Previous Work\KKG\KKG\BAL\bin\Release\Entitymodel.dll
+F:\Previous Work\KKG\KKG\BAL\bin\Release\Utility.dll
+F:\Previous Work\KKG\KKG\BAL\bin\Release\Utility.pdb
+F:\Previous Work\KKG\KKG\BAL\obj\Release\BAL.csproj.AssemblyReference.cache
+F:\Previous Work\KKG\KKG\BAL\obj\Release\BAL.csproj.CoreCompileInputs.cache
+F:\Previous Work\KKG\KKG\BAL\obj\Release\BAL.csproj.CopyComplete
+F:\Previous Work\KKG\KKG\BAL\obj\Release\BAL.dll
+F:\Previous Work\KKG\KKG\BAL\obj\Release\BAL.pdb

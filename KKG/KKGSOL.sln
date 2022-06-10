@@ -1,0 +1,123 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAL", "BAL\BAL.csproj", "{8F22CFB0-A895-43EE-8605-FA94A2AF02C8}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Kkg", "Kkg", "{1329902D-42E7-46E4-9186-B2F18C5B092C}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_55270"
+		Debug.AspNetCompiler.PhysicalPath = "Kkg\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55270\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_55270"
+		Release.AspNetCompiler.PhysicalPath = "Kkg\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55270\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "55270"
+		SlnRelativePath = "Kkg\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{90010D46-C692-4958-860D-A50EFAD8EF6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPBLL", "PPBLL\PPBLL.csproj", "{F4A7F418-EB4A-447D-97ED-842F2125E005}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkFlow", "WorkFlow\WorkFlow.csproj", "{B232B668-5020-4AD1-8809-8E22D6D702AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entitymodel", "Entitymodel\Entitymodel.csproj", "{A277F3F1-755F-47F2-8408-54096DB4253B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account", "Account\Account.csproj", "{906BA038-0CAC-4DA0-8BC1-E0EEE887AA8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountsEntityModel", "AccountsEntityModel\AccountsEntityModel.csproj", "{2D54FF84-7B55-4890-981C-CFF2ADDE915E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F22CFB0-A895-43EE-8605-FA94A2AF02C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F22CFB0-A895-43EE-8605-FA94A2AF02C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F22CFB0-A895-43EE-8605-FA94A2AF02C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F22CFB0-A895-43EE-8605-FA94A2AF02C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1329902D-42E7-46E4-9186-B2F18C5B092C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1329902D-42E7-46E4-9186-B2F18C5B092C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1329902D-42E7-46E4-9186-B2F18C5B092C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{1329902D-42E7-46E4-9186-B2F18C5B092C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{90010D46-C692-4958-860D-A50EFAD8EF6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90010D46-C692-4958-860D-A50EFAD8EF6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90010D46-C692-4958-860D-A50EFAD8EF6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90010D46-C692-4958-860D-A50EFAD8EF6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A7F418-EB4A-447D-97ED-842F2125E005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A7F418-EB4A-447D-97ED-842F2125E005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A7F418-EB4A-447D-97ED-842F2125E005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A7F418-EB4A-447D-97ED-842F2125E005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B232B668-5020-4AD1-8809-8E22D6D702AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B232B668-5020-4AD1-8809-8E22D6D702AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B232B668-5020-4AD1-8809-8E22D6D702AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B232B668-5020-4AD1-8809-8E22D6D702AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A277F3F1-755F-47F2-8408-54096DB4253B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A277F3F1-755F-47F2-8408-54096DB4253B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A277F3F1-755F-47F2-8408-54096DB4253B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A277F3F1-755F-47F2-8408-54096DB4253B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906BA038-0CAC-4DA0-8BC1-E0EEE887AA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906BA038-0CAC-4DA0-8BC1-E0EEE887AA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906BA038-0CAC-4DA0-8BC1-E0EEE887AA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906BA038-0CAC-4DA0-8BC1-E0EEE887AA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D54FF84-7B55-4890-981C-CFF2ADDE915E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D54FF84-7B55-4890-981C-CFF2ADDE915E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D54FF84-7B55-4890-981C-CFF2ADDE915E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D54FF84-7B55-4890-981C-CFF2ADDE915E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A380DA2E-03DF-41E4-8DE9-3E756AAE2A71}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/it0098
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BAL\\BAL.csproj
+		SccProjectName1 = BAL
+		SccLocalPath1 = BAL
+		SccProjectUniqueName2 = Utility\\Utility.csproj
+		SccProjectName2 = Utility
+		SccLocalPath2 = Utility
+		SccProjectUniqueName3 = PPBLL\\PPBLL.csproj
+		SccProjectName3 = PPBLL
+		SccLocalPath3 = PPBLL
+		SccProjectUniqueName4 = WorkFlow\\WorkFlow.csproj
+		SccProjectName4 = WorkFlow
+		SccLocalPath4 = WorkFlow
+		SccProjectUniqueName5 = Entitymodel\\Entitymodel.csproj
+		SccProjectName5 = Entitymodel
+		SccLocalPath5 = Entitymodel
+		SccProjectUniqueName6 = Account\\Account.csproj
+		SccProjectName6 = Account
+		SccLocalPath6 = Account
+		SccWebProject7 = true
+		SccProjectUniqueName7 = Kkg
+		SccProjectName7 = Kkg
+		SccLocalPath7 = Kkg
+		SccProjectEnlistmentChoice7 = 2
+		SccProjectUniqueName8 = AccountsEntityModel\\AccountsEntityModel.csproj
+		SccProjectName8 = AccountsEntityModel
+		SccLocalPath8 = AccountsEntityModel
+	EndGlobalSection
+EndGlobal

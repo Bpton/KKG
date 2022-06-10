@@ -1,0 +1,396 @@
+﻿
+@{
+    ViewBag.Title = "distributorDetails";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet">
+<link href="~/Content/chosen.css" rel="stylesheet">
+
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+
+<script src="~/Scripts/Duplicate.js"></script>@*Prevent Duplicate Tab*@
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+@*<script src="~/Scripts/jquery.fixme.min.js"></script>*@
+
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<link href="~/Content/Loader.css" rel="stylesheet" />
+<script src="~/Scripts/udjs/distributorKyc.js?525"></script>
+
+<style type="text/css">
+
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+    table.dataTable thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table tbody:hover > tr td {
+        opacity: 0.5;
+    }
+
+    table tbody:hover > tr:hover td {
+        color: #2d2d2d;
+        opacity: 1.0;
+    }
+
+    table.dataTable tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    table tbody:nth-child(odd) > tr:nth-child(odd) {
+        background: #eee !important;
+    }
+
+    .buttons-excel {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_paginate a {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #2196F3;
+        color: white !important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: #2196F3;
+        color: white !important; /*below block of css for change style when active*/
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        /*width: 1100px;*/
+        height: 150px;
+        overflow: auto;
+    }
+</style>
+
+
+<div class="panel panel-heading">
+    <div class="panel-heading">
+        <b>Distributor INFO</b>
+    </div>
+    <div style="margin-top:10px;"></div>
+    <div class="panel-info">
+        <div id="pnlDisplaydistributor">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>DISTRIBUTOR KYC</b>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+
+                    <div class="col-xs-1">
+                        DATE:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtdate" class="form-control chosen-choices" disabled="disabled" style="width:120px">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Type:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlDIStype" class="form-control chosen-choices" style="width:100px"></select>
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Distributor Name:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddldistributor" class="form-control chosen-choices" style="width:120px"></select>
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Depot:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddldistdepot" class="form-control chosen-choices" style="width: 100px;height:20px;"></select>
+                    </div>
+
+
+
+                </div>
+
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+
+                    <div class="col-xs-1">
+                        State:
+                    </div>
+
+                    <div class="col-xs-2">
+                        <select id="ddlstate" class="form-control chosen-choices" style="width:100px"></select>
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Dist Code:
+                    </div>
+
+                    <div class="col-xs-2">
+                        <input type="text" id="txtdistcode" class="form-control chosen" disabled="disabled" style="width:100px">
+
+                    </div>
+                    <div class="col-xs-1">
+                        Contact Person-01:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtconPerson" class="form-control chosen-choices" style="width:100px">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Contact Person-02:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtconpersonT" class="form-control chosen-choices" style="width: 120px;" onkeypress="return true;" />
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Address:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtaddresS" class="form-control chosen" style="width:120px">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Address:-2:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtaddressone" class="form-control chosen-choices" style="width:140px">
+
+                    </div>
+
+
+
+                    <div class="col-xs-1">
+                        City:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtcitY" class="form-control chosen" style="width:120px">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Pin Code:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtpincodE" class="form-control chosen" maxlength="6" style="width:80px" onkeypress="return isNumberKeyWithDot(event);">
+
+                    </div>
+
+
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+
+                    <div class="col-xs-1">
+                        Date of Birth:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtdateofbirth" class="form-control " disabled="disabled" style="width:140px">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Date of Anniversary:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtanvdate" class="form-control chosen" onkeypress="return false" disabled="disabled" style="width:120px">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Total Godown Size:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txttotalgsize" class="form-control chosen" style="width:120px" onkeypress="return isNumberKeyWithDot(event);">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Godown Size for McNROE:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtgsizeformcn" class="form-control chosen"  style="width:80px" onkeypress="return isNumberKeyWithDot(event);">
+
+                    </div>
+
+
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+
+                    <div class="col-xs-1">
+                        No of Delivery Person:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtdeliveryperson" class="form-control " style="width:140px"  onkeypress="return isNumberKeyWithDot(event);">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        No of Sales Person:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtsaleperson" class="form-control chosen" style="width:120px" onkeypress="return isNumberKeyWithDot(event);">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Total Annual Turnover in Lakh:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txttotalanualturnover" class="form-control chosen" style="width:120px" onkeypress="return isNumberKeyWithDot(event);">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        McNROE Turnover in Lakh:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtmcnroeturover" class="form-control chosen" maxlength="6" style="width:80px" onkeypress="return isNumberKeyWithDot(event);">
+
+                    </div>
+
+
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+
+                    <div class="col-xs-1">
+                        WhatsappNo:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtwhatasapP" class="form-control chosen" maxlength="12" style="width:120px" onkeypress="return isNumberKeyWithDot(event);">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Company Details:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlcompaNydetailS" class="multiselect" multiple="multiple" selectmode="multiple" style="width:120px"></select>
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Others Company:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="ddlotHercompaNydetailS" class="form-control" style="width:80px">
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Email id:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtemaiL" class="form-control chosen" style="width:120px">
+                    </div>
+
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Remarks:
+                    </div>
+                    <div class="col-xs-2">
+                        <textarea id="textremarks" style="width:150px"></textarea>
+
+                    </div>
+
+                    <div class="col-xs-6">
+                        <input type="file" name="CnkUpload" id="txtchkupload" size="20" />
+                        <input type="submit" name="submit" class="btn-info" value="Upload" id="btnnupload" class="btn-adn" />
+
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="submit" id="btnsavedetails" value="save" class="btn btn-success" />
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+</div>
+</div>
+<div class="loader" style="display: none;">
+
+</div>

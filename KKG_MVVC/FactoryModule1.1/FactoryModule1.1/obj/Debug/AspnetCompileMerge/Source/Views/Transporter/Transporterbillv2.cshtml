@@ -1,0 +1,632 @@
+﻿
+@{
+    ViewBag.Title = "Transporterbillv2";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<link href="~/Content/chosen.css" rel="stylesheet">
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Duplicate.js"></script>@*Prevent Duplicate Tab*@
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+@*<script src="~/Scripts/jquery.fixme.min.js"></script>*@
+
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/udjs/Transporterbill.js"></script>
+<style type="text/css">
+
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+@*<style type="text/css">
+        .table-fixme-fixed {
+            top:0;
+            position:fixed;
+            width:auto;
+            display:none;
+            border:none;
+
+        }
+    </style>*@
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+    table.dataTable thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table tbody:hover > tr td {
+        opacity: 0.5;
+    }
+
+    table tbody:hover > tr:hover td {
+        color: #2d2d2d;
+        opacity: 1.0;
+    }
+
+    table.dataTable tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    table tbody:nth-child(odd) > tr:nth-child(odd) {
+        background: #eee !important;
+    }
+
+    .buttons-excel {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_paginate a {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #2196F3;
+        color: white !important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: #2196F3;
+        color: white !important; /*below block of css for change style when active*/
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        /*width: 1100px;*/
+        height: 150px;
+        overflow: auto;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <b>TRANSPORTER BILL</b>
+    </div>
+    <div style="margin-top:10px;"></div>
+    <div class="panel-body">
+        @*to display*@
+        <div id="pnlDisplay">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Transporter List</b>
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-1">
+                        Region:
+                    </div>
+
+                    <div class="col-xs-2">
+                        <select id="ddlregion" class="form-control chosen" style="width:120px"></select>
+
+                    </div>
+                    <div class="col-xs-1">
+                        From Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtFromDate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-xs-1">
+                        To Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtToDate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+
+                    <div class="col-xs-3" id="divnewentry">
+
+                        <input type="submit" id="btnvouchersearch" value="Search" class="btn btn-primary" />
+                        <input type="submit" id="Btnadd" value="Add New Recorf" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-12">
+
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-lg-12" id="DivHeaderRow">
+                        @*<table id="dispatchGridFG" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"></table>*@
+                    </div>
+                </div>
+                <div>
+
+                    <input type="hidden" id="hdnCHECKER" />
+                    <input type="hidden" id="hdnmenuid" />
+                    <input type="hidden" id="hdnvisible" />
+                    <input type="hidden" id="hdntrnsID" />
+                    <input type="hidden" id="hdncgsttaxpercentage" />
+                    <input type="hidden" id="hdnsgsttaxpercentage" />
+                    <input type="hidden" id="hdnigsttaxpercentage" />
+                    <input type="hidden" id="hdnugsttaxpercentage" />
+                    <input type="hidden" id="hdn_tdsis" />
+                    <input type="hidden" id="hdntransporterid" />
+                    @*<input type="hidden" id="hdntrnsID" />*@
+
+
+                </div>
+                 </div>
+            </div>
+        @*for add*@
+        <div id="pnlAdd">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Transporter Details</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12" id="tr_billno">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Bill Entry No.
+                    </div>
+                    <div class="col-xs-2">
+
+                        <input type="text" id="txtbillentryno" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Entry Date
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtbillDate" style="width: 80px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-xs-1">
+                        Depot
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddldepot" class="form-control chosen" style="width:180px"></select>
+                    </div>
+                    <div class="col-xs-1" id="tdlblexportdepot">
+                        Sending Depot
+                    </div>
+                    <div class="col-xs-2" id="tdddlexportdepot">
+                        <select id="ddlexportdepot" class="form-control chosen" style="width:120px"></select>
+                    </div>
+                    <div class="col-xs-1">
+                        Billing From&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlfromstate" class="form-control chosen" style="width:180px"></select>
+                    </div> 
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Billing For
+                    </div>
+                    <div class="col-xs-5" id="radio">
+                        <div class="col-xs-12">
+                            <div class="col-xs-3">
+                                Sale Invoice(Outward) <input type="radio" name="STKINV" id="STKINV" value="STKINV" />
+                            </div>
+                            <div class="col-xs-2">
+                                Stock Transfer <input type="radio" name="STKTRN" id="STKTRN" value="STKTRN" />
+                            </div>
+                            <div class="col-xs-2">
+                                Depot Received <input type="radio" name="DPTRCVD" id="DPTRCVD" value="DPTRCVD" />
+                            </div>
+                            <div class="col-xs-2">
+                                TPU Despatch(Inward) <input type="radio" name="STKDES" id="STKDES" value="STKDES" />
+                            </div>
+                           
+                        </div>
+
+
+                    </div>
+                    <div class="col-xs-1">
+                        Invoice&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlinvoice" class="form-control chosen" style="width:190px"></select>
+                    </div>
+                    <div class="col-xs-1">
+                        Transporter&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddltransporter" class="form-control chosen" style="width:150px"></select>
+                    </div>
+                </div>
+                <div class="row col-xs-12" id="tdmodule">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        GNG No
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtGNGNO" />
+                    </div>
+                    <div class="col-xs-4">
+                        <select id="ddlmodule" class="form-control chosen" style="width:150px"></select>
+                    </div>
+                    <div class="col-xs-1">
+                        Billing To
+                    </div>
+                    <div class="col-xs-4">
+                        <select id="ddltostate" class="form-control chosen" style="width:150px"></select>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    
+                    <div class="col-xs-1">
+                        <input type="text" id="txtlrno" class="form-control" style="width:100px" />
+                        <br />
+                        LR/GR No.&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+
+
+                    </div>
+
+                    <div class="col-xs-2">
+                        <input type="text" id="txtlrdate" disabled="disabled" onkeypress="return false;" style="width:80px" />
+                        <br />
+                        LRGR Date
+                    </div>
+
+                    <div class="col-xs-2">
+                        <input type="text" id="txtbilldate2" disabled="disabled" onkeypress="return false;" style="width:80px" />
+                        <br />
+                        Bill Date
+                    </div>
+
+                    <div class="col-xs-1">
+                        <input type="text" id="Txtbillno" style="width:100px" />
+                        <br />
+                        Bill No&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+
+                    <div class="col-xs-1">
+                        <input type="text" id="txtBillvalue" style="width:100px" />
+                        <br />
+                        Bill Value&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+
+                    <div class="col-xs-1">
+                        <input type="text" id="txttdsdeductablevalue" style="width:100px" />
+                        <br />
+                        TDS Deductable
+                    </div>
+                    <div class="col-xs-1" id="td_chktdslabel">
+                        TDS Applicable
+                    </div>
+                    <div class="col-xs-1" id="td_chktdsinput">
+                        <input type="checkbox" id="chktdsapplicable " name="vehicle1" value="">
+                    </div>
+                    <div class="col-xs-1" id="td_chkgstlabel">
+                        GST Applicable
+                    </div>
+                    <div class="col-xs-1" id="td_chkgstinput">
+                        <input type="checkbox" id="chkcstapplicable" >
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        CGST
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="text" id="txtcgstpercentage" disabled="disabled" style="width:100px" />
+                        <br />
+                        Percentage
+
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="text" id="txtcgstvalue" disabled="disabled" style="width:100px" />
+                        <br />
+                        Value
+
+                    </div>
+                    <div class="col-xs-1">
+                        SGST
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="text" id="txtsgstpercentage" disabled="disabled" style="width:100px" />
+                        <br />
+                        Percentage
+
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="text" id="txtsgstvalue" disabled="disabled" style="width:100px" />
+                        <br />
+                        Value
+
+                    </div>
+                    <div class="col-xs-1">
+                        IGST
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="text" id="txtigstpercentage" disabled="disabled" style="width:100px" />
+                        <br />
+                        Percentage
+
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="text" id="txtigstvalue" disabled="disabled" style="width:100px" />
+                        <br />
+                        Value
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        <input type="text" id="txtgrossweight" class="form-control" style="width:100px" />
+                        <br />
+                        Gross Wt.(KG)&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+
+
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="text" id="Txtamount" disabled="disabled" class="form-control" style="width:100px" />
+                        <br />
+                        (BASIC + GST) AMT
+
+
+                    </div>
+                    <div class="col-xs-1">
+                        <input type="submit" id="btnADDGrid" value="Add" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-6" style="display:none">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                Not Applicable
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" id="txttdspercentage" disabled="disabled" class="form-control" style="width:100px" />
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" id="TxtTds" disabled="disabled" class="form-control" style="width:100px" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6" style="display:none">
+                        <div class="col-xs-12">
+                            <div class="col-xs-4">
+                                UGST
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" id="txtugstpercentage" disabled="disabled" class="form-control" style="width:100px" />
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" id="txtugstvalue" disabled="disabled" class="form-control" style="width:100px" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div style="margin-top:25px;"></div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>TRANSPORTER BILLING DETAILS ADDED</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-lg-12">
+                        <div class="scroll" id="productDetailsGrid">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:25px;"></div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="row col-xs-12">
+                    @*rem*@
+                    <div class="col-xs-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>REMARKS & OTHERS DETAILS</b>
+                            </div>
+                        </div>
+                        <div class="row col-xs-12">
+                            <div class="col-xs-2">
+                                Remarks
+                            </div>
+                            <div class="col-xs-4">
+
+                                <textarea id="txtremarks" style="width:300px"></textarea>
+
+                            </div>
+
+                        </div>
+                        <div class="row col-xs-12">
+                            <div class="col-xs-2">
+                                Reverse Charge
+                            </div>
+                            <div class="col-xs-4">
+
+                                <input type="checkbox" id="chkReversecharge" name="vehicle1" value="">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    @*amt details*@
+                    <div class="col-xs-6">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>AMOUNT DETAILS</b>
+                            </div>
+                        </div>
+
+                        <div class="row col-xs-12">
+                            <div class="col-xs-3">
+                                TDS APPLICABLE
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="checkbox" id="chktdsapplicable1">
+
+
+                            </div>
+                            <div class="col-xs-3" id="gst1">
+                                CGST AMT
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" id="txtsumcgst" disabled="disabled" class="form-control" style="width:100px" />
+
+
+                            </div>
+                        </div>
+                        <div class="row col-xs-12">
+                            <div class="col-xs-3">
+                                GROSS WEIGHT(KG.)
+
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" id="txtsumgrossweight" disabled="disabled" class="form-control" style="width:100px" />
+
+
+                            </div>
+                            <div class="col-xs-3" id="sgst1">
+                                SGST AMT(RCM)
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" id="txtsumsgst" disabled="disabled" class="form-control" style="width:100px" />
+
+
+                            </div>
+                        </div>
+
+                        <div class="row col-xs-12">
+                            <div class="col-xs-3">
+                                TOTAL BILL AMT
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" id="txtsumbillvalue" disabled="disabled" class="form-control" style="width:100px" />
+
+
+                            </div>
+                            <div class="col-xs-3" id="igst1">
+                                IGST AMT(RCM).
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" id="txtsumigst" disabled="disabled" class="form-control" style="width:100px" />
+
+
+                            </div>
+                        </div>
+                        <div class="row col-xs-12">
+                            <div class="col-xs-3">
+                                TDS DEDUCTABLE AMT
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" id="txtsumtdsdeuctablevalue" disabled="disabled" class="form-control" style="width:100px" />
+
+
+                            </div>
+                            <div class="col-xs-3" id="ugst1">
+                                UGST AMT
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" id="txtsumugst" value="0" disabled="disabled" class="form-control" style="width:100px" />
+
+
+                            </div>
+                        </div>
+                        <div class="row col-xs-12">
+                            <div class="col-xs-2">
+                                TOTAL TDS
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="text" id="txtTDSpercentage1" disabled="disabled" class="form-control" style="width:60px" />
+
+
+
+                            </div>
+                            <div class="col-xs-2">
+                                <input type="text" id="txtsumtds" disabled="disabled" class="form-control" style="width:70px" />
+                            </div>
+                            <div class="col-xs-3">
+                                NET AMT.
+                            </div>
+                            <div class="col-xs-3">
+                                <input type="text" id="txtsumnetamt" disabled="disabled" class="form-control" style="width:100px" />
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div style="margin-top:25px;"></div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>SAVE/CLOSE</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-12">
+                        <input type="submit" id="btnSave" value="Save" class="btn btn-primary" />
+                        <input type="submit" id="btnClose" value="Close" class="btn btn-primary" />
+                    </div>
+                  </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+    <div id="dialog" style="display: none">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td colspan="2" align="center">
+                    <img id="imgLoader" alt="" src="../Images/ajax-loader.gif" style="visibility: hidden" />
+                </td>
+            </tr>
+        </table>
+    </div>
+

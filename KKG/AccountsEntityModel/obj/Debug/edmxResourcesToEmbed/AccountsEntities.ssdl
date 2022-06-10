@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Accounts_EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="FETCH_CHEQUEBOOKLET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_BANKID" Type="varchar" Mode="In" />
+    <Parameter Name="BranchID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ACC_INVOICEDETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Voucherid" Type="varchar" Mode="In" />
+    <Parameter Name="LeadgerID" Type="varchar" Mode="In" />
+    <Parameter Name="VoucherType" Type="varchar" Mode="In" />
+    <Parameter Name="BranchID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_CATEWGORY_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_CUSTOMERID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_CHECK_EXPENSES_LEDGERGET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_LedgerID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_CHECK_EXPENSES_LEDGET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_LedgerID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_DIVISION_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_FILL_SUBCOMPONENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_COMPONENTID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_BUDGET_GROUP_BALANCE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_LedgerID" Type="varchar" Mode="In" />
+    <Parameter Name="P_Amount" Type="decimal" Mode="In" />
+    <Parameter Name="p_VoucherDate" Type="varchar" Mode="In" />
+    <Parameter Name="P_FYEAR" Type="varchar" Mode="In" />
+    <Parameter Name="P_BudgetXml" Type="xml" Mode="In" />
+    <Parameter Name="P_DepartmentID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_Get_Department_Component" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_DeptID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_GET_TAXTYPE_NAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_TaxTypeID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_ACCOUNTGROUPTYPE_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_ACC_ACCOUNTGROUPTYPEGET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="p_ID" Type="int" Mode="In" />
+    <Parameter Name="p_NAME" Type="varchar" Mode="In" />
+    <Parameter Name="p_SEQUENCE" Type="int" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_COSTCENTRE_APPLICABLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="AccountID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_COSTCWENTRE_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Voucherid" Type="varchar" Mode="In" />
+    <Parameter Name="LeadgerID" Type="varchar" Mode="In" />
+    <Parameter Name="VoucherType" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_LEDGER_OUTSTANDING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_LEDGERID" Type="varchar" Mode="In" />
+    <Parameter Name="P_REGIONID" Type="varchar" Mode="In" />
+    <Parameter Name="P_FRMDATE" Type="varchar" Mode="In" />
+    <Parameter Name="P_TODATE" Type="varchar" Mode="In" />
+    <Parameter Name="P_FINYEAR" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_NEGATIVEBAL_CHECKING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_LEDGERID" Type="varchar" Mode="In" />
+    <Parameter Name="P_VOUCHERTYPEID" Type="char" Mode="In" />
+    <Parameter Name="P_TXNTYPEID" Type="char" Mode="In" />
+    <Parameter Name="P_MODE" Type="char" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_PAYMENT_TYPE_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_ACC_TAXAPPLICALE_TDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_LEDGERID" Type="varchar" Mode="In" />
+    <Parameter Name="P_VOUCHERDATE" Type="varchar" Mode="In" />
+    <Parameter Name="P_FINYEAR" Type="varchar" Mode="In" />
+    <Parameter Name="P_AMOUNT" Type="decimal" Mode="In" />
+    <Parameter Name="P_BRANCHID" Type="varchar" Mode="In" />
+    <Parameter Name="P_VOUCHERTYPEID" Type="varchar" Mode="In" />
+    <Parameter Name="P_DrCr" Type="varchar" Mode="In" />
+    <Parameter Name="P_CalAmt" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_THIRDPARTYVENDOR_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ACCCODE" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_VOUCHERTYPEACC_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VOUCHERTYPEID" Type="nvarchar" Mode="In" />
+    <Parameter Name="TYPE" Type="nvarchar" Mode="In" />
+    <Parameter Name="REGIOIUNID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_ACC_VOUCHERTYPES_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VOUCHERTYPEID" Type="nvarchar" Mode="In" />
+    <Parameter Name="TYPE" Type="nvarchar" Mode="In" />
+    <Parameter Name="REGIOIUNID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_chkdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_DEPARTMENT_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GET_BUSINESSSEGMENT_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_GET_GSTNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_PartyID" Type="varchar" Mode="In" />
+    <Parameter Name="P_StateID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GET_TAXTYPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_PartyID" Type="varchar" Mode="In" />
+    <Parameter Name="P_StateID" Type="varchar" Mode="In" />
+    <Parameter Name="P_DepoID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_PRODUCTMADSTER_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="USP_REGION_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERTYPE" Type="nvarchar" Mode="In" />
+    <Parameter Name="USERID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_STATE_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_TAXACTION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TAXID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="USP_VOUCHER_HEADERDETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="p_FORMDATE" Type="varchar" Mode="In" />
+    <Parameter Name="p_TODATE" Type="varchar" Mode="In" />
+    <Parameter Name="p_USERID" Type="varchar" Mode="In" />
+    <Parameter Name="p_FINYEAR" Type="varchar" Mode="In" />
+    <Parameter Name="p_VOUCHERTYPEID" Type="varchar" Mode="In" />
+    <Parameter Name="p_CHECKER" Type="varchar" Mode="In" />
+    <Parameter Name="p_DEPOTID" Type="varchar" Mode="In" />
+    <Parameter Name="p_FROMUNLOCKVOUCHER" Type="char" Mode="In" />
+  </Function>
+  <EntityContainer Name="Accounts_EntitiesModelStoreContainer" />
+</Schema>

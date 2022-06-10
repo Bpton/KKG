@@ -1,0 +1,760 @@
+﻿@model FactoryModel.FactoryFGInvoiceModel
+@{
+    /**/
+
+    ViewBag.Title = "FactoryDispatchFG";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<link href="~/Content/chosen.css" rel="stylesheet">
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">@*For Popup*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/udjs/InvoiceExportNormal.js?dt=31082020"></script>
+
+<style type="text/css">
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+    table.dataTable thead tr {
+        background-color: lightblue;
+    }
+
+    table thead tr {
+        background-color: lightblue;
+    }
+
+    table tbody:hover > tr td {
+        opacity: 0.5;
+    }
+
+    table tbody:hover > tr:hover td {
+        color: #2d2d2d;
+        opacity: 1.0;
+    }
+
+    table.dataTable tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    table tbody:nth-child(odd) > tr:nth-child(odd) {
+        background: #eee !important;
+    }
+
+    .buttons-excel {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_paginate a {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #2196F3;
+        color: white !important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: #2196F3;
+        color: white !important; /*below block of css for change style when active*/
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        height: 300px;
+        overflow: auto;
+    }
+</style>
+
+<style>
+    select {
+        font-family: "Courier New", Courier, monospace
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <b>Export Invoice</b>
+    </div>
+    <div style="margin-top:10px;"></div>
+    <div class="panel-body">
+
+        <div id="dvDisplay">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Invoice List</b>
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-2">
+                        From Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtfrmdate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-sm-2">
+                        To Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txttodate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+
+                    <div class="col-xs-4" id="divnewentry">
+                        <input type="submit" id="btnsearch" value="Search" class="btn btn-primary" />
+                        <input type="submit" id="btnAddnew" value="Add New Record" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-12">
+
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-lg-12">
+                        <table id="invoiceGridFG" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="dvAdd">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Invoice Information</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12" id="divTransferNo">
+                    <div class="col-xs-1">
+                        Invoice No:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.FGInvoiceNo, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12" id="divSourceDepot">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Source Depot:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.BRID, new SelectList(string.Empty, "BRID", "BRNAME"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.BRNAME)
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Invoice&nbsp;Date:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.InvoiceDate, new { @disabled = "disabled", style = "width: 100px" })
+                    </div>
+                    <div class="col-xs-1">
+                        Carriage&nbsp;By<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.Tranportmode, new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Select", Value = "0" },
+                            new SelectListItem{ Text="By Road", Value = "By Road" },
+                            new SelectListItem{ Text="By Sea", Value = "By Sea" },
+                        }, new { @class = "form-control" })
+                    </div>
+                    <div class="col-xs-1">
+                        Vessele&nbsp;Name:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.VesselName, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-1">
+                        Exchange&nbsp;Rate&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.ExchangeRate, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Country&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.CountryID, new SelectList(string.Empty, "CountryID", "CountryName"), new { @class = "form-control chosen" })
+                        @Html.Hidden("Country", "")
+                    </div>
+                    <div class="col-xs-1">
+                        Sale&nbsp;Order&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.SaleOrderID, new SelectList(string.Empty, "SaleOrderID", "SaleOrderNo"), new { @class = "form-control chosen" })
+                    </div>
+                    <div class="col-xs-1">
+                        Proforma&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.ProformaOrderID, new SelectList(string.Empty, "PROFORMAINVOICEID", "PROFORMAINVOICENO"), new { @class = "form-control chosen" })
+                    </div>
+                    <div class="col-xs-1">
+                        Customer&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.CUSTOMERID, new SelectList(string.Empty, "CUSTOMERID", "CUSTOMERNAME"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.CUSTOMERNAME)
+                        @Html.Hidden("hdnCHECKER", "")
+                        @Html.Hidden("hdnmenuid", "")
+                        @Html.Hidden("hdntaxcount", "")
+                        @Html.Hidden("hdntaxnameIGST", "")
+                        @Html.Hidden("hdntaxnameCGST", "")
+                        @Html.Hidden("hdntaxnameSGST", "")
+                        @Html.Hidden("hdntaxnameTCS", "")
+                        @Html.Hidden("hdntaxpercentage", "")
+                        @Html.Hidden("hdnrelatedto", "")
+                        @Html.Hidden("igstid", "")
+                        @Html.Hidden("cgstid", "")
+                        @Html.Hidden("sgstid", "")
+                        @Html.Hidden("tcsid", "")
+                        @Html.Hidden("hdndispatchID", "")
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        LR/BL&nbsp;No.&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.LrGrNo, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-1">
+                        LR/BL&nbsp;Date:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.LrGrDate, new { @disabled = "disabled", style = "width: 100px" })
+                    </div>
+                    <div class="col-xs-1">
+                        Exporter's&nbsp;Ref.&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.ExportRefNo, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Other's&nbsp;Ref:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.OtherRefNo, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Loading&nbsp;Port&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.LoadingPortID, new SelectList(string.Empty, "LoadingPortID", "LoadingPortName"), new { @class = "form-control chosen" })
+                    </div>
+                    <div class="col-xs-1">
+                        Discharge&nbsp;Port&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.DischargePortID, new SelectList(string.Empty, "DischargePortID", "DischargePortName"), new { @class = "form-control chosen" })
+                    </div>
+                    <div class="col-xs-1">
+                        Final&nbsp;Destination&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.FinalDestination, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-1">
+                        Shipping&nbsp;Bill&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.ShippingBill, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Shipping&nbsp;Date&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.ShippingDate, new { @disabled = "disabled", style = "width: 100px" })
+                    </div>
+                    <div class="col-xs-1">
+                        Container&nbsp;No&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.ContainerNo, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-1">
+                        VOY.&nbsp;No&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.VoyNo, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-1">
+                        LC&nbsp;No&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.LCNo, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        LC&nbsp;Date&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.LCDate, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        LC&nbsp;Bank&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.LCBank, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Bank&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.BankID, new SelectList(string.Empty, "BANKID", "BANKNAME"), new { @class = "form-control chosen" })
+                    </div>
+                    <div class="col-xs-1">
+                        Branch&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Branch, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Bank&nbsp;Address&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextAreaFor(model => model.BankAddress, new { @class = "form-control", @rows = 3, @onkeypress = "return true;", style = "width: 200px;height: 75px;" })
+
+                    </div>
+                    <div class="col-xs-1">
+                        IFSC&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.IFSC, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-1">
+                        SWIFT&nbsp;Code&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.SwiftCode, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-1">
+                        A/c&nbsp;No&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.AccNo, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Consignee&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextAreaFor(model => model.Consignee, new { @class = "form-control", @rows = 4, @onkeypress = "return true;", style = "width: 200px;height: 95px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        Notify&nbsp;Party&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextAreaFor(model => model.NotifyParty, new { @class = "form-control", @rows = 4, @onkeypress = "return true;", style = "width: 200px;height: 95px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        Delivery&nbsp;To&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextAreaFor(model => model.DeliveryTo, new { @class = "form-control", @rows = 4, @onkeypress = "return true;", style = "width: 200px;height: 95px;" })
+                    </div>
+                    <div class="col-xs-3">
+                        <input type="submit" id="btnAddProduct" value="AddProduct" class="btn btn-primary" />
+                        <input type="submit" id="btnHideProduct" value="HideProduct" class="btn btn-primary" />
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="margin-top:25px;"></div>
+
+            <div class="panel-body" id="dvProduct" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Product Details</b>
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Product:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.PRODUCTID, new SelectList(string.Empty, "PRODUCTID", "PRODUCTNAME"), new { @class = "form-control chosen", style = "width: 390px;" })
+
+                    </div>
+                    <div class="col-xs-3">
+
+                    </div>
+                    <div class="col-xs-1">
+                        Packsize:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.PSID, new SelectList(string.Empty, "PSID", "PSNAME"), new { @class = "form-control chosen", style = "width: 130px;" })
+                    </div>
+                    <div class="col-xs-3">
+
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Batch No.:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlBatch" class="form-control" style="width:775px;"></select>
+                        @Html.Hidden("hdnmrp", "")
+                        @Html.Hidden("hdn_mfgdate", "")
+                        @Html.Hidden("hdn_exprdate", "")
+                        @Html.Hidden("hdnbatchno", "")
+                        @Html.Hidden("hdn_ASSESMENTPERCENTAGE", "")
+                        @Html.Hidden("hdnrate", "")
+                    </div>
+                    <div class="col-xs-2">
+
+                    </div>
+                    <div class="col-xs-2">
+
+                    </div>
+                    <div class="col-xs-2">
+
+                    </div>
+                    <div class="col-xs-3">
+
+                    </div>
+
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        MRP:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.MRP, new { @class = "form-control", @disabled = "disabled" })
+                        @Html.Hidden("hdnmrp", "")
+                        @Html.Hidden("hdn_mfgdate", "")
+                        @Html.Hidden("hdn_exprdate", "")
+                        @Html.Hidden("hdnbatchno", "")
+                        @Html.Hidden("hdn_ASSESMENTPERCENTAGE", "")
+                        @Html.Hidden("hdnrate", "")
+                    </div>
+                    <div class="col-xs-1">
+                        Rate:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Rate, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Order&nbsp;Qty:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.OrderQty, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Delivered&nbsp;Qty:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.DeliveredQty, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Remaining&nbsp;Qty:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.RemainingQty, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Stock&nbsp;Qty:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.StockQty, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Invoice&nbsp;Qty:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.InvoiceQty, new { @class = "form-control", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-1">
+                        Free&nbsp;
+                        <input type="checkbox" id="chkfree" name="free" value="1">
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="submit" id="btnadd" value="Add" class="btn btn-primary" />
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div style="margin-top:25px;"></div>
+
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Invoice Details</b>
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-lg-12">
+                        <div class="scroll">
+                            <table id="productDetailsGrid" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%;"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Free Details</b>
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-lg-12">
+                        <div class="scroll">
+                            <table id="freeDetailsGrid" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%;"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:25px;"></div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Amount Details</b>
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Basic&nbsp;Amt.:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.BasicAmt, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Tax&nbsp;Amt.:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.TaxAmt, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        (Basic&nbsp;+&nbsp;Tax)&nbsp;Amt.:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.GrossAmt1, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Proforma&nbsp;Amt.:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.ProformaAmount, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Gross&nbsp;Amt.:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.GrossAmt, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Adjustment&nbsp;Amt.:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.AdjustmentAmount, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        R/O:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.RoundOff, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Net&nbsp;Amt.:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.NetAmt, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Total&nbsp;Case:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.TotalCase, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-1">
+                        Total&nbsp;PCS:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.TotalPcs, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                    <div class="col-xs-3">
+
+                    </div>
+                    <div class="col-xs-3">
+
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Remarks:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", @rows = 4, @onkeypress = "return true;", style = "width: 187px;height: 95px;" })
+                    </div>
+                    <div class="col-xs-1">
+                        Amt&nbsp;In&nbsp;Word(s)&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextAreaFor(model => model.AmountInWords, new { @class = "form-control", @rows = 4, @onkeypress = "return true;", style = "width: 187px;height: 95px;" })
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="submit" id="btnsave" value="Save" class="btn btn-primary" />
+                        <input type="submit" id="btnclose" value="Close" class="btn btn-danger" />
+                        <input type="submit" id="btnApprove" value="Approve" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="dialog" style="display: none">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="2" align="center">
+                <img id="imgLoader" alt="" src="../Images/ajax-loader.gif" style="visibility: hidden" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="dvpackinglist" title="Packing List">
+    <div class="row col-xs-12">
+        <div style="margin-top:10px;"></div>
+        <div class="col-lg-12">
+            <div class="col-xs-1">
+                Invoice&nbsp;No:
+            </div>
+            <div class="col-xs-3">
+                @Html.TextBoxFor(model => model.PackInvoiceNo, new { @class = "form-control", @disabled = "disabled" })
+            </div>
+            <div class="col-xs-1">
+                Total&nbsp;Case:
+            </div>
+            <div class="col-xs-2">
+                @Html.TextBoxFor(model => model.PackCaseQty, new { @class = "form-control", @disabled = "disabled" })
+            </div>
+            <div class="col-xs-2">
+                Desc&nbsp;of&nbsp;packages:
+            </div>
+            <div class="col-xs-3">
+                @Html.TextBoxFor(model => model.DescPackages, new { @class = "form-control", @onkeypress = "return true;" })
+            </div>
+        </div>
+    </div>
+    <div class="row col-xs-12">
+        <div style="margin-top:10px;"></div>
+        <div class="col-lg-12">
+            <div class="scroll">
+                <table id="packinglistGrid" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%;"></table>
+            </div>
+        </div>
+    </div>
+    <div class="row col-xs-12">
+        <div style="margin-top:10px;"></div>
+        <div class="col-lg-12">
+            <input type="submit" id="btnsavepackinglist" value="Save" class="btn btn-primary" />
+            <input type="submit" id="btnclosepackinglist" value="Close" class="btn btn-danger" />
+        </div>
+    </div>
+</div>

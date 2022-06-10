@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Accounts_EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="FETCH_CHEQUEBOOKLET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_BANKID" Type="varchar" Mode="In" />
+          <Parameter Name="BranchID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ACC_INVOICEDETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Voucherid" Type="varchar" Mode="In" />
+          <Parameter Name="LeadgerID" Type="varchar" Mode="In" />
+          <Parameter Name="VoucherType" Type="varchar" Mode="In" />
+          <Parameter Name="BranchID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_CATEWGORY_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_CUSTOMERID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_CHECK_EXPENSES_LEDGERGET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_LedgerID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_CHECK_EXPENSES_LEDGET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_LedgerID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_DIVISION_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_FILL_SUBCOMPONENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_COMPONENTID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_BUDGET_GROUP_BALANCE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_LedgerID" Type="varchar" Mode="In" />
+          <Parameter Name="P_Amount" Type="decimal" Mode="In" />
+          <Parameter Name="p_VoucherDate" Type="varchar" Mode="In" />
+          <Parameter Name="P_FYEAR" Type="varchar" Mode="In" />
+          <Parameter Name="P_BudgetXml" Type="xml" Mode="In" />
+          <Parameter Name="P_DepartmentID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Get_Department_Component" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_DeptID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_TAXTYPE_NAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_TaxTypeID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_ACCOUNTGROUPTYPE_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_ACC_ACCOUNTGROUPTYPEGET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_ID" Type="int" Mode="In" />
+          <Parameter Name="p_NAME" Type="varchar" Mode="In" />
+          <Parameter Name="p_SEQUENCE" Type="int" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_COSTCENTRE_APPLICABLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_COSTCWENTRE_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Voucherid" Type="varchar" Mode="In" />
+          <Parameter Name="LeadgerID" Type="varchar" Mode="In" />
+          <Parameter Name="VoucherType" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_LEDGER_OUTSTANDING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_LEDGERID" Type="varchar" Mode="In" />
+          <Parameter Name="P_REGIONID" Type="varchar" Mode="In" />
+          <Parameter Name="P_FRMDATE" Type="varchar" Mode="In" />
+          <Parameter Name="P_TODATE" Type="varchar" Mode="In" />
+          <Parameter Name="P_FINYEAR" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_NEGATIVEBAL_CHECKING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_LEDGERID" Type="varchar" Mode="In" />
+          <Parameter Name="P_VOUCHERTYPEID" Type="char" Mode="In" />
+          <Parameter Name="P_TXNTYPEID" Type="char" Mode="In" />
+          <Parameter Name="P_MODE" Type="char" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_PAYMENT_TYPE_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_ACC_TAXAPPLICALE_TDS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_LEDGERID" Type="varchar" Mode="In" />
+          <Parameter Name="P_VOUCHERDATE" Type="varchar" Mode="In" />
+          <Parameter Name="P_FINYEAR" Type="varchar" Mode="In" />
+          <Parameter Name="P_AMOUNT" Type="decimal" Mode="In" />
+          <Parameter Name="P_BRANCHID" Type="varchar" Mode="In" />
+          <Parameter Name="P_VOUCHERTYPEID" Type="varchar" Mode="In" />
+          <Parameter Name="P_DrCr" Type="varchar" Mode="In" />
+          <Parameter Name="P_CalAmt" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_THIRDPARTYVENDOR_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ACCCODE" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_VOUCHERTYPEACC_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VOUCHERTYPEID" Type="nvarchar" Mode="In" />
+          <Parameter Name="TYPE" Type="nvarchar" Mode="In" />
+          <Parameter Name="REGIOIUNID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_ACC_VOUCHERTYPES_GET" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VOUCHERTYPEID" Type="nvarchar" Mode="In" />
+          <Parameter Name="TYPE" Type="nvarchar" Mode="In" />
+          <Parameter Name="REGIOIUNID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_chkdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_DEPARTMENT_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GET_BUSINESSSEGMENT_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_GET_GSTNO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PartyID" Type="varchar" Mode="In" />
+          <Parameter Name="P_StateID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_GET_TAXTYPE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PartyID" Type="varchar" Mode="In" />
+          <Parameter Name="P_StateID" Type="varchar" Mode="In" />
+          <Parameter Name="P_DepoID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="usp_PRODUCTMADSTER_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="USP_REGION_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USERTYPE" Type="nvarchar" Mode="In" />
+          <Parameter Name="USERID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_STATE_SHOW" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="usp_TAXACTION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TAXID" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="USP_VOUCHER_HEADERDETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p_FORMDATE" Type="varchar" Mode="In" />
+          <Parameter Name="p_TODATE" Type="varchar" Mode="In" />
+          <Parameter Name="p_USERID" Type="varchar" Mode="In" />
+          <Parameter Name="p_FINYEAR" Type="varchar" Mode="In" />
+          <Parameter Name="p_VOUCHERTYPEID" Type="varchar" Mode="In" />
+          <Parameter Name="p_CHECKER" Type="varchar" Mode="In" />
+          <Parameter Name="p_DEPOTID" Type="varchar" Mode="In" />
+          <Parameter Name="p_FROMUNLOCKVOUCHER" Type="char" Mode="In" />
+        </Function>
+        <EntityContainer Name="Accounts_EntitiesModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Accounts_EntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AccountsEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="USP_ACC_COSTCWENTRE_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_COSTCWENTRE_GET_Result)" />
+          <FunctionImport Name="USP_GET_BUSINESSSEGMENT_LIST" ReturnType="Collection(Accounts_EntitiesModel.USP_GET_BUSINESSSEGMENT_LIST_Result)" />
+          <FunctionImport Name="USP_DEPARTMENT_SHOW" ReturnType="Collection(Accounts_EntitiesModel.USP_DEPARTMENT_SHOW_Result)" />
+          <FunctionImport Name="SP_DIVISION_SHOW" ReturnType="Collection(Accounts_EntitiesModel.SP_DIVISION_SHOW_Result)" />
+          <FunctionImport Name="USP_ACC_VOUCHERTYPES_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_VOUCHERTYPES_GET_Result)">
+            <Parameter Name="VOUCHERTYPEID" Mode="In" Type="String" />
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+            <Parameter Name="REGIOIUNID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ACC_PAYMENT_TYPE_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_PAYMENT_TYPE_GET_Result)" />
+          <FunctionImport Name="SP_CATEWGORY_SHOW" ReturnType="Collection(Accounts_EntitiesModel.SP_CATEWGORY_SHOW_Result)">
+          <Parameter Name="P_CUSTOMERID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_STATE_SHOW" ReturnType="Collection(Accounts_EntitiesModel.USP_STATE_SHOW_Result)" />
+          <FunctionImport Name="USP_ACC_THIRDPARTYVENDOR_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_THIRDPARTYVENDOR_GET_Result)">
+          <Parameter Name="ACCCODE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ACC_ACCOUNTGROUPTYPEGET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_ACCOUNTGROUPTYPEGET_Result)">
+            <Parameter Name="p_ID" Mode="In" Type="Int32" />
+            <Parameter Name="p_NAME" Mode="In" Type="String" />
+            <Parameter Name="p_SEQUENCE" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ACC_VOUCHERTYPEACC_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_VOUCHERTYPEACC_GET_Result)">
+            <Parameter Name="VOUCHERTYPEID" Mode="In" Type="String" />
+            <Parameter Name="TYPE" Mode="In" Type="String" />
+            <Parameter Name="REGIOIUNID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_REGION_SHOW" ReturnType="Collection(Accounts_EntitiesModel.USP_REGION_SHOW_Result)">
+            <Parameter Name="USERTYPE" Mode="In" Type="String" />
+            <Parameter Name="USERID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GET_GSTNO" ReturnType="Collection(Accounts_EntitiesModel.USP_GET_GSTNO_Result)">
+            <Parameter Name="P_PartyID" Mode="In" Type="String" />
+            <Parameter Name="P_StateID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ACC_LEDGER_OUTSTANDING" ReturnType="Collection(Decimal)">
+            <Parameter Name="P_LEDGERID" Mode="In" Type="String" />
+            <Parameter Name="P_REGIONID" Mode="In" Type="String" />
+            <Parameter Name="P_FRMDATE" Mode="In" Type="String" />
+            <Parameter Name="P_TODATE" Mode="In" Type="String" />
+            <Parameter Name="P_FINYEAR" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ACC_COSTCENTRE_APPLICABLE" ReturnType="Collection(Int32)">
+          <Parameter Name="AccountID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ACC_NEGATIVEBAL_CHECKING" ReturnType="Collection(String)">
+            <Parameter Name="P_LEDGERID" Mode="In" Type="String" />
+            <Parameter Name="P_VOUCHERTYPEID" Mode="In" Type="String" />
+            <Parameter Name="P_TXNTYPEID" Mode="In" Type="String" />
+            <Parameter Name="P_MODE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Get_Department_Component" ReturnType="Collection(Accounts_EntitiesModel.SP_Get_Department_Component_Result)">
+          <Parameter Name="P_DeptID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_FILL_SUBCOMPONENT" ReturnType="Collection(Accounts_EntitiesModel.SP_FILL_SUBCOMPONENT_Result)">
+          <Parameter Name="P_COMPONENTID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ACC_TAXAPPLICALE_TDS" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_TAXAPPLICALE_TDS_Result)">
+            <Parameter Name="P_LEDGERID" Mode="In" Type="String" />
+            <Parameter Name="P_VOUCHERDATE" Mode="In" Type="String" />
+            <Parameter Name="P_FINYEAR" Mode="In" Type="String" />
+            <Parameter Name="P_AMOUNT" Mode="In" Type="Decimal" />
+            <Parameter Name="P_BRANCHID" Mode="In" Type="String" />
+            <Parameter Name="P_VOUCHERTYPEID" Mode="In" Type="String" />
+            <Parameter Name="P_DrCr" Mode="In" Type="String" />
+            <Parameter Name="P_CalAmt" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACC_INVOICEDETAILS">
+            <Parameter Name="Voucherid" Mode="In" Type="String" />
+            <Parameter Name="LeadgerID" Mode="In" Type="String" />
+            <Parameter Name="VoucherType" Mode="In" Type="String" />
+            <Parameter Name="BranchID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_INVOICEDETAILS_DEBIT_CREDIT_Result)">
+            <Parameter Name="Voucherid" Mode="In" Type="String" />
+            <Parameter Name="LeadgerID" Mode="In" Type="String" />
+            <Parameter Name="VoucherType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHECK_EXPENSES_LEDGET" ReturnType="Collection(String)">
+          <Parameter Name="P_LedgerID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHECK_EXPENSES_LEDGERGET" ReturnType="Collection(String)">
+          <Parameter Name="P_LedgerID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_BUDGET_GROUP_BALANCE" ReturnType="Collection(Accounts_EntitiesModel.SP_GET_BUDGET_GROUP_BALANCE_Result)">
+            <Parameter Name="P_LedgerID" Mode="In" Type="String" />
+            <Parameter Name="P_Amount" Mode="In" Type="Decimal" />
+            <Parameter Name="p_VoucherDate" Mode="In" Type="String" />
+            <Parameter Name="P_FYEAR" Mode="In" Type="String" />
+            <Parameter Name="P_BudgetXml" Mode="In" Type="String" />
+            <Parameter Name="P_DepartmentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TAXACTION" ReturnType="Collection(String)">
+          <Parameter Name="TAXID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_PRODUCTMADSTER_SHOW" ReturnType="Collection(Accounts_EntitiesModel.usp_PRODUCTMADSTER_SHOW_Result)" />
+          <FunctionImport Name="USP_VOUCHER_HEADERDETAILS" ReturnType="Collection(Accounts_EntitiesModel.USP_VOUCHER_HEADERDETAILS_Result)">
+            <Parameter Name="p_FORMDATE" Mode="In" Type="String" />
+            <Parameter Name="p_TODATE" Mode="In" Type="String" />
+            <Parameter Name="p_USERID" Mode="In" Type="String" />
+            <Parameter Name="p_FINYEAR" Mode="In" Type="String" />
+            <Parameter Name="p_VOUCHERTYPEID" Mode="In" Type="String" />
+            <Parameter Name="p_CHECKER" Mode="In" Type="String" />
+            <Parameter Name="p_DEPOTID" Mode="In" Type="String" />
+            <Parameter Name="p_FROMUNLOCKVOUCHER" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_chkdate" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="USP_ACC_ACCOUNTGROUPTYPE_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_ACCOUNTGROUPTYPE_GET_Result)" />
+          <FunctionImport Name="FETCH_CHEQUEBOOKLET">
+            <Parameter Name="P_BANKID" Mode="In" Type="String" />
+            <Parameter Name="BranchID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GET_TAXTYPE" ReturnType="Collection(Accounts_EntitiesModel.USP_GET_TAXTYPE_Result)">
+            <Parameter Name="P_PartyID" Mode="In" Type="String" />
+            <Parameter Name="P_StateID" Mode="In" Type="String" />
+            <Parameter Name="P_DepoID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_TAXTYPE_NAME" ReturnType="Collection(Accounts_EntitiesModel.SP_GET_TAXTYPE_NAME_Result)">
+            <Parameter Name="P_TaxTypeID" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="USP_ACC_COSTCWENTRE_GET_Result">
+          <Property Type="String" Name="COSTCENTREID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="COSTCENTRENAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_BUSINESSSEGMENT_LIST_Result">
+          <Property Type="String" Name="BSID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BSNAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_DEPARTMENT_SHOW_Result">
+          <Property Type="String" Name="DEPTID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DEPTNAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_DIVISION_SHOW_Result">
+          <Property Type="String" Name="DIVID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIVNAME" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIVCODE" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="USP_ACC_VOUCHERTYPES_GET_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VoucherName" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="USP_ACC_PAYMENT_TYPE_GET_Result">
+          <Property Type="String" Name="PAYMENTTYPEID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PAYMENTTYPENAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_CATEWGORY_SHOW_Result">
+          <Property Type="String" Name="CATID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CATNAME" Nullable="true" MaxLength="104" />
+        </ComplexType>
+        <ComplexType Name="USP_STATE_SHOW_Result">
+          <Property Type="Int32" Name="State_ID" Nullable="false" />
+          <Property Type="String" Name="State_Name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_ACC_THIRDPARTYVENDOR_GET_Result">
+          <Property Type="String" Name="VENDORID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="VENDORNAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USP_ACC_ACCOUNTGROUPTYPEGET_Result">
+          <Property Type="String" Name="GROUP_TYPEID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="GROUP_TYPENAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_ACC_VOUCHERTYPEACC_GET_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="USP_REGION_SHOW_Result">
+          <Property Type="String" Name="BRID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BRNAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_GSTNO_Result">
+          <Property Type="String" Name="GSTNO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="STATEID" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_Get_Department_Component_Result">
+          <Property Type="Int32" Name="DepartmentalComponenetID" Nullable="true" />
+          <Property Type="String" Name="DepartmentalComponenet" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="SP_FILL_SUBCOMPONENT_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="SubComponentName" Nullable="true" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="USP_ACC_TAXAPPLICALE_TDS_Result">
+          <Property Type="String" Name="ID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="BYDEFAULTAMOUNT" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TransactionAmount" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="DEDUCTABLEPERCENT" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="DEDUCTABLEAMOUNT" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TDSAMOUNT" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="NonTaxableAmount" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT_Result">
+          <Property Type="Decimal" Name="InvoiceAmt" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="LedgerId" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LedgerName" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="InvoiceID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InvoiceNo" Nullable="true" />
+          <Property Type="String" Name="VoucherType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BranchID" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_BUDGET_GROUP_BALANCE_Result">
+          <Property Type="Decimal" Name="BudgetAmt" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="BALANCEAMOUNT" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="DEPTNAME" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="TAG" Nullable="true" />
+          <Property Type="Int32" Name="ENTRYPERMIT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_PRODUCTMADSTER_SHOW_Result">
+          <Property Type="String" Name="PRODUCTID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRODUCTNAME" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="USP_VOUCHER_HEADERDETAILS_Result">
+          <Property Type="String" Name="AccEntryID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VoucherTypeID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="VoucherTypeName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Mode" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Date" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VoucherNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PeriodID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BranchID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BranchName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="VoucherApproved" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="AMOUNT" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="LedgerName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DAYENDTAG" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="NARRATION" Nullable="true" />
+          <Property Type="String" Name="ISTRANSFERTOHO" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="TDSRelated" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="USP_ACC_ACCOUNTGROUPTYPE_GET_Result">
+          <Property Type="String" Name="GROUP_TYPEID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="GROUP_TYPENAME" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="USP_GET_TAXTYPE_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_TAXTYPE_NAME_Result">
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="36" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ISIGST" Nullable="true" MaxLength="1" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Accounts_EntitiesModelStoreContainer" CdmEntityContainer="AccountsEntities" >
+          <FunctionImportMapping FunctionImportName="USP_ACC_COSTCWENTRE_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_COSTCWENTRE_GET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_COSTCWENTRE_GET_Result">
+                <ScalarProperty Name="COSTCENTREID" ColumnName="COSTCENTREID" />
+                <ScalarProperty Name="COSTCENTRENAME" ColumnName="COSTCENTRENAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GET_BUSINESSSEGMENT_LIST" FunctionName="Accounts_EntitiesModel.Store.USP_GET_BUSINESSSEGMENT_LIST">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_GET_BUSINESSSEGMENT_LIST_Result">
+                <ScalarProperty Name="BSID" ColumnName="BSID" />
+                <ScalarProperty Name="BSNAME" ColumnName="BSNAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_DEPARTMENT_SHOW" FunctionName="Accounts_EntitiesModel.Store.USP_DEPARTMENT_SHOW">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_DEPARTMENT_SHOW_Result">
+                <ScalarProperty Name="DEPTID" ColumnName="DEPTID" />
+                <ScalarProperty Name="DEPTNAME" ColumnName="DEPTNAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DIVISION_SHOW" FunctionName="Accounts_EntitiesModel.Store.SP_DIVISION_SHOW">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_DIVISION_SHOW_Result">
+                <ScalarProperty Name="DIVID" ColumnName="DIVID" />
+                <ScalarProperty Name="DIVNAME" ColumnName="DIVNAME" />
+                <ScalarProperty Name="DIVCODE" ColumnName="DIVCODE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ACC_VOUCHERTYPES_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_VOUCHERTYPES_GET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_VOUCHERTYPES_GET_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VoucherName" ColumnName="VoucherName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ACC_PAYMENT_TYPE_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_PAYMENT_TYPE_GET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_PAYMENT_TYPE_GET_Result">
+                <ScalarProperty Name="PAYMENTTYPEID" ColumnName="PAYMENTTYPEID" />
+                <ScalarProperty Name="PAYMENTTYPENAME" ColumnName="PAYMENTTYPENAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CATEWGORY_SHOW" FunctionName="Accounts_EntitiesModel.Store.SP_CATEWGORY_SHOW">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_CATEWGORY_SHOW_Result">
+                <ScalarProperty Name="CATID" ColumnName="CATID" />
+                <ScalarProperty Name="CATNAME" ColumnName="CATNAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_STATE_SHOW" FunctionName="Accounts_EntitiesModel.Store.USP_STATE_SHOW">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_STATE_SHOW_Result">
+                <ScalarProperty Name="State_ID" ColumnName="State_ID" />
+                <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ACC_THIRDPARTYVENDOR_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_THIRDPARTYVENDOR_GET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_THIRDPARTYVENDOR_GET_Result">
+                <ScalarProperty Name="VENDORID" ColumnName="VENDORID" />
+                <ScalarProperty Name="VENDORNAME" ColumnName="VENDORNAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ACC_ACCOUNTGROUPTYPEGET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_ACCOUNTGROUPTYPEGET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_ACCOUNTGROUPTYPEGET_Result">
+                <ScalarProperty Name="GROUP_TYPEID" ColumnName="GROUP_TYPEID" />
+                <ScalarProperty Name="GROUP_TYPENAME" ColumnName="GROUP_TYPENAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ACC_VOUCHERTYPEACC_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_VOUCHERTYPEACC_GET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_VOUCHERTYPEACC_GET_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_REGION_SHOW" FunctionName="Accounts_EntitiesModel.Store.USP_REGION_SHOW">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_REGION_SHOW_Result">
+                <ScalarProperty Name="BRID" ColumnName="BRID" />
+                <ScalarProperty Name="BRNAME" ColumnName="BRNAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GET_GSTNO" FunctionName="Accounts_EntitiesModel.Store.USP_GET_GSTNO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_GET_GSTNO_Result">
+                <ScalarProperty Name="GSTNO" ColumnName="GSTNO" />
+                <ScalarProperty Name="STATEID" ColumnName="STATEID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ACC_LEDGER_OUTSTANDING" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_LEDGER_OUTSTANDING" />
+          <FunctionImportMapping FunctionImportName="USP_ACC_COSTCENTRE_APPLICABLE" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_COSTCENTRE_APPLICABLE" />
+          <FunctionImportMapping FunctionImportName="USP_ACC_NEGATIVEBAL_CHECKING" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_NEGATIVEBAL_CHECKING" />
+          <FunctionImportMapping FunctionImportName="SP_Get_Department_Component" FunctionName="Accounts_EntitiesModel.Store.SP_Get_Department_Component">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_Get_Department_Component_Result">
+                <ScalarProperty Name="DepartmentalComponenetID" ColumnName="DepartmentalComponenetID" />
+                <ScalarProperty Name="DepartmentalComponenet" ColumnName="DepartmentalComponenet" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_FILL_SUBCOMPONENT" FunctionName="Accounts_EntitiesModel.Store.SP_FILL_SUBCOMPONENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_FILL_SUBCOMPONENT_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SubComponentName" ColumnName="SubComponentName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_ACC_TAXAPPLICALE_TDS" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_TAXAPPLICALE_TDS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_TAXAPPLICALE_TDS_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="BYDEFAULTAMOUNT" ColumnName="BYDEFAULTAMOUNT" />
+                <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+                <ScalarProperty Name="DEDUCTABLEPERCENT" ColumnName="DEDUCTABLEPERCENT" />
+                <ScalarProperty Name="DEDUCTABLEAMOUNT" ColumnName="DEDUCTABLEAMOUNT" />
+                <ScalarProperty Name="TDSAMOUNT" ColumnName="TDSAMOUNT" />
+                <ScalarProperty Name="NonTaxableAmount" ColumnName="NonTaxableAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACC_INVOICEDETAILS" FunctionName="Accounts_EntitiesModel.Store.SP_ACC_INVOICEDETAILS" />
+          <FunctionImportMapping FunctionImportName="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_INVOICEDETAILS_DEBIT_CREDIT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_INVOICEDETAILS_DEBIT_CREDIT_Result">
+                <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+                <ScalarProperty Name="LedgerId" ColumnName="LedgerId" />
+                <ScalarProperty Name="LedgerName" ColumnName="LedgerName" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="VoucherType" ColumnName="VoucherType" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CHECK_EXPENSES_LEDGET" FunctionName="Accounts_EntitiesModel.Store.SP_CHECK_EXPENSES_LEDGET" />
+          <FunctionImportMapping FunctionImportName="SP_CHECK_EXPENSES_LEDGERGET" FunctionName="Accounts_EntitiesModel.Store.SP_CHECK_EXPENSES_LEDGERGET" />
+          <FunctionImportMapping FunctionImportName="SP_GET_BUDGET_GROUP_BALANCE" FunctionName="Accounts_EntitiesModel.Store.SP_GET_BUDGET_GROUP_BALANCE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_GET_BUDGET_GROUP_BALANCE_Result">
+                <ScalarProperty Name="BudgetAmt" ColumnName="BudgetAmt" />
+                <ScalarProperty Name="BALANCEAMOUNT" ColumnName="BALANCEAMOUNT" />
+                <ScalarProperty Name="DEPTNAME" ColumnName="DEPTNAME" />
+                <ScalarProperty Name="TAG" ColumnName="TAG" />
+                <ScalarProperty Name="ENTRYPERMIT" ColumnName="ENTRYPERMIT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TAXACTION" FunctionName="Accounts_EntitiesModel.Store.usp_TAXACTION" />
+          <FunctionImportMapping FunctionImportName="usp_PRODUCTMADSTER_SHOW" FunctionName="Accounts_EntitiesModel.Store.usp_PRODUCTMADSTER_SHOW">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.usp_PRODUCTMADSTER_SHOW_Result">
+                <ScalarProperty Name="PRODUCTID" ColumnName="PRODUCTID" />
+                <ScalarProperty Name="PRODUCTNAME" ColumnName="PRODUCTNAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_VOUCHER_HEADERDETAILS" FunctionName="Accounts_EntitiesModel.Store.USP_VOUCHER_HEADERDETAILS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_VOUCHER_HEADERDETAILS_Result">
+                <ScalarProperty Name="AccEntryID" ColumnName="AccEntryID" />
+                <ScalarProperty Name="VoucherTypeID" ColumnName="VoucherTypeID" />
+                <ScalarProperty Name="VoucherTypeName" ColumnName="VoucherTypeName" />
+                <ScalarProperty Name="Mode" ColumnName="Mode" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="VoucherNo" ColumnName="VoucherNo" />
+                <ScalarProperty Name="PeriodID" ColumnName="PeriodID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="VoucherApproved" ColumnName="VoucherApproved" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="LedgerName" ColumnName="LedgerName" />
+                <ScalarProperty Name="DAYENDTAG" ColumnName="DAYENDTAG" />
+                <ScalarProperty Name="NARRATION" ColumnName="NARRATION" />
+                <ScalarProperty Name="ISTRANSFERTOHO" ColumnName="ISTRANSFERTOHO" />
+                <ScalarProperty Name="TDSRelated" ColumnName="TDSRelated" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_chkdate" FunctionName="Accounts_EntitiesModel.Store.usp_chkdate" />
+          <FunctionImportMapping FunctionImportName="USP_ACC_ACCOUNTGROUPTYPE_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_ACCOUNTGROUPTYPE_GET">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_ACCOUNTGROUPTYPE_GET_Result">
+                <ScalarProperty Name="GROUP_TYPEID" ColumnName="GROUP_TYPEID" />
+                <ScalarProperty Name="GROUP_TYPENAME" ColumnName="GROUP_TYPENAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FETCH_CHEQUEBOOKLET" FunctionName="Accounts_EntitiesModel.Store.FETCH_CHEQUEBOOKLET" />
+          <FunctionImportMapping FunctionImportName="USP_GET_TAXTYPE" FunctionName="Accounts_EntitiesModel.Store.USP_GET_TAXTYPE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_GET_TAXTYPE_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_TAXTYPE_NAME" FunctionName="Accounts_EntitiesModel.Store.SP_GET_TAXTYPE_NAME">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_GET_TAXTYPE_NAME_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ISIGST" ColumnName="ISIGST" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

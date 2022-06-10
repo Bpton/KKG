@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Downloads";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+     $("#btnhome").click(function () {
+      window.location.href = "/distributorkyc/usermaster_documentupload";
+    })
+
+})
+</script>
+
+<h2>&nbsp;&nbsp;Downloads</h2>
+
+
+@model List<string>
+<div></div>
+<table>
+    <tr>
+        <th style="display:none"></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Link</th>
+    </tr>
+    @*@for (var i = 0; i <= Model.Count - 1; i++) for ALL images*@
+    @for (var i = 1; i <= 1; i++)
+    {
+        <tr>
+            <td style="display:none">@Model[i].ToString() </td>
+            <td>&nbsp;  &nbsp; </td>
+            <td> &nbsp; &nbsp;</td>
+            <td> &nbsp;&nbsp;  </td>
+            <td>@Html.ActionLink("Download", "Download", new { ImageName = @Model[i].ToString() }) </td>
+        </tr>
+    }
+</table>
+
+<div id="pnlhome" class="col-xs-6">
+
+    <input type="submit" id="btnhome" value="DONE" class="btn btn-info" />
+</div>
+

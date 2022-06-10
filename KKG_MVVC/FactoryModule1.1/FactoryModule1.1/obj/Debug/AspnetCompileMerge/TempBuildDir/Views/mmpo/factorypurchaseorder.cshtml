@@ -1,0 +1,687 @@
+﻿@model FactoryModel.PurchaseOrder
+@{
+    /**/
+
+    ViewBag.Title = "factorypurchaseorder";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+
+}
+
+
+<link href="~/Content/chosen.css" rel="stylesheet">
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Duplicate.js"></script>@*Prevent Duplicate Tab*@
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+@*<script src="~/Scripts/jquery.fixme.min.js"></script>*@
+
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/udjs/PoFac.js?0505202020"></script>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <b>Purchase Order</b>
+    </div>
+
+    <div style="margin-top:10px;"></div>
+    <input type="hidden" id="hdnuser" />
+    <input type="hidden" id="hdnfinyear" />
+    <input type="hidden" id="hdnpoid" />
+    <input type="hidden" id="hdnmenuid" />
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="panel-body">
+
+        <div id="showdata">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="row col-xs-12">
+                    <div class="col-md-1">
+                        Po Type: <span style="color:red">*</span>
+                    </div>
+                    <div class="col-md-3">
+                        @Html.DropDownList("Potype", new List<SelectListItem>
+
+                          {
+                              new SelectListItem{ Text="Select Priority", Value = "-1" },
+                              new SelectListItem{ Text="All", Value = "",Selected=true },
+                              new SelectListItem{ Text="Pending(P.K. Verma/H.Nigam)", Value = "N" },
+                              new SelectListItem{ Text="Hold(P.K.Verma/H.Nigam)", Value = "H" },
+                              new SelectListItem{ Text="Confirm(V.k. Sarda/Gla)", Value = "C" },
+                              new SelectListItem{ Text="Wait for Approved(S.k.Taparia/Sunil Agwral)", Value = "A" },
+                              new SelectListItem{ Text="Approved", Value = "Y" },
+                              new SelectListItem{ Text="Rejected", Value = "R" },
+                          }, new { @class = "form-control" })
+
+                    </div>
+                    <div class="col-xs-1">
+                        From Date:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.EditorFor(model => model.Fromdate, new { htmlAttributes = new { @class = "form-control date-picker", @readonly = "true" } })
+
+                    </div>
+                    <div class="col-xs-1">
+                        To Date:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.EditorFor(model => model.Todate, new { htmlAttributes = new { @class = "form-control date-picker", @readonly = "true" } })
+
+                    </div>
+
+                    <div class="col-xs-2">
+                        <input type="submit" id="btnsearch" value="Search" class="btn btn-primary" />
+                        <input type="submit" id="btnnewentry" value="Add New" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:10px;"></div>
+            @*this div is for grid*@
+            <div class="row col-xs-12">
+                <div class="col-xs-12">
+                    <table id="PodetailsGrid" style="width: 90%; height: auto; overflow: scroll" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"></table>
+                </div>
+            </div>
+        </div>
+
+        <div id="ponoshow">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>PURCHASE ORDER NUMBER</b>
+                    </div>
+                </div>
+                <div class="row col-xs-8">
+                    <div class="col-xs-2">
+                        PONO
+                    </div>
+                    <div class="col-xs-6">
+                        @Html.TextBoxFor(model => model.PONO, new { @class = "form-control chosen", @readonly = "true" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="addnew">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Vendor Details</b>
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div style="display:none">
+                        POID: <span style="color:red">*</span>
+                    </div>
+                    <div style="display:none">
+                        @Html.TextBoxFor(model => model.Poid, new { @class = "form-control chosen", @readonly = "true" })
+                    </div>
+                    <div class="col-xs-1">
+                        Entry Date: <span style="color:red">*</span>
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.EditorFor(model => model.Podate, new { htmlAttributes = new { @class = "form-control date-picker", @readonly = "true" } })
+
+                    </div>
+
+                    <div class="col-xs-1">
+                        Vendor Name : <span style="color:red">*</span>
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.Vendorid, new SelectList(string.Empty, "Vendorid", "Vendorname"), new { @class = "form-control chosen", style = "width: 150px;" })
+                        @Html.HiddenFor(x => x.Vendorname)
+                    </div>
+
+                    <div class="col-xs-1">
+                        QUT.RF.NO
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Qutrefno, new { @class = "form-control chosen", @onkeypress = "return true;" })
+                    </div>
+
+                    <div class="col-xs-1">
+                        QUT.RF.Date
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.EditorFor(model => model.Qutrefdate, new { htmlAttributes = new { @class = "form-control date-picker", @readonly = "true" } })
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="margin-top:25px;"></div>
+
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Item Details</b>
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+
+                    <div class="col-xs-2">
+                        Item Name : <span style="color:red">*</span>
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.Productid, new SelectList(string.Empty, "Productid", "Productname"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.Productname)
+                    </div>
+
+                    <div class="col-xs-2">
+                        Unit : <span style="color:red">*</span>
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.PACKSIZEID_FROM, new SelectList(string.Empty, "PACKSIZEID_FROM", "PACKSIZENAME_FROM"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.PACKSIZENAME_FROM)
+                    </div>
+
+                    <div class="col-xs-2">
+                        Qty
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Qty, new { @class = "form-control chosen", @onkeypress = "return true;" })
+                    </div>
+                </div>
+
+                <div class="row">
+
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Currency Type: <span style="color:red">*</span>
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.Currencyid, new SelectList(string.Empty, "Currencyid", "CURRENCYTYPE"), new { @class = "form-control chosen" })
+                        @Html.HiddenFor(x => x.CURRENCYTYPE)
+                    </div>
+
+                    <div class="col-xs-2">
+                        Purchase Rate
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.RATE, new { @class = "form-control chosen", @readonly = "true", @onkeypress = "return true;" })
+                    </div>
+                    <div class="col-xs-2">
+                        Last Rate
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.LASTRATE, new { @class = "form-control chosen", @readonly = "true", @onkeypress = "return true;" })
+                    </div>
+                </div>
+
+
+
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+
+                    <div class="col-xs-2">
+                        Max Rate
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.MAXRATE, new { @class = "form-control chosen", @readonly = "true", @onkeypress = "return true;" })
+                    </div>
+
+                    <div class="col-xs-2">
+                        Min Rate
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.MINRATE, new { @class = "form-control chosen", @readonly = "true", @onkeypress = "return true;" })
+                    </div>
+
+                    <div class="col-xs-2">
+                        Average Rate:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.AVGRATE, new { @class = "form-control chosen", @readonly = "true", @onkeypress = "return true;" })
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px"></div>
+                    <div class="col-xs-2">
+                        Cgst(%)
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Cgst, new { @class = "form-control chosen", @readonly = "true", @onkeypress = "return true;" })
+                        @Html.HiddenFor(x => x.CGSTTAXID)
+                    </div>
+
+                    <div class="col-xs-2">
+                        Sgst(%)
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Sgst, new { @class = "form-control chosen", @readonly = "true", @onkeypress = "return true;" })
+                        @Html.HiddenFor(x => x.SGSTTAXID)
+                    </div>
+
+                    <div class="col-xs-2">
+                        Igst(%):
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Igst, new { @class = "form-control chosen", @readonly = "true", @onkeypress = "return true;" })
+                        @Html.HiddenFor(x => x.IGSTTAXID)
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px"></div>
+                    <div class="col-xs-2">
+                        Delivery From Date: <span style="color:red">*</span>
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.EditorFor(model => model.REQUIREDDate, new { htmlAttributes = new { @class = "form-control date-picker", @readonly = "true" } })
+
+                    </div>
+
+                    <div class="col-xs-2">
+                        Delivery To Date: <span style="color:red">*</span>
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.EditorFor(model => model.REQUIREDTODATE, new { htmlAttributes = new { @class = "form-control date-picker", @readonly = "true" } })
+
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="submit" id="btnadd" value="Add" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:25px;"></div>
+
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Po Item Details</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="scroll">
+                        <table id="podetail" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                            <thead style='background-color:gray;font-size:14px;color:white'>
+                                <tr>
+                                    <th style="width:5%">
+                                        Sl.No.
+                                    </th>
+                                    <th style="display:none">
+                                        PRoductid
+                                    </th>
+                                    <th style="width:75%">
+                                        Material
+                                    </th>
+                                    <th style="width:05%">
+                                        Qty
+                                    </th>
+                                    <th style="width:05%">
+                                        Unit
+                                    </th>
+                                    <th style="width:05%">
+                                        Purchase Rate
+                                    </th>
+                                    <th style="width:05%">
+                                        Basic Value
+                                    </th>
+                                    <th style="width:05%">
+                                        Last Rate
+                                    </th>
+                                    <th style="width:05%">
+                                        Max Rate
+                                    </th>
+                                    <th style="width:05%">
+                                        Avg Rate
+                                    </th>
+                                    <th style="width:05%">
+                                        Min Rate
+                                    </th>
+                                    <th style="width:05%">
+                                        Cgst(%)
+                                    </th>
+                                    <th style="width:05%">
+                                        Sgst(%)
+                                    </th>
+                                    <th style="width:05%">
+                                        Igst(%)
+                                    </th>
+                                    <th style="width:05%">
+                                        MRP
+                                    </th>
+                                    <th style="width:05%">
+                                        MRP Value
+                                    </th>
+                                    <th style="width:10%">
+                                        Delivary From Date
+                                    </th>
+                                    <th style="width:10%">
+                                        Delivary To Date
+                                    </th>
+                                    <th style="width:10%">
+                                        Delete
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div style="margin-top:25px;"></div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+
+                    <div class="col-xs-2">
+                        <i class="fa fa-puzzle-piece fa-fw" aria-hidden="true"></i>
+                        Total basic
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Totalbasicvalue, new { @class = "form-control chosen", @onkeypress = "return true;", @readonly = "true" })
+                    </div>
+
+                    <div class="col-xs-2">
+                        <i class="fa fa-puzzle-piece fa-fw" aria-hidden="true"></i>
+                        Total Mrp
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Totalmrp, new { @class = "form-control chosen", @onkeypress = "return true;", @readonly = "true" })
+                    </div>
+
+                    <div class="col-xs-2">
+                        <i class="fa fa-puzzle-piece fa-fw" aria-hidden="true"></i>
+                        Total Adjustment
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Totaladjusment, new { @class = "form-control chosen", @onkeypress = "return true;" })
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px"></div>
+                    <div class="col-xs-2">
+                        <i class="fa fa-puzzle-piece fa-fw" aria-hidden="true"></i>
+                        Discount per
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Discper, new { @class = "form-control chosen", @onkeyup = "getdiscpercentage(this);", @onkeypress = "return true;" })
+                    </div>
+
+                    <div class="col-xs-2">
+                        <i class="fa fa-puzzle-piece fa-fw" aria-hidden="true"></i>
+                        Discount amount
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Discamnt, new { @class = "form-control chosen", @onkeypress = "return true;", @readonly = "true" })
+                    </div>
+
+                    <div class="col-xs-2">
+                        <i class="fa fa-puzzle-piece fa-fw" aria-hidden="true"></i>
+                        Total gross
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.Totalgross, new { @class = "form-control chosen", @onkeypress = "return true;", @readonly = "true" })
+                    </div>
+
+
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px"></div>
+                    <div class="col-xs-2" id="lbldvreject">
+                        Rejection Note
+                    </div>
+                    <div class="col-xs-2" id="dvreject">
+                        @Html.TextAreaFor(model => model.REJECTIONNOTE, new { @class = "form-control chosen", @rows = 4, @onkeypress = "return true;" })
+                    </div>
+
+                    <div class="col-xs-2">
+                        Shipping Adress
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextAreaFor(model => model.Shippingadress, new { @class = "form-control chosen", @rows = 4, @onkeypress = "return true;" })
+                    </div>
+
+                    <div class="col-xs-2">
+                        Remarks
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control chosen", @rows = 4, @onkeypress = "return true;" })
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px"></div>
+                    <div class="col-xs-2">
+                        Terms & Condition;
+                    </div>
+                    <div class="col-xs-10">
+                        @Html.TextAreaFor(model => model.Termscondition, new { @class = "form-control chosen", @rows = 4, @onkeypress = "return true;" })
+                    </div>
+                </div>
+
+                <from>
+                    <div class="row col-xs-12">
+                        <div style="margin-top:10px"></div>
+                        <div class="col-xs-6">
+                            <label for="title">	Quotation upload</label>
+                            <input type="file" name="QuotationUpload" id="txtquotupload" size="20" />
+                            <input type="submit" name="submit" id="Quotationsubmit" />
+                            <input type="submit" value="Quotation Info" name="" id="InfoQuotationsubmit" />
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="title">PO Comparative statement upload</label>
+                            <input type="file" name="Comparative Upload" id="txtcompupload" size="20" />
+                            <input type="submit" name="submit" id="Comparativesubmit" />
+                            <input type="submit" value="InfoComparative Info" id="InfoComparativesubmit" />
+                        </div>
+                    </div>
+                </from>
+
+
+            </div>
+            <div style="margin-top:25px;"></div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="row col-xs-12">
+                    <input type="submit" id="btnsave" value="Save" class="btn btn-success" />
+                    <input type="hidden" id="hiddenpoid" />
+                    <input type="hidden" id="hdnfetchmode1" />
+                    <input type="hidden" id="hdnfetchmode2" />
+                    <input type="submit" id="btnHoldApproved" value="Hold Approve" class="btn btn-success" />
+                    <input type="submit" id="btnConfirmed" value="Confirm" class="btn btn-success" />
+                    <input type="submit" id="btnApprove" value="Approve" class="btn btn-success" />
+                    <input type="submit" id="btnReject" value="Reject" class="btn btn-danger" />
+                    <input type="submit" id="btncancel" value="Close" class="btn btn-danger" />
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2>Upload Info</h2>
+                </div>
+                <div class="modal-body">
+                    <div id="divuploadinfo" class="modal-content">
+                        <div class="row col-xs-12">
+                            <div style="margin-top:10px;"></div>
+                            <div class="modal-content">
+                                <table id="uploadinfogrid" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                                    <thead style='background-color:white;font-size:14px;color:black'>
+                                        <tr>
+                                            <th style="display:none">
+                                                Poid
+                                            </th>
+                                            <th style="width:05%">
+                                                Uploade No
+                                            </th>
+                                            <th style="width:05%">
+                                                Uploaddate
+                                            </th>
+                                            <th style="width:05%">
+                                                Filename
+                                            </th>
+                                            <th style="width:05%">
+                                                View
+                                            </th>
+                                            <th style="width:10%">
+                                                Delete
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size:20px"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="dialog" style="display: none">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="2" align="center">
+                <img id="imgLoader" alt="" src="../Images/ajax-loader.gif" style="visibility: hidden" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        width: 100%;
+        height: 300px;
+        overflow: auto;
+        /*overflow-x: hidden;
+        overflow-x: auto;*/
+    }
+</style>
+
+<style type="text/css">
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+    table.dataTable thead tr {
+        background-color: darkgray;
+    }
+
+    table thead tr {
+        background-color: darkgray;
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        /* Hidden by default */
+        position: center; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        -webkit-animation-name: fadeIn; /* Fade in the background */
+        -webkit-animation-duration: 0.4s;
+        animation-name: fadeIn;
+        animation-duration: 0.4s;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position: center;
+        bottom: 0;
+        background-color: aqua;
+        width: 100%;
+        -webkit-animation-name: slideIn;
+        -webkit-animation-duration: 0.4s;
+        animation-name: slideIn;
+        animation-duration: 0.4s
+    }
+
+
+    /* The Close Button */
+    .close {
+        color: red;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .modal-header {
+        padding: 2px 16px;
+        background-color: lightblue;
+        color: black;
+    }
+
+    .modal-body {
+        padding: 2px 16px;
+        background-color: white;
+        color: black;
+    }
+
+    .modal-footer {
+        padding: 2px 16px;
+        background-color: white;
+        color: powderblue;
+    }
+</style>
+
+
+
+
+

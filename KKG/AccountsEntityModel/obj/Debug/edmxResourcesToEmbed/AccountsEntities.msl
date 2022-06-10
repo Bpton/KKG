@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Accounts_EntitiesModelStoreContainer" CdmEntityContainer="AccountsEntities">
+    <FunctionImportMapping FunctionImportName="USP_ACC_COSTCWENTRE_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_COSTCWENTRE_GET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_COSTCWENTRE_GET_Result">
+          <ScalarProperty Name="COSTCENTREID" ColumnName="COSTCENTREID" />
+          <ScalarProperty Name="COSTCENTRENAME" ColumnName="COSTCENTRENAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GET_BUSINESSSEGMENT_LIST" FunctionName="Accounts_EntitiesModel.Store.USP_GET_BUSINESSSEGMENT_LIST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_GET_BUSINESSSEGMENT_LIST_Result">
+          <ScalarProperty Name="BSID" ColumnName="BSID" />
+          <ScalarProperty Name="BSNAME" ColumnName="BSNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_DEPARTMENT_SHOW" FunctionName="Accounts_EntitiesModel.Store.USP_DEPARTMENT_SHOW">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_DEPARTMENT_SHOW_Result">
+          <ScalarProperty Name="DEPTID" ColumnName="DEPTID" />
+          <ScalarProperty Name="DEPTNAME" ColumnName="DEPTNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_DIVISION_SHOW" FunctionName="Accounts_EntitiesModel.Store.SP_DIVISION_SHOW">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_DIVISION_SHOW_Result">
+          <ScalarProperty Name="DIVID" ColumnName="DIVID" />
+          <ScalarProperty Name="DIVNAME" ColumnName="DIVNAME" />
+          <ScalarProperty Name="DIVCODE" ColumnName="DIVCODE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ACC_VOUCHERTYPES_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_VOUCHERTYPES_GET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_VOUCHERTYPES_GET_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VoucherName" ColumnName="VoucherName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ACC_PAYMENT_TYPE_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_PAYMENT_TYPE_GET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_PAYMENT_TYPE_GET_Result">
+          <ScalarProperty Name="PAYMENTTYPEID" ColumnName="PAYMENTTYPEID" />
+          <ScalarProperty Name="PAYMENTTYPENAME" ColumnName="PAYMENTTYPENAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CATEWGORY_SHOW" FunctionName="Accounts_EntitiesModel.Store.SP_CATEWGORY_SHOW">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_CATEWGORY_SHOW_Result">
+          <ScalarProperty Name="CATID" ColumnName="CATID" />
+          <ScalarProperty Name="CATNAME" ColumnName="CATNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_STATE_SHOW" FunctionName="Accounts_EntitiesModel.Store.USP_STATE_SHOW">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_STATE_SHOW_Result">
+          <ScalarProperty Name="State_ID" ColumnName="State_ID" />
+          <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ACC_THIRDPARTYVENDOR_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_THIRDPARTYVENDOR_GET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_THIRDPARTYVENDOR_GET_Result">
+          <ScalarProperty Name="VENDORID" ColumnName="VENDORID" />
+          <ScalarProperty Name="VENDORNAME" ColumnName="VENDORNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ACC_ACCOUNTGROUPTYPEGET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_ACCOUNTGROUPTYPEGET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_ACCOUNTGROUPTYPEGET_Result">
+          <ScalarProperty Name="GROUP_TYPEID" ColumnName="GROUP_TYPEID" />
+          <ScalarProperty Name="GROUP_TYPENAME" ColumnName="GROUP_TYPENAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ACC_VOUCHERTYPEACC_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_VOUCHERTYPEACC_GET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_VOUCHERTYPEACC_GET_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_REGION_SHOW" FunctionName="Accounts_EntitiesModel.Store.USP_REGION_SHOW">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_REGION_SHOW_Result">
+          <ScalarProperty Name="BRID" ColumnName="BRID" />
+          <ScalarProperty Name="BRNAME" ColumnName="BRNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GET_GSTNO" FunctionName="Accounts_EntitiesModel.Store.USP_GET_GSTNO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_GET_GSTNO_Result">
+          <ScalarProperty Name="GSTNO" ColumnName="GSTNO" />
+          <ScalarProperty Name="STATEID" ColumnName="STATEID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ACC_LEDGER_OUTSTANDING" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_LEDGER_OUTSTANDING" />
+    <FunctionImportMapping FunctionImportName="USP_ACC_COSTCENTRE_APPLICABLE" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_COSTCENTRE_APPLICABLE" />
+    <FunctionImportMapping FunctionImportName="USP_ACC_NEGATIVEBAL_CHECKING" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_NEGATIVEBAL_CHECKING" />
+    <FunctionImportMapping FunctionImportName="SP_Get_Department_Component" FunctionName="Accounts_EntitiesModel.Store.SP_Get_Department_Component">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_Get_Department_Component_Result">
+          <ScalarProperty Name="DepartmentalComponenetID" ColumnName="DepartmentalComponenetID" />
+          <ScalarProperty Name="DepartmentalComponenet" ColumnName="DepartmentalComponenet" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_FILL_SUBCOMPONENT" FunctionName="Accounts_EntitiesModel.Store.SP_FILL_SUBCOMPONENT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_FILL_SUBCOMPONENT_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SubComponentName" ColumnName="SubComponentName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_ACC_TAXAPPLICALE_TDS" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_TAXAPPLICALE_TDS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_TAXAPPLICALE_TDS_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="BYDEFAULTAMOUNT" ColumnName="BYDEFAULTAMOUNT" />
+          <ScalarProperty Name="TransactionAmount" ColumnName="TransactionAmount" />
+          <ScalarProperty Name="DEDUCTABLEPERCENT" ColumnName="DEDUCTABLEPERCENT" />
+          <ScalarProperty Name="DEDUCTABLEAMOUNT" ColumnName="DEDUCTABLEAMOUNT" />
+          <ScalarProperty Name="TDSAMOUNT" ColumnName="TDSAMOUNT" />
+          <ScalarProperty Name="NonTaxableAmount" ColumnName="NonTaxableAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_ACC_INVOICEDETAILS" FunctionName="Accounts_EntitiesModel.Store.SP_ACC_INVOICEDETAILS" />
+    <FunctionImportMapping FunctionImportName="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_INVOICEDETAILS_DEBIT_CREDIT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_INVOICEDETAILS_DEBIT_CREDIT_Result">
+          <ScalarProperty Name="InvoiceAmt" ColumnName="InvoiceAmt" />
+          <ScalarProperty Name="LedgerId" ColumnName="LedgerId" />
+          <ScalarProperty Name="LedgerName" ColumnName="LedgerName" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+          <ScalarProperty Name="VoucherType" ColumnName="VoucherType" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_CHECK_EXPENSES_LEDGET" FunctionName="Accounts_EntitiesModel.Store.SP_CHECK_EXPENSES_LEDGET" />
+    <FunctionImportMapping FunctionImportName="SP_CHECK_EXPENSES_LEDGERGET" FunctionName="Accounts_EntitiesModel.Store.SP_CHECK_EXPENSES_LEDGERGET" />
+    <FunctionImportMapping FunctionImportName="SP_GET_BUDGET_GROUP_BALANCE" FunctionName="Accounts_EntitiesModel.Store.SP_GET_BUDGET_GROUP_BALANCE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_GET_BUDGET_GROUP_BALANCE_Result">
+          <ScalarProperty Name="BudgetAmt" ColumnName="BudgetAmt" />
+          <ScalarProperty Name="BALANCEAMOUNT" ColumnName="BALANCEAMOUNT" />
+          <ScalarProperty Name="DEPTNAME" ColumnName="DEPTNAME" />
+          <ScalarProperty Name="TAG" ColumnName="TAG" />
+          <ScalarProperty Name="ENTRYPERMIT" ColumnName="ENTRYPERMIT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_TAXACTION" FunctionName="Accounts_EntitiesModel.Store.usp_TAXACTION" />
+    <FunctionImportMapping FunctionImportName="usp_PRODUCTMADSTER_SHOW" FunctionName="Accounts_EntitiesModel.Store.usp_PRODUCTMADSTER_SHOW">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.usp_PRODUCTMADSTER_SHOW_Result">
+          <ScalarProperty Name="PRODUCTID" ColumnName="PRODUCTID" />
+          <ScalarProperty Name="PRODUCTNAME" ColumnName="PRODUCTNAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_VOUCHER_HEADERDETAILS" FunctionName="Accounts_EntitiesModel.Store.USP_VOUCHER_HEADERDETAILS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_VOUCHER_HEADERDETAILS_Result">
+          <ScalarProperty Name="AccEntryID" ColumnName="AccEntryID" />
+          <ScalarProperty Name="VoucherTypeID" ColumnName="VoucherTypeID" />
+          <ScalarProperty Name="VoucherTypeName" ColumnName="VoucherTypeName" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="VoucherNo" ColumnName="VoucherNo" />
+          <ScalarProperty Name="PeriodID" ColumnName="PeriodID" />
+          <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="VoucherApproved" ColumnName="VoucherApproved" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="LedgerName" ColumnName="LedgerName" />
+          <ScalarProperty Name="DAYENDTAG" ColumnName="DAYENDTAG" />
+          <ScalarProperty Name="NARRATION" ColumnName="NARRATION" />
+          <ScalarProperty Name="ISTRANSFERTOHO" ColumnName="ISTRANSFERTOHO" />
+          <ScalarProperty Name="TDSRelated" ColumnName="TDSRelated" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_chkdate" FunctionName="Accounts_EntitiesModel.Store.usp_chkdate" />
+    <FunctionImportMapping FunctionImportName="USP_ACC_ACCOUNTGROUPTYPE_GET" FunctionName="Accounts_EntitiesModel.Store.USP_ACC_ACCOUNTGROUPTYPE_GET">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_ACC_ACCOUNTGROUPTYPE_GET_Result">
+          <ScalarProperty Name="GROUP_TYPEID" ColumnName="GROUP_TYPEID" />
+          <ScalarProperty Name="GROUP_TYPENAME" ColumnName="GROUP_TYPENAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="FETCH_CHEQUEBOOKLET" FunctionName="Accounts_EntitiesModel.Store.FETCH_CHEQUEBOOKLET" />
+    <FunctionImportMapping FunctionImportName="USP_GET_TAXTYPE" FunctionName="Accounts_EntitiesModel.Store.USP_GET_TAXTYPE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.USP_GET_TAXTYPE_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_GET_TAXTYPE_NAME" FunctionName="Accounts_EntitiesModel.Store.SP_GET_TAXTYPE_NAME">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Accounts_EntitiesModel.SP_GET_TAXTYPE_NAME_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ISIGST" ColumnName="ISIGST" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,325 @@
+﻿@model FactoryModel.ScrapModel
+@{
+    ViewBag.Title = "Scrap";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet">
+<link href="~/Content/chosen.css" rel="stylesheet">
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">@*For Popup*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+@*<script type="text/javascript" language="javascript" src="//cdn.datatables.net/fixedcolumns/3.2.1/js/dataTables.fixedColumns.min.js"></script>*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/udjs/Scrap.js?09102020"></script>
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+
+<style type="text/css">
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+@*<style type="text/css">
+        .table-fixme-fixed {
+            top:0;
+            position:fixed;
+            width:auto;
+            display:none;
+            border:none;
+
+        }
+    </style>*@
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+    table.dataTable thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table tbody:hover > tr td {
+        opacity: 0.5;
+    }
+
+    table tbody:hover > tr:hover td {
+        color: #2d2d2d;
+        opacity: 1.0;
+    }
+
+    table.dataTable tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    table tbody:nth-child(odd) > tr:nth-child(odd) {
+        background: #eee !important;
+    }
+
+    .buttons-excel {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_paginate a {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #2196F3;
+        color: white !important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: #2196F3;
+        color: white !important; /*below block of css for change style when active*/
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        /*width: 1100px;*/
+        height: 300px;
+        overflow: auto;
+    }
+</style>
+
+<style>
+    select {
+        font-family: "Courier New", Courier, monospace
+    }
+</style>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <b>Scrap</b>
+    </div>
+    <div style="margin-top:10px;"></div>
+    <div class="panel-body">
+        <div id="dvDisplay">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Scrap Details</b>
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-2">
+                        From Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtfrmdate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-sm-2">
+                        To Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txttodate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+
+                    <div class="col-xs-4" id="divnewentry">
+                        <input type="submit" id="btnsearch" value="Search" class="btn btn-primary" />
+                        <input type="submit" id="btnAddnew" value="Add New Record" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-12">
+
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-lg-12">
+                        <table id="ScrapRequestGrid" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="dvAdd">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                @*<div class="panel panel-default">
+            <div class="panel-heading">
+                <b>Scrap Details</b>
+            </div>
+        </div>*@
+                <div class="row col-xs-12" id="divScrapNo">
+                    <div class="col-xs-2">
+                        Scrap No:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.SCRAPNO, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Branch:
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.BRANCHID, new SelectList(string.Empty, "BRID", "BRNAME"), new { @class = "form-control chosen" })
+                        @*@Html.HiddenFor(x => x.BRNAME)*@
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Entry Date
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.SCRAPDATE, new { @disabled = "disabled", style = "width: 100px" })
+                    </div>
+                    <div class="col-xs-2">
+                        User Department
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(model => model.USERTYPEID, new SelectList(string.Empty, "UTID", "UTNAME"), new { @class = "form-control chosen", style = "width: 200px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        User Name
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(model => model.USERID, new SelectList(string.Empty, "USERID", "USERNAME"), new { @class = "form-control chosen", style = "width: 200px;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Primary Item
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(m => m.PRIMARYID, new List<SelectListItem>
+                        {
+                            new SelectListItem{ Text="Please Select", Value = "0" },
+                            new SelectListItem{ Text="PM", Value = "2" },
+                        }, new { @class = "form-control chosen", style = "width: 135px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        Sub Item
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(model => model.SUBID, new SelectList(string.Empty, "SUBTYPEID", "SUBITEMNAME"), new { @class = "form-control chosen", style = "width: 200px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        Product
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(model => model.PRODUCTID, new SelectList(string.Empty, "ID", "PRODUCTALIAS"), new { @class = "form-control chosen", style = "width: 200px;" })
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        UOM
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.DropDownListFor(model => model.UOMID, new SelectList(string.Empty, "UOMID", "UOMNAME"), new { @class = "form-control chosen", style = "width: 130px;" })
+                    </div>
+                    <div class="col-xs-2">
+                        Scrap Qty
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.SCRAPQTY, new { @onkeypress = "return true;", style = "width: 100px" })
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="submit" id="btnadd" value="Add" class="btn btn-primary" />
+                    </div>
+                    <div class="col-xs-2">
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:25px;"></div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Scrap Product Details</b>
+                    </div>
+                </div>
+
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-lg-12">
+                        <div class="scroll">
+                            <table id="ScrapProductDetailsGrid" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%;"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:25px;"></div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Remarks
+                    </div>
+                    <div class="col-xs-2">
+                        @Html.TextBoxFor(model => model.REMARKS, new { @class = "form-control", @rows = 4, @onkeypress = "return true;", style = "width: 200px;height: 95px;" })
+                        @Html.Hidden("hdnFinYear", "")
+                        @Html.Hidden("hdnUserID", "")
+                        @Html.Hidden("hdnDepotID", "")
+                        @Html.Hidden("hdnScrapID", "")
+                    </div>
+                    <div class="col-xs-6">
+                        <input type="submit" id="btnsave" value="Save" class="btn btn-primary" />
+                        <input type="submit" id="btnClose" value="Close" class="btn btn-danger" />
+                        <input type="submit" id="btnApprove" value="Approve" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog" style="display: none">
+    <table>
+        <tr>
+            <td align="right" style="background-color:#fff; padding-top:20px; width:50%;">
+                <img id="imgLoader" alt="" src="../images/ajax-loader.gif" style="visibility: hidden" />
+            </td>
+            <td style="background-color:#fff; padding-top:20px;">
+                &nbsp;&nbsp;Please wait...
+            </td>
+        </tr>
+    </table>
+</div>

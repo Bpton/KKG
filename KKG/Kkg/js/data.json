@@ -1,0 +1,154 @@
+{
+  "Table": {
+    "Id": "Table ID",
+    "Class": "table-class",
+    "Thead": {
+      "Type": "thead",
+      "Rows": [
+        {
+          "Cells": [
+            {
+              "Class": "cell-class",
+              "Type": "th",
+              "Html": "Head 1"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "th",
+              "Html": "Head 2"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "th",
+              "Html": "Head 3"
+            }
+          ]
+        }
+      ]
+    },
+    "Tbody": {
+      "Type": "tbody",
+      "Rows": [
+        {
+          "Cells": [
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            }
+          ]
+        },
+        {
+          "Cells": [
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            }
+          ]
+        },
+        {
+          "Cells": [
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            }
+          ]
+        },
+        {
+          "Cells": [
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            }
+          ]
+        },
+        {
+          "Cells": [
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "00,0"
+            }
+          ]
+        }
+      ]
+    },
+    "Tfoot": {
+      "Type": "tfoot",
+      "Rows": [
+        {
+          "Cells": [
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "Total: 00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "Total: 00,0"
+            },
+            {
+              "Class": "cell-class",
+              "Type": "td",
+              "Html": "Total: 00,0"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

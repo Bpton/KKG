@@ -1,0 +1,402 @@
+﻿
+@{
+    ViewBag.Title = "giftClaim";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet">
+<link href="~/Content/chosen.css" rel="stylesheet">
+
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+
+<script src="~/Scripts/Duplicate.js"></script>@*Prevent Duplicate Tab*@
+<link href="~/Content/toastr.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" />@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>@*For Export File*@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>@*For Export File*@
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>@*For Export File*@
+<script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/buttons/1.4.0/js/dataTables.buttons.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.flash.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.html5.min.js"></script>@*For Export File*@
+<script src="//cdn.datatables.net/buttons/1.4.0/js/buttons.print.min.js"></script>@*For Export File*@
+@*<script src="~/Scripts/jquery.fixme.min.js"></script>*@
+
+<script src="~/Scripts/datetimepicker/jqueryui.js"></script>
+
+<script src="~/Scripts/jquery.total.js"></script>
+<script src="~/Scripts/jquery.documentvalidate.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<script src="~/Scripts/udjs/giftClaim.js"></script>
+
+<style type="text/css">
+
+    .dataTables_scroll {
+        overflow: auto;
+    }
+</style>
+
+
+<style>
+    .dataTable > thead > tr > th[class*=sort]:after {
+        display: none;
+    }
+
+    table.dataTable thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table thead tr {
+        /*background-color: darkgray;*/
+        background-color: lightblue;
+    }
+
+    table tbody:hover > tr td {
+        opacity: 0.5;
+    }
+
+    table tbody:hover > tr:hover td {
+        color: #2d2d2d;
+        opacity: 1.0;
+    }
+
+    table.dataTable tbody tr:nth-child(odd) {
+        background: #eee;
+    }
+
+    table tbody:nth-child(odd) > tr:nth-child(odd) {
+        background: #eee !important;
+    }
+
+    .buttons-excel {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+    .dataTables_paginate a {
+        padding: 6px 12px !important;
+        background: lightblue !important;
+        border-color: #2196F3 !important;
+    }
+
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: #2196F3;
+        color: white !important; /*change the hover text color*/
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: #2196F3;
+        color: white !important; /*below block of css for change style when active*/
+    }
+
+    th {
+        white-space: nowrap;
+    }
+
+    td {
+        white-space: nowrap;
+    }
+</style>
+
+<style>
+    div.scroll {
+        margin: 5px;
+        padding: 5px;
+        /*width: 1100px;*/
+        height: 150px;
+        overflow: auto;
+    }
+</style>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <b>Display</b>
+    </div>
+    <div style="margin-top:10px;"></div>
+    <div class="panel-body">
+        <div id="pnlDisplay">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Display Claim Details</b>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+
+                    <div class="col-xs-1">
+                        From Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtfromdate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-xs-1">
+                        To Date:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txttodate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-xs-2">
+                        Depot:
+                    </div>
+
+                    <div class="col-xs-3">
+                        <select id="ddlsearchdepot" class="form-control chosen" style="width:120px"></select>
+
+                    </div>
+                    <div class="col-xs-1" id="divnewentry">
+
+
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="row col-xs-12">
+                        <div class="col-xs-12">
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-1">
+                        Party:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlparty" class="form-control chosen" multiple="multiple" style="width:120px"></select>
+
+                    </div>
+                    <div class="col-xs-1">
+                        Status:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlstatus" class="multiselect" multiple="multiple" selectmode="multiple" style="width:120px"></select>
+
+                    </div>
+                    <div class="col-xs-4" id="divnewentry">
+                        <input type="submit" id="btnvouchersearch" value="Search" class="btn btn-primary" />
+                        <input type="submit" id="Btnadd" value="Add New Record" class="btn btn-primary" />
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-xs-12">
+
+                    </div>
+                </div>
+                <div style="margin-top:10px;"></div>
+                <div class="row col-xs-12">
+                    <div class="col-lg-12" id="DivHeaderRow">
+                        @*<table id="dispatchGridFG" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%"></table>*@
+                    </div>
+                </div>
+            </div>
+            <div>
+
+                <input type="hidden" id="hdnCHECKER" />
+                <input type="hidden" id="hdnClaimID" />
+            </div>
+        </div>
+        @*for add*@
+        <div id="pnlAdd">
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Display Claim Header</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12" id="tr_claimno">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Claim No.
+                    </div>
+                    <div class="col-xs-2">
+
+                        <input type="text" id="txtshowclaimno" disabled="disabled" />
+                    </div>
+                    <div class="col-xs-1">
+                        CN NO.
+                    </div>
+                    <div class="col-xs-2">
+
+                        <input type="text" id="txtprocessno" disabled="disabled" />
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+
+                    <div class="col-xs-1">
+                        Claim Date.
+                    </div>
+                    <div class="col-xs-2">
+
+                        <input type="text" id="txtclaimdate" style="width: 100px;height:20px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-xs-1">
+                        Depot&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+
+                        <select id="ddldepot" class="form-control chosen" style="width:200px"></select>
+                    </div>
+                    <div class="col-xs-1">
+                        Business Segment&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+
+                        <select id="ddlbusinesssegment" class="form-control chosen" style="width:200px"></select>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+
+                    <div style="margin-top:10px;"></div>
+
+                    <div class="col-xs-1">
+                        Distributor&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+
+                        <select id="ddldistributor" class="form-control chosen" style="width:200px"></select>
+                    </div>
+                    <div class="col-xs-1">
+                        Group&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3">
+
+                        <select id="ddlgroup" class="form-control chosen" style="width:200px"></select>
+                    </div>
+                    <div class="col-xs-1" style="display:none">
+                        Customer&nbsp;<span style="display:none"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-3" style="display:none">
+
+                        <select id="ddlretailer" class="form-control chosen" style="width:200px"></select>
+                    </div>
+
+
+                </div>
+
+
+
+                <div style="margin-top:10px;"></div>
+
+            </div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Claim Date Invoice</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Claim Narration&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+
+                        <select id="txtnarration" class="form-control chosen" style="width:200px"></select>
+                    </div>
+                    <div class="col-xs-2">
+                        From Date&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+
+                        <input type="text" id="txtStartDate" style="width: 100px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                    <div class="col-xs-2">
+                        To Date&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+
+                        <input type="text" id="txtEndDate" style="width: 100px;" disabled="disabled" onkeypress="return false;" />
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-2">
+                        Product&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        <select id="ddlProduct" class="form-control chosen" style="width:200px"></select>
+                    </div>
+               
+                    <div class="col-xs-2">
+                        Qty&nbsp;<span style="color:red"><b>*</b></span>&nbsp;:
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" id="txtQty" style="width: 100px;" class="form-control" onkeypress="return isNumberKeyWithDot(event);" />
+                    </div>
+
+                    <div class="col-xs-2">
+                        <input type="submit" id="btnADDGrid" value="Add" class="btn btn-primary" />
+                    </div>
+                    <div class="col-xs-2">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Claim Details</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-lg-12">
+                        <div class="scroll" id="grdProduct">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" style="box-shadow: 5px 5px 5px 5px #D6DAD9">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b>Save Data</b>
+                    </div>
+                </div>
+                <div class="row col-xs-12">
+
+                    <div style="margin-top:10px;"></div>
+                    <div class="col-xs-1">
+                        Remarks.
+                    </div>
+                    <div class="col-xs-4">
+
+                        <textarea id="txtRemarks" style="width:300px"></textarea>
+                    </div>
+                    <div class="col-xs-2">
+                        Claim Qty
+                    </div>
+                    <div class="col-xs-2">
+
+                        <input type="text" id="txtClaimQty" style="width: 100px;" class="form-control" disabled="disabled" />
+                    </div>
+                    <div class="col-xs-3">
+
+                    </div>
+
+                    <div class="row col-xs-12">
+                        <div class="col-xs-12">
+                            <input type="submit" id="btnSave" value="Save" class="btn btn-success" />
+                            <input type="submit" id="btnClose" value="Close" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

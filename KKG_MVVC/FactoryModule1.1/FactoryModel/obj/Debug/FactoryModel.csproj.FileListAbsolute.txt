@@ -1,0 +1,12 @@
+F:\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\obj\Debug\FactoryModel.csproj.CoreCompileInputs.cache
+F:\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\bin\Debug\FactoryModel.dll
+F:\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\bin\Debug\FactoryModel.pdb
+F:\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\obj\Debug\FactoryModel.dll
+F:\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\obj\Debug\FactoryModel.pdb
+F:\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\obj\Debug\FactoryModel.csprojAssemblyReference.cache
+F:\APPLICATION\KKG_MVVC\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\bin\Debug\FactoryModel.dll
+F:\APPLICATION\KKG_MVVC\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\bin\Debug\FactoryModel.pdb
+F:\APPLICATION\KKG_MVVC\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\obj\Debug\FactoryModel.csproj.CoreCompileInputs.cache
+F:\APPLICATION\KKG_MVVC\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\obj\Debug\FactoryModel.dll
+F:\APPLICATION\KKG_MVVC\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\obj\Debug\FactoryModel.pdb
+F:\APPLICATION\KKG_MVVC\KKG_MVVC\KKG_MVC\FactoryModule1.1\FactoryModel\obj\Debug\FactoryModel.csprojAssemblyReference.cache

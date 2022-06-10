@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="frmChildMaster.master.cs" Inherits="VIEW_frmChildMaster" %>
+
+<!doctype html>
+<html>
+<head runat="server">
+<title></title> 
+<link href="../css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style-forms.css" rel="stylesheet" type="text/css"/>
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="../css/themes.css" rel="stylesheet" type="text/css"/>
+<link href="../css/gradient.css" rel="stylesheet" type="text/css"/>
+<link href="../css/sprite.css" rel="stylesheet" type="text/css"/>
+<link href="../css/typography.css" rel="stylesheet" type="text/css"/>
+<link href="../css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="../css/chosen.css" rel="stylesheet"/>
+<link href="../css/tab.css" rel="stylesheet"/><!--tab-->
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/chosen.jquery.js"></script>
+<script type="text/javascript" src="../js/jquery.easyui.min.js"></script><!--tab-->
+<script type="text/javascript">
+    function addTab(title, url) {
+        if (parent.$('#tt').tabs('exists', title)) {
+            parent.$('#tt').tabs('select', title);
+        } else {
+            var content = '<iframe scrolling="auto" frameborder="0" id="' + title + '" src="' + url + '" allowfullscreen></iframe>';
+            parent.$('#tt').tabs('add', {
+                title: title,
+                content: content,
+                closable: true,
+                tools: [{
+                    iconCls: 'icon-mini-refresh',
+                    handler: function () {
+                        var tab = parent.$('#tt').tabs('getSelected');
+                        parent.$('#tt').tabs('update', {
+                            tab: tab,
+                            options: {
+                                title: title,
+                                content: content,
+                                closable: true
+                            }
+                        });
+                    }
+
+                }]
+            });
+        }
+    }
+</script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body id="theme-default" class="full_block">
+    <form id="form1" runat="server">
+   <asp:ScriptManager ID="ScriptManager1" runat="server" ScriptMode="Release"  AsyncPostBackTimeout="900"/>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">  
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+        <script type="text/javascript">
+            function pageLoad(sender, args) {
+                var config = {
+                    '.chosen-select': {},
+                    '.chosen-select-deselect': { allow_single_deselect: true },
+                    '.chosen-select-no-single': { disable_search_threshold: 10 },
+                    '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+                    '.chosen-select-width': { width: "95%" }
+                }
+                for (var selector in config) {
+                    $(selector).chosen(config[selector]);
+                }
+            }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryModule1.1", "FactoryModule1.1\FactoryModule1.1.csproj", "{8AFF570D-2FF9-46E3-9880-2ABC43A9967E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryDatacontext", "FactoryDatacontext\FactoryDatacontext.csproj", "{6F7B656B-3996-4560-B9BA-251BDCA16049}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryModel", "FactoryModel\FactoryModel.csproj", "{FB709191-BD5A-4934-BD1D-C3E8D8F27E11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AFF570D-2FF9-46E3-9880-2ABC43A9967E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AFF570D-2FF9-46E3-9880-2ABC43A9967E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AFF570D-2FF9-46E3-9880-2ABC43A9967E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AFF570D-2FF9-46E3-9880-2ABC43A9967E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F7B656B-3996-4560-B9BA-251BDCA16049}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F7B656B-3996-4560-B9BA-251BDCA16049}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F7B656B-3996-4560-B9BA-251BDCA16049}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F7B656B-3996-4560-B9BA-251BDCA16049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB709191-BD5A-4934-BD1D-C3E8D8F27E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB709191-BD5A-4934-BD1D-C3E8D8F27E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB709191-BD5A-4934-BD1D-C3E8D8F27E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB709191-BD5A-4934-BD1D-C3E8D8F27E11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {934A6C4C-C856-40F6-B90B-02124CEA279D}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/it0098
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FactoryDatacontext\\FactoryDatacontext.csproj
+		SccProjectName1 = FactoryDatacontext
+		SccLocalPath1 = FactoryDatacontext
+		SccProjectUniqueName2 = FactoryModel\\FactoryModel.csproj
+		SccProjectName2 = FactoryModel
+		SccLocalPath2 = FactoryModel
+		SccProjectUniqueName3 = FactoryModule1.1\\FactoryModule1.1.csproj
+		SccProjectName3 = FactoryModule1.1
+		SccLocalPath3 = FactoryModule1.1
+	EndGlobalSection
+EndGlobal

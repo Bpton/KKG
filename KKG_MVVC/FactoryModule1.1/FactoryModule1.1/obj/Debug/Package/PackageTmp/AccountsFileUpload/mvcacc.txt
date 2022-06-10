@@ -1,0 +1,518 @@
+ $('#PRODUCTID').find('option:selected').text().trim();
+ $('#BRID').val();
+
+  data: { SourceDepot: sourceDepot, TxnID: txnid },
+
+3656
+
+btndebitadd
+btndebitadd").click 2566
+adddr 2612
+
+
+http://mcnroeerp.com/mcworld/View/frmbackdatesettings.aspx
+
+
+http://mcnroeerp.com/mcworld/View/frmbackdatesettings.aspx
+
+txtcredittotalamount
+txtdebittotalamount
+hdn_costcenterapplicable
+
+
+success: function (response) {
+
+$.each(response, function () {
+
+'paymenttypename': '" + paymenttypename + "','chequeno': '" + chequeno + "','chequedate': '" + chequedate + "','taxapplicable': '" + taxapplicable + "'}",
+
+
+txtcredittotalamount
+txtdebittotalamount
+btnSave
+onchange="CHKHSNCode();"
+
+USP_ACC_ACCOUNTGROUPTYPE_DMS_GET_Result
+
+BindDCJ_Party
+ddlDCJ_GroupName
+
+USP_ACC_THIRDPARTYVENDOR_DMS_GET
+
+
+BindTaxPercentage
+USP_GET_TAXPERCENTAGE_DMS_Result
+
+CheckInvoiceNo
+ CHECK_GST_INVOICE_DMS 
+
+
+ public List<Polasrate> Polasrate { get; set; }
+
+ narration = $('#txtNarration').val();
+ if (narration == '') {
+            
+            toastr.error('Provide narration...!');
+            return false;
+
+("#btntdsclose").click(function (e) {
+                HideDialogtds();
+                e.preventDefault();
+            });
+ function HideDialogtds() {
+            $("#overlay").hide();
+            $("#dialogtds").fadeOut(300);
+        }
+
+ function ShowDialogtds(modal) {
+              $("#overlay").show();
+              $("#dialogtds").fadeIn(300);
+
+              if (modal) {
+                  $("#overlay").unbind("click");
+              }
+              else {
+                  $("#overlay").click(function (e) {
+                      HideDialogtds();
+                  });
+              }
+          }
+
+  $("#btnDepartment").click(function (e) {
+              
+                    ShowDialog(true);
+                e.preventDefault();
+                $('#div_BudgetSave').css("display", "none");
+                $('#divbudgetadd').css("display", "none");
+                $('#dept2').css("display", "none");
+                $('#dept1').css("display", "none");
+               $('#btnbudgetcncl').css("display", "");
+              
+               
+
+
+            });
+
+/Accountstran
+ $.each(response, function () {
+
+ success: function (response) {
+
+
+ $("#costcentertable").remove()
+
+costapplicable
+
+ toastr.warning('<b><font color=black>This ledger already exists in Cr. side..!</font></b>');
+
+
+ var voucherid;
+            var voucherapproived;
+            var dayend;
+            var row;
+             var tdsrelated;
+
+
+
+voucherapproived  9
+dayend 10
+tdsrelated 1
+
+
+accid
+grnno
+costcenter
+
+
+txtgrdate
+txtwaybilldate
+
+    public List<DispatchHeaderEditFG> DispatchHeaderEditFG { get; set; }
+billtargetfrompage
+
+ msg.Add(new messageresponse
+
+
+
+    $("body").on("click", "#gvparentvoucher .gvprint", function () {
+
+
+
+
+        //$('.debitdel').on('click', function () {
+
+        var row = $(this).closest("tr");
+        voucherid = row.find('td:eq(0)').html();
+
+        // var url = "frmRptInvoicePrint.aspx?AdvRecpt_ID=" + voucherid + "&Voucherid=" + vouchertypeid;
+        var url = "http://mcnroeerp.com:8085/VIEW/frmRptInvoicePrint.aspx?AdvRecpt_ID=" + voucherid + "&Voucherid=" + vouchertypeid;
+        window.open(url, "", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+
+
+
+
+
+   $.ajax({
+
+        url: "/Accoiuntstran/savevoucher",
+        data: '{accountssavesave:' + JSON.stringify(accountssavesave) + '}',
+        type: "POST",
+        async: false,
+        contentType: "application/json",
+        success: function (responseMessage) {
+            var messageid;
+            var messagetext;
+            $.each(responseMessage, function (key, item) {
+              //  messageid = item.MessageID;
+                messagetext = item.MessageText;
+            });
+            if (messageid != '0') {
+                //$('#dvAdd').css("display", "none");
+                //$('#dvDisplay').css("display", "");
+                //$("#txtfrmdate").datepicker({ dateFormat: "dd/mm/yy" }).datepicker("setDate", new Date());
+                //$("#txttodate").datepicker({ dateFormat: "dd/mm/yy" }).datepicker("setDate", new Date());
+                //ClearControls();
+                $('#debitadd').find('tbody').detach();
+                $('#debitadd').append($('<tbody>'));
+
+                $('#creditadd').find('tbody').detach();
+                $('#creditadd').append($('<tbody>'));
+                close();
+
+                //bindfgdispatchgrid();
+               // ReleaseSession();
+                toastr.success('<b><font color=black>' + messagetext + '</font></b>');
+            }
+            else {
+                // $('#dvAdd').css("display", "");
+                //$('#dvDisplay').css("display", "none");
+                toastr.error('<b><font color=black>' + messagetext + '</font></b>');
+            }
+        },
+        failure: function (responseMessage) {
+            alert(responseMessage.responseText);
+        },
+        error: function (responseMessage) {
+            alert(responseMessage.responseText);
+        }
+    });
+
+
+
+
+
+
+
+
+    });
+            {
+                response = popup
+           
+
+
+            });
+
+
+
+
+select count(AccEntryID) from Acc_Entry where  ISAUTOPOPUP='Y' and  AccEntryID in(select InvoiceID from Acc_Voucher_Invoice_Map where AccEntryID='" + AccentryId 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  string sql = "EXEC [SP_ACC_VOUCHER] '" + VoucherTypeId + "','" + VoucherTypeName + "','" + BranchID + "','" + BranchName + "','" + PayementMode + "','" + VoucherDate + "','" + FinYear + "','" + Narration + "','" + UserID + "','" + Tag + "','" + OnEditedAccEntryID + "','" + xml + "','" + IsVoucherApproved + "','" + Invoicexml + "','" + CostCenterxml + "','" + IsFromPage + "','" + xmlDebitCreditGST + "','" + BillNo + "','" + BillDate + "','" + GRNo + "','" + GRDate + "','" + VehicleNo + "','" + Transport + "','" + WayBillNo + "','" + WayBillDate + "', @p_OnlyBillTagFromPage='" + OnlyBillTagFromPage + "', @p_DrCr= '" + DrCr + "',@p_GSTVoucherType='" + GSTVoucherType + "'";
+
+
+trparty
+trpaymentparty
+paymentparty
+SP_FILL_PaymentParty
+
+
+rdbdebitpaymenttype
+PaymentType
+
+Select PAYMENTTYPEID ,PAYMENTTYPENAME from Acc_PaymentType Order by PAYMENTTYPENAME
+USP_ACC_PAYMENT_TYPE
+
+
+trdebitchequeno
+
+$("#ddlMode").chosen({
+        search_contains: true
+    });
+
+    $("#ddlMode").trigger("chosen:updated");
+
+
+$('#checkbox').is(":checked")
+for dates
+
+https://stackoverflow.com/questions/10139378/setting-min-date-in-jquery-datepicker
+
+
+FFC65354-AB46-4983-A67F-111486EC3D39
+FFC65354-AB46-4983-A67F-111486EC3D39
+user id 9073
+
+
+
+
+
+
+ if (counter > 0) {
+                $("#ddlStateNamenew").prop("disabled", true);
+                $("#ddlDCJ_GroupName").prop("disabled", true);
+                $("#ddlDCJ_Partynew").prop("disabled", true);
+                $("#ddlDCJ_GstNonew").prop("disabled", true);
+                $("#txtDCJ_InvoiceNonew").attr("disabled", "disabled");
+                $("#txtDCJ_PartyTradenew").attr("disabled", "disabled");
+                $("#txtDCJ_InvoiceNonew").attr("disabled", "disabled");
+            }
+
+txtDCJ_NonTaxableAmount
+PlaceOfSupply
+roundoff, txtDCJ_NonTaxableAmount, PlaceOfSupply)
+
+
+txtGSTTotal
+
+http://localhost:2319/FACTORY/frmRptInvoicePrint_FAC.aspx?Stnid=503F99A9-0F21-47A7-90CD-43D19A8FB97A&&TAG=TB&&MenuId=45
+
+http://mcnroeerp.com:8085/FACTORY/frmRptInvoicePrint_FACv2.aspx?Stnid=503F99A9-0F21-47A7-90CD-43D19A8FB97A&TAG=%20TAG&MenuId=45	
+
+HDR509053687
+
+$("#hdntransporterid").val('')
+checkLRGRNOV2
+
+FFC65354-AB46-4983-A67F-111486EC3D39
+FFC65354-AB46-4983-A67F-111486EC3D39
+
+STKTRN
+DPTRCVD
+STKDES
+$("#ddltransporter").prop("disabled", true);
+  $("#ddltransporter").chosen({
+                    search_contains: true
+                });
+
+
+
+                $("#ddltransporter").trigger("chosen:updated");
+
+ $("#ddlfromstate").prop("disabled", true);
+                $("#ddlfromstate").chosen({
+                    search_contains: true
+                });
+                $("#ddlfromstate").trigger("chosen:updated");
+
+<span style="color:red"><b>*</b></span>
+
+frmRptBSWiseSaleReport
+
+frmRptBSWiseSaleReport
+frmRptSalesProductwiseSkuwise
+
+   var ischecked = $('#chkReversecharge').is(":checked")
+
+
+
+chktdsapplicable1
+calculatetds
+
+var TRANSPORTERID = $("#ddltransporter").val();
+var tdsvalue = $("#txtsumtdsdeuctablevalue").val();
+frmQVPSClaim.aspx?CTYPE=2&MNID=106
+
+Methodolog
+
+C7DC2FD5-6C42-4FAC-ADBF-7E08DCC8F706
+
+7F62F951-9D1F-4B8D-803B-74EEBA468CEE
+
+BindGroupByDistributor
+
+txtnarration
+
+
+
+
+ar INVOICENO = $("#txtInvoiceNo").val();
+    var INVOICEDT = $("#txtInvoiceDate").val();
+    var FROMDT = $("#txtStartDate").val();
+    var TODT = $("#txtEndDate").val();
+    var QTY = $("#txtQty").val();
+    var QTYDTL = $("#txtqtydetails").val();
+   
+    var NARRATIONID = $("#txtnarration").val();
+    var NARRATION = $('#txtnarration').find('option:selected').text();
+
+
+
+
+ INVOICE_NO = row["INVOICE_NO"].ToString(),
+                    INVOICE_DATE = row["INVOICE_DATE"].ToString(),
+                    NARRATION = row["NARRATION"].ToString(),
+                    FROM_DATE = row["NARRATION"].ToString(),
+
+                    TO_DATE = row["TO_DATE"].ToString(),
+                    QTY = row["QTY"].ToString(),
+                    QTYDETAILS = row["QTYDETAILS"].ToString(),
+
+
+
+SaveTransporterbillV2fac
+
+
+
+
+string claimtype, string depotid, string status, string fromdate, string todate, string party)
+
+
+style="display:none"
+
+C7DC2FD5-6C42-4FAC-ADBF-7E08DCC8F706
+
+
+
+
+ var tableNew = '<table id="grdProduct" class="table table-striped table-bordered dt-responsive nowrap">';
+            tableNew = tableNew + '<thead ><tr><th style="display:none"></th><th >Sl.No.</th><th> INVOICE NO.</th><th>INVOICE DATE</th><th>CLAIM DETAILS</th><th> FROM DATE</th><th>TO DATE</th> <th> QTY</th><th>AMOUNT</th><th>DELETE</th></tr></thead><tbody>';
+            var totalamt = 0;
+            var counter = 0;
+
+
+ https://bootstrapious.com/p/bootstrap-sidebar
+
+
+frmAccAdvanceVoucher.aspx?VOUCHERID=14&CHECKER=FALSE
+frmAccAdvanceVoucher.aspx?VOUCHERID=13&CHECKER=FALSE
+
+
+tdsapplicable = row.find('td:eq(7)').html();
+
+Outstanding
+btncreditadd
+lblcreditoutstanding
+lbldebitoutstanding
+
+
+ var tableNew = '<table id="tdslist" class="reportgrid">';
+            tableNew = tableNew + '<thead><tr><th style="display:none"></th><th>SL</th> <th>Tax name</th><th>By Default</th><th>Transaction Amt</th> <th>Taxable Amt.<th>Percentage<th>Tax Amt</th><th>Non Taxable Amt</th> </tr></thead> <tbody>';
+            $.each(response, function () {
+                counter = counter + 1;
+                istaxapplicable = '1';
+                
+                tableNew = tableNew + "<tr><td style='display:none'>" + this["ID"] + "</td>   <td><input type='checkbox' name='chktaxid' value='' checked>" + counter + "</td><td>" + this["NAME"] + "</td><td class='defaultamt'> <input type='text' class='form-control' id='txtByDefault' style='text-align:right' value='" + this["BYDEFAULTAMOUNT"] + "'/>   </td><td class='tranamt'><input type='text' class='form-control' id='txtTransactionAmount' style='text-align:right' value='" + this["TransactionAmount"] + "'/></td><td >" + this["DEDUCTABLEAMOUNT"] + "</td><td>" + this["DEDUCTABLEPERCENT"] + "</td><td> " + this["TDSAMOUNT"] + " </td><td ><input type='text' class='nontax' id='txtNonTaxableAmounth' style='text-align:right' value='" + this["NonTaxableAmount"] + "'/></td></tr > "
+
+            });
+            document.getElementById("addtds").innerHTML = tableNew + 
+
+
+
+clstxtamtpaid
+
+= tableNew + '</tbody></table>';
+InvoiceDetails
+
+ShowDialoginvoice
+HideDialoginvoice
+
+   $('#lbldebitoutstanding').text('0.00');
+    $('#lblcreditoutstanding').text('0.00');
+
+ dr["TxnType"] = Convert.ToString("0");
+
+btnSave
+btnVendorDetails
+                dr["Amount"] = Convert.ToString(DebitAmount);
+
+
+http://localhost:2319/VIEW/frmrptSalesProductwisae_Depotwise.aspx.cs
+
+style="width:150px"
+
+
+clstxtamtpaid
+txtamtpaid
+grd_InvoiceDetails
+clschkinv
+
+$(function () {
+    $('button').click(function () {
+        alert(getString());
+    });
+
+    function getString() {
+        var rows = $('table>tbody>tr'); // all browsers always create the tbody element in DOM
+        var arr = [];
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows.eq(i).children('td');
+            var text1 = cells.eq(0).find('input').val();
+            var text2 = cells.eq(1).find('select').val();
+            //var text2 = cells.eq(1).find('select option:selected').html();//alternative, if you want to collect the inner html instead
+            arr.push(text1 + ',' + text2); // add string to array
+        }
+        return arr.join('|'); // join the string in array to single string
+    }
+});
+https://stackoverflow.com/questions/18032838/traverse-html-table-using-jquery
+
+
+trDeptDr
+
+BindCostCenterCatagory
+
+
+
+            $("#ddlDepartmentDr").chosen({
+                search_contains: true
+            });
+
+
+            $("#ddlDepartmentDr").trigger("chosen:updated");
+
+trDeptDr
+trDeptCr
+
+dialogfile
+ShowDialogfile
+btnfileclose
+HideDialogfile
+btnupload
+grdfileupload
+  ShowDialog(true);
+        e.preventDefault();
+
+
+btndelfile
+clsfiledel
+
+Bindvouchercr
+BindvoucherDr
+addvouchercr1
+addvoucheradvdrcr
+addvoucherdrcr
+
+
+
+ $('#trDeptDr').css("display", "none");
+    $('#trDeptCr').css("display", "none");
+
+
+ $("#ddlDepartmentDr").val('0');
+    $("#ddlDepartmentCr").val('0');
+    $("#ddlBusinessSegDr").val('0');
+    $("#ddlBusinessSegCr").val('0');
+
+checkwxpenseledgerornot

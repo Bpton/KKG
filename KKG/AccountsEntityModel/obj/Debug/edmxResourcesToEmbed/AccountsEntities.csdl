@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Accounts_EntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AccountsEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="USP_ACC_COSTCWENTRE_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_COSTCWENTRE_GET_Result)" />
+    <FunctionImport Name="USP_GET_BUSINESSSEGMENT_LIST" ReturnType="Collection(Accounts_EntitiesModel.USP_GET_BUSINESSSEGMENT_LIST_Result)" />
+    <FunctionImport Name="USP_DEPARTMENT_SHOW" ReturnType="Collection(Accounts_EntitiesModel.USP_DEPARTMENT_SHOW_Result)" />
+    <FunctionImport Name="SP_DIVISION_SHOW" ReturnType="Collection(Accounts_EntitiesModel.SP_DIVISION_SHOW_Result)" />
+    <FunctionImport Name="USP_ACC_VOUCHERTYPES_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_VOUCHERTYPES_GET_Result)">
+      <Parameter Name="VOUCHERTYPEID" Mode="In" Type="String" />
+      <Parameter Name="TYPE" Mode="In" Type="String" />
+      <Parameter Name="REGIOIUNID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_ACC_PAYMENT_TYPE_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_PAYMENT_TYPE_GET_Result)" />
+    <FunctionImport Name="SP_CATEWGORY_SHOW" ReturnType="Collection(Accounts_EntitiesModel.SP_CATEWGORY_SHOW_Result)">
+      <Parameter Name="P_CUSTOMERID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_STATE_SHOW" ReturnType="Collection(Accounts_EntitiesModel.USP_STATE_SHOW_Result)" />
+    <FunctionImport Name="USP_ACC_THIRDPARTYVENDOR_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_THIRDPARTYVENDOR_GET_Result)">
+      <Parameter Name="ACCCODE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_ACC_ACCOUNTGROUPTYPEGET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_ACCOUNTGROUPTYPEGET_Result)">
+      <Parameter Name="p_ID" Mode="In" Type="Int32" />
+      <Parameter Name="p_NAME" Mode="In" Type="String" />
+      <Parameter Name="p_SEQUENCE" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_ACC_VOUCHERTYPEACC_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_VOUCHERTYPEACC_GET_Result)">
+      <Parameter Name="VOUCHERTYPEID" Mode="In" Type="String" />
+      <Parameter Name="TYPE" Mode="In" Type="String" />
+      <Parameter Name="REGIOIUNID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_REGION_SHOW" ReturnType="Collection(Accounts_EntitiesModel.USP_REGION_SHOW_Result)">
+      <Parameter Name="USERTYPE" Mode="In" Type="String" />
+      <Parameter Name="USERID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_GET_GSTNO" ReturnType="Collection(Accounts_EntitiesModel.USP_GET_GSTNO_Result)">
+      <Parameter Name="P_PartyID" Mode="In" Type="String" />
+      <Parameter Name="P_StateID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_ACC_LEDGER_OUTSTANDING" ReturnType="Collection(Decimal)">
+      <Parameter Name="P_LEDGERID" Mode="In" Type="String" />
+      <Parameter Name="P_REGIONID" Mode="In" Type="String" />
+      <Parameter Name="P_FRMDATE" Mode="In" Type="String" />
+      <Parameter Name="P_TODATE" Mode="In" Type="String" />
+      <Parameter Name="P_FINYEAR" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_ACC_COSTCENTRE_APPLICABLE" ReturnType="Collection(Int32)">
+      <Parameter Name="AccountID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_ACC_NEGATIVEBAL_CHECKING" ReturnType="Collection(String)">
+      <Parameter Name="P_LEDGERID" Mode="In" Type="String" />
+      <Parameter Name="P_VOUCHERTYPEID" Mode="In" Type="String" />
+      <Parameter Name="P_TXNTYPEID" Mode="In" Type="String" />
+      <Parameter Name="P_MODE" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Get_Department_Component" ReturnType="Collection(Accounts_EntitiesModel.SP_Get_Department_Component_Result)">
+      <Parameter Name="P_DeptID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FILL_SUBCOMPONENT" ReturnType="Collection(Accounts_EntitiesModel.SP_FILL_SUBCOMPONENT_Result)">
+      <Parameter Name="P_COMPONENTID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="USP_ACC_TAXAPPLICALE_TDS" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_TAXAPPLICALE_TDS_Result)">
+      <Parameter Name="P_LEDGERID" Mode="In" Type="String" />
+      <Parameter Name="P_VOUCHERDATE" Mode="In" Type="String" />
+      <Parameter Name="P_FINYEAR" Mode="In" Type="String" />
+      <Parameter Name="P_AMOUNT" Mode="In" Type="Decimal" />
+      <Parameter Name="P_BRANCHID" Mode="In" Type="String" />
+      <Parameter Name="P_VOUCHERTYPEID" Mode="In" Type="String" />
+      <Parameter Name="P_DrCr" Mode="In" Type="String" />
+      <Parameter Name="P_CalAmt" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ACC_INVOICEDETAILS">
+      <Parameter Name="Voucherid" Mode="In" Type="String" />
+      <Parameter Name="LeadgerID" Mode="In" Type="String" />
+      <Parameter Name="VoucherType" Mode="In" Type="String" />
+      <Parameter Name="BranchID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_INVOICEDETAILS_DEBIT_CREDIT_Result)">
+      <Parameter Name="Voucherid" Mode="In" Type="String" />
+      <Parameter Name="LeadgerID" Mode="In" Type="String" />
+      <Parameter Name="VoucherType" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CHECK_EXPENSES_LEDGET" ReturnType="Collection(String)">
+      <Parameter Name="P_LedgerID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CHECK_EXPENSES_LEDGERGET" ReturnType="Collection(String)">
+      <Parameter Name="P_LedgerID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_BUDGET_GROUP_BALANCE" ReturnType="Collection(Accounts_EntitiesModel.SP_GET_BUDGET_GROUP_BALANCE_Result)">
+      <Parameter Name="P_LedgerID" Mode="In" Type="String" />
+      <Parameter Name="P_Amount" Mode="In" Type="Decimal" />
+      <Parameter Name="p_VoucherDate" Mode="In" Type="String" />
+      <Parameter Name="P_FYEAR" Mode="In" Type="String" />
+      <Parameter Name="P_BudgetXml" Mode="In" Type="String" />
+      <Parameter Name="P_DepartmentID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TAXACTION" ReturnType="Collection(String)">
+      <Parameter Name="TAXID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_PRODUCTMADSTER_SHOW" ReturnType="Collection(Accounts_EntitiesModel.usp_PRODUCTMADSTER_SHOW_Result)" />
+    <FunctionImport Name="USP_VOUCHER_HEADERDETAILS" ReturnType="Collection(Accounts_EntitiesModel.USP_VOUCHER_HEADERDETAILS_Result)">
+      <Parameter Name="p_FORMDATE" Mode="In" Type="String" />
+      <Parameter Name="p_TODATE" Mode="In" Type="String" />
+      <Parameter Name="p_USERID" Mode="In" Type="String" />
+      <Parameter Name="p_FINYEAR" Mode="In" Type="String" />
+      <Parameter Name="p_VOUCHERTYPEID" Mode="In" Type="String" />
+      <Parameter Name="p_CHECKER" Mode="In" Type="String" />
+      <Parameter Name="p_DEPOTID" Mode="In" Type="String" />
+      <Parameter Name="p_FROMUNLOCKVOUCHER" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_chkdate" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="USP_ACC_ACCOUNTGROUPTYPE_GET" ReturnType="Collection(Accounts_EntitiesModel.USP_ACC_ACCOUNTGROUPTYPE_GET_Result)" />
+    <FunctionImport Name="FETCH_CHEQUEBOOKLET">
+      <Parameter Name="P_BANKID" Mode="In" Type="String" />
+      <Parameter Name="BranchID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_GET_TAXTYPE" ReturnType="Collection(Accounts_EntitiesModel.USP_GET_TAXTYPE_Result)">
+      <Parameter Name="P_PartyID" Mode="In" Type="String" />
+      <Parameter Name="P_StateID" Mode="In" Type="String" />
+      <Parameter Name="P_DepoID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GET_TAXTYPE_NAME" ReturnType="Collection(Accounts_EntitiesModel.SP_GET_TAXTYPE_NAME_Result)">
+      <Parameter Name="P_TaxTypeID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="USP_ACC_COSTCWENTRE_GET_Result">
+    <Property Type="String" Name="COSTCENTREID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="COSTCENTRENAME" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="USP_GET_BUSINESSSEGMENT_LIST_Result">
+    <Property Type="String" Name="BSID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BSNAME" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="USP_DEPARTMENT_SHOW_Result">
+    <Property Type="String" Name="DEPTID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DEPTNAME" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SP_DIVISION_SHOW_Result">
+    <Property Type="String" Name="DIVID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DIVNAME" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DIVCODE" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="USP_ACC_VOUCHERTYPES_GET_Result">
+    <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="VoucherName" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="USP_ACC_PAYMENT_TYPE_GET_Result">
+    <Property Type="String" Name="PAYMENTTYPEID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PAYMENTTYPENAME" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_CATEWGORY_SHOW_Result">
+    <Property Type="String" Name="CATID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CATNAME" Nullable="true" MaxLength="104" />
+  </ComplexType>
+  <ComplexType Name="USP_STATE_SHOW_Result">
+    <Property Type="Int32" Name="State_ID" Nullable="false" />
+    <Property Type="String" Name="State_Name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="USP_ACC_THIRDPARTYVENDOR_GET_Result">
+    <Property Type="String" Name="VENDORID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="VENDORNAME" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="USP_ACC_ACCOUNTGROUPTYPEGET_Result">
+    <Property Type="String" Name="GROUP_TYPEID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GROUP_TYPENAME" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="USP_ACC_VOUCHERTYPEACC_GET_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="USP_REGION_SHOW_Result">
+    <Property Type="String" Name="BRID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BRNAME" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="USP_GET_GSTNO_Result">
+    <Property Type="String" Name="GSTNO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="STATEID" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_Get_Department_Component_Result">
+    <Property Type="Int32" Name="DepartmentalComponenetID" Nullable="true" />
+    <Property Type="String" Name="DepartmentalComponenet" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="SP_FILL_SUBCOMPONENT_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="SubComponentName" Nullable="true" MaxLength="250" />
+  </ComplexType>
+  <ComplexType Name="USP_ACC_TAXAPPLICALE_TDS_Result">
+    <Property Type="String" Name="ID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="BYDEFAULTAMOUNT" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TransactionAmount" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DEDUCTABLEPERCENT" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="DEDUCTABLEAMOUNT" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="TDSAMOUNT" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="NonTaxableAmount" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="USP_ACC_INVOICEDETAILS_DEBIT_CREDIT_Result">
+    <Property Type="Decimal" Name="InvoiceAmt" Nullable="false" Precision="18" Scale="2" />
+    <Property Type="String" Name="LedgerId" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="LedgerName" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="InvoiceID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="InvoiceNo" Nullable="true" />
+    <Property Type="String" Name="VoucherType" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BranchID" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_BUDGET_GROUP_BALANCE_Result">
+    <Property Type="Decimal" Name="BudgetAmt" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="BALANCEAMOUNT" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="DEPTNAME" Nullable="true" MaxLength="250" />
+    <Property Type="Int32" Name="TAG" Nullable="true" />
+    <Property Type="Int32" Name="ENTRYPERMIT" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_PRODUCTMADSTER_SHOW_Result">
+    <Property Type="String" Name="PRODUCTID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PRODUCTNAME" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="USP_VOUCHER_HEADERDETAILS_Result">
+    <Property Type="String" Name="AccEntryID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="VoucherTypeID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="VoucherTypeName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Mode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="Date" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="VoucherNo" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PeriodID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BranchID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="BranchName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="VoucherApproved" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="AMOUNT" Nullable="true" Precision="18" Scale="2" />
+    <Property Type="String" Name="LedgerName" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="DAYENDTAG" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="NARRATION" Nullable="true" />
+    <Property Type="String" Name="ISTRANSFERTOHO" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="TDSRelated" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="USP_ACC_ACCOUNTGROUPTYPE_GET_Result">
+    <Property Type="String" Name="GROUP_TYPEID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GROUP_TYPENAME" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="USP_GET_TAXTYPE_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="SP_GET_TAXTYPE_NAME_Result">
+    <Property Type="String" Name="ID" Nullable="false" MaxLength="36" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="ISIGST" Nullable="true" MaxLength="1" />
+  </ComplexType>
+</Schema>
